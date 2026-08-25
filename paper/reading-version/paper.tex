@@ -1,0 +1,98 @@
+\documentclass[]{hust}
+
+\usepackage{amsmath,amssymb,bm}
+\usepackage{booktabs}
+\usepackage{placeins}
+\usepackage{tabularx}
+\usepackage{needspace}
+\usepackage{tikz}
+\usetikzlibrary{arrows.meta,positioning,calc,shapes.geometric,fit,backgrounds}
+\usepackage{array}
+\usepackage{longtable}
+\setlength{\headheight}{28pt}
+
+\newcommand{\AVG}{Agentic Visual Generation}
+\newcommand{\agentic}{agentic}
+\newcommand{\toolset}{\mathcal{T}}
+
+\title{Agentic Visual Generation: A Survey}
+
+\author[1]{Anonymous Author(s)}
+\affiliation[1]{AI4GC Lab, Zhejiang University}
+\checkdata[Supervisor]{Shengyu Zhang}
+\checkdata[Reading Version]{AI4GC Lab, Zhejiang University}
+\checkdata[Repository]{To be added}
+
+\abstract{
+Visual generation is expanding from single-pass rendering toward visual creation processes that preserve task requirements, inspect intermediate artifacts, and revise later actions. This survey defines agentic visual generation (AVG) through observation-dependent closed-loop control, organizes the literature with six analytical components, compares systems across visual domains, reviews training and improvement methods, and examines evaluation evidence and research frontiers.
+}
+
+\newcommand{\readingfrontmatter}{%
+  \begingroup
+  \par\vskip 2mm
+  \centering
+  \fbox{%
+    \begin{minipage}[c][0.18\textwidth][c]{0.92\textwidth}
+      \centering\sffamily\small
+      AVG overview figure to be added after the visual design is approved.\\[0.4em]
+      Goal/specification $\rightarrow$ action/tool $\rightarrow$ artifact/result $\rightarrow$ perception/evidence $\rightarrow$ next decision.
+    \end{minipage}%
+  }
+  \captionof{figure}{\textbf{Reading-version overview.} The final overview figure will summarize observation-dependent visual creation and the six analytical components.}
+  \label{fig:reading-overview}%
+  \endgroup
+}
+
+\begin{document}
+
+\renewcommand{\hustfrontmatter}{\readingfrontmatter}
+
+\maketitle
+\readingfrontmatter
+\vspace{-1.0cm}
+\thispagestyle{firststyle}
+\clearpage
+
+\vspace*{-0.8cm}
+\begin{center}
+  \tableofcontents
+\end{center}
+\clearpage
+
+\setcounter{tocdepth}{3}
+
+\input{sections/01_introduction}
+\clearpage
+\input{sections/02_foundations}
+\clearpage
+\input{sections/03_operating_loop}
+\clearpage
+\input{sections/04_image_generation}
+\clearpage
+\input{sections/04_modalities}
+\clearpage
+\input{sections/05_video_animation}
+\clearpage
+\input{sections/06_3d_cad_world}
+\clearpage
+\input{sections/07_scientific_visualization}
+\clearpage
+\input{sections/08_structured_documents}
+\clearpage
+\input{sections/09_ui_web}
+\clearpage
+\input{sections/10_cross_domain}
+\clearpage
+\input{sections/11_training}
+\clearpage
+\input{sections/12_evaluation}
+\clearpage
+\input{sections/06_frontiers}
+\clearpage
+\input{sections/07_conclusion}
+\clearpage
+
+\bibliographystyle{ACM-Reference-Format}
+\bibliography{references_reading}
+
+\end{document}

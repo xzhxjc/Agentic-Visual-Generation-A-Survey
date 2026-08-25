@@ -1,0 +1,404 @@
+﻿\section{Agentic Image Generation, Editing, and Restoration}
+\label{sec:image-generation}
+
+Image creation agents must control an evolving artifact whose relevant state can include composition, masks, object identity, references, edit history, degradation estimates, user preferences, and tool outputs. Section~\ref{sec:analytical-framework} identifies the analytical components used to compare these systems. This section instead organizes image-domain studies by the primary contribution that they demonstrate. Each paper is assigned one location; secondary mechanisms remain relevant for cross-cutting comparison but do not determine a second placement.
+
+\subsection{Feedback-Driven Image Generation and Editing}
+Feedback-driven systems observe a generated artifact, identify a deviation from the current goal, and revise a later generation or editing decision. The following subsections distinguish compositional and design refinement from image-level editing, completion, and restoration.
+
+\subsubsection{Compositional Generation and Design Refinement}
+These systems use generated images as evidence for revising compositional constraints, design intent, or local defects. Their common contribution is a feedback action that changes the current generation trajectory.
+
+\paragraph{Improving Compositional Text-to-Image Generation with Large Vision-Language Models.}
+This work uses an LVLM as both evaluator and editor for compositional text-to-image generation. The LVLM converts prompts into QA checks, uses answer accuracy as a loss weight for ReFL fine-tuning, and at inference iteratively detects mismatches and directs SAM+Blended Diffusion to correct them until fully compliant. ~\cite{wen2023compositional}
+
+\paragraph{Idea2Img.}
+ is a GPT-4V agent that iteratively refines prompts for multimodal image design without prior knowledge of the T2I model's optimal usage. Each round, GPT-4V generates candidate prompts, selects the best draft, reflects on mismatches with the user IDEA (interleaved text and images), and stores feedback in memory to guide revision. On 104 queries, iterative SDXL v1.0 wins 56.7\% (vs. 29.8\% initial, 13.5\% manual; +26.9 SDXL, +16.3 IF). Memory guides revision within runs; cross-run retention is untested.~\cite{yang2024idea2img}
+
+\paragraph{MuLan.}
+ is a training-free agent that decomposes complex prompts into object-level subtasks, generating each object conditioned on prior ones via LLM-planned masks and attention guidance, with a VLM verifying each subtask and triggering regeneration on violation; users may intervene mid-process. MuLan outperforms vanilla SD v1.4 on 200 prompts (77.24\%/75.15\% vs. 66.43\%/56.73\%); VLM feedback proves critical.~\cite{li2025mulan}
+
+\paragraph{VisualPrompter.}
+ fixes semantic omissions in T2I generation by decomposing prompts into atomic concepts, using a VLM to identify missing concepts in the generated image, and revising only those units. Across DSG and TIFA benchmarks with four generators, it raises the average semantic score from 78.4 to 83.0.~\cite{wu2026visualprompter}
+
+\paragraph{Maestro.}
+ is a test-time agent system that automates T2I prompt refinement from underspecified user prompts. It decomposes prompts into DVQs, applies MLLM-driven targeted revisions with semantic verification, and maintains the best image via pairwise MLLM tournaments. Maestro outperforms the best baseline on both benchmarks (p2-hard: 0.921,   DSG-1K:0.882) .~\cite{avg250910704}
+
+\paragraph{CRAFT}
+ is a training-free framework that improves T2I generation via constraint verification. It converts prompts into visual questions, uses a VLM to identify failures with rationales, and applies targeted LLM edits only where needed, retaining the best image and stopping once all constraints pass.It raises VQA/DSG across backbones (e.g., FLUX-Schnell: 0.78→0.86/0.786→0.857)~\cite{kovalev2025craft}
+
+\paragraph{Iterative Refinement Improves Compositional Image Generation.}
+This work proposes iterative refinement for compositional T2I generation, where a VLM critic inspects the current image and selects among continue, restart, backtrack, or stop under a fixed budget, optionally combined with parallel sampling. On ConceptMix (k=7), It improves accuracy by 16.9\% over parallel sampling (13.8\% on T2I-CompBench 3D-spatial).
+
+\paragraph{Agentic Flow Steering.}
+AFS-Search is a training-free closed-loop framework on FLUX.1-dev for spatially grounded T2I generation. It rewrites prompts into explicit constraints, diagnoses intermediate latents, and compares three rollouts (baseline, exploration, and corrective via CLIP+SAM3 velocity modulation), selecting the best by VLM score. On T2I-CompBench, Pro scores 0.6748 (spatial: 0.6250); Fast scores 0.6219 at 32.5s. ~\cite{avg260318627}
+
+\paragraph{FiRe.}
+ is a fine-grained reasoning framework for T2I generation that decomposes prompts into atomic tuples, verifies each via VQA, and applies localized corrections only where needed; FiRe-GRPO supplies step-level rewards. ~\cite{kim2026fire}
+
+\paragraph{Self-Reasoning Agentic Framework for Narrative Product Grid-Collage Generation.}
+This framework generates product-advertising collages by decoupling narrative reasoning from pixel synthesis: agents plan a Product Narrative Framework (identity/usage/context/consumer), specify photographic decisions, and jointly synthesize the grid; a two-gate critique triggers targeted replanning or refinement on failure.~\cite{avg260416958}
+
+\subsubsection{Iterative Image Editing, Completion, and Restoration}
+This group places the feedback loop directly on an existing image. The controller diagnoses a mismatch, completion gap, or localized defect and selects a later editing or restoration operation.
+
+\paragraph{An LLM--LVLM Driven Agent for Iterative and Fine-Grained Image Editing.}
+RefineEdit-Agent is a training-free agent for multi-step editing: an LVLM parses instructions into subgoals, an LLM selects/parameterizes tools (ControlNet, GLIGEN, InstructPix2Pix, etc.), and an LVLM evaluates fidelity/preservation after each edit, feeding back for re-planning until a threshold or budget is met. ~\cite{avg250817435}
+
+\paragraph{MIRA.}
+MIRA is a lightweight VLM agent that decomposes complex editing instructions into atomic steps via an iterative perception-reasoning-action loop: it observes the current image and instruction, emits one atomic edit or STOP, executes it via an external editor, and repeats until termination. ~\cite{avg251121087}
+
+\paragraph{JarvisEvo.}
+JarvisEvo is a self-evolving photo-editing agent that jointly trains editor and evaluator policies via synergistic policy optimization on 170K Lightroom-style editing traces. It uses interleaved multimodal reasoning and self-generated reflection data to refine operations across 200+ tools. ~\cite{avg251123002}
+
+\paragraph{Agentic Retoucher.}
+Agentic Retoucher is a perception–reasoning–action agent that detects and corrects localized defects (hands, faces, text, geometry) in T2I outputs. A perception agent predicts distortion saliency masks, a reasoning agent diagnoses defect types, and an action agent selects mask- or instruction-guided inpainting; the loop repeats until artifacts are resolved, typically within 2–3 iterations. ~\cite{avg260102046}
+
+\paragraph{EditRefiner.}
+EditRefiner is a four-agent perception–reasoning–action–evaluation loop that detects and corrects local artifacts in text-guided image edits. A perception agent predicts artifact/failure saliency maps, a reasoning agent diagnoses flaw types, an action agent performs masked re-editing, and an evaluation agent scores quality and decides whether to continue. The loop converges in ~2.5 iterations. ~\cite{avg260507457}
+
+\subsection{Planning and Tool Use for Image Creation}
+Planning and tool-use systems make an image task executable through model routing, external knowledge, structured controls, toolpaths, and task reformulation. The distinction below is between choosing a grounded plan and constructing an operational workflow.
+
+\subsubsection{Grounded Planning, Model Routing, and Structured Control}
+Planning-oriented systems first make missing knowledge, spatial constraints, model capabilities, or control variables explicit. Some also revisit the artifact after rendering, whereas others remain pre-generation routing systems.
+
+\paragraph{DiffusionAgent.}
+ routes text-to-image requests to domain/style specialist models. An LLM parses the input (instruction, inspiration, or hypothesis), searches a subject–style Tree-of-Thought model index, consults an advantage database built from 10,000 prompts and human feedback, selects an expert model, and extends the prompt from model-specific examples. ~\cite{qin2024diffusionagent}
+
+\paragraph{Divide and Conquer.}
+CompAgent is an LLM-driven training-free framework for compositional T2I (text-to-image) generation. It decomposes prompts into objects/attributes with bounding boxes, selects among customization, layout-to-image, and localized editing tools, and uses multimodal inspection to repair incorrect attributes/relations. ~\cite{wang2024divide}
+
+\paragraph{IA-T2I}
+ retrieves reference images from the web when T2I prompts contain uncertain, rare, or ambiguous knowledge. An active retrieval module decides whether to search, a hierarchical selector ranks results, and self-reflection scores outputs and triggers re-retrieval/generation if needed. ~\cite{li2025iat2i}
+
+\paragraph{World-To-Image.}
+ grounds T2I generation with web-retrieved knowledge for prompts involving novel/long-tail entities. An orchestrator diagnoses concept risk and selects among semantic decomposition, substitution, or image retrieval to condition OmniGen2. ~\cite{avg251004201}
+
+\paragraph{GenAgent.}
+ is an agentic multimodal model that iteratively reasons, generates, judges, and reflects over multiple-turn interactions, treating image generators as callable tools until the output satisfies the request. ~\cite{jiang2026genagent}
+
+\paragraph{Mind-Brush.}
+ is an agentic framework that turns T2I generation into a dynamic and knowledge-driven workflow, Simulating a human-like ’think-research-create’ paradigm: it detects knowledge/reasoning gaps from user intent, routes them to web/image search or CoT reasoning, accumulates evidence, and compiles a master prompt for final generation. ~\cite{avg260201756}
+
+\paragraph{DiffGraph.}
+ is an agent-driven framework that merges online expert models (checkpoints and LoRAs) for diverse T2I prompts. A graph construction agent registers expert descriptions as nodes and calibrates their capabilities on reference prompts as edge features; at inference, an expert selection agent retrieves relevant experts and a VGAE predicts merging coefficients from the activated subgraph, producing a merged model for rendering.~\cite{avg260320470}
+
+\paragraph{Gen-Searcher.}
+ is the first trained search-augmented image
+generation agent. It performs multi-hop web search, image search, and browsing over multiple turns, then emits a grounded prompt with ordered reference images for a single generator call. ~\cite{avg260328767}
+
+\paragraph{MetaPoint.}
+ enables precise spatial control in UMMs via special tokens that reuse native 2D coordinate encodings: one token specifies a point, two define a box, and sequences encode layouts or edit regions; a VLM planner localizes objects and issues executable commands. ~\cite{zhou2026metapoint}
+
+\paragraph{One Image is All You Need (WMGen-v1).}
+WMGen-v1 generates long-tail training data for spatial perception from a single reference image: a Large
+Vision-Language Model (LVLM) extracts scene semantics, camera properties, and spatial constraints; an LLM expands these under physical/commonsense guidance; a diffusion model renders synthetic variants. ~\cite{avg260620764}
+
+\paragraph{RS-Gen.}
+ is a training-free multi-stage agent for knowledge-intensive T2I generation/editing. An image router resolves coreferences against dialogue history; an intent analyzer routes to direct generation or structured questioning; a ReAct-based reasoning-and-search agent invokes web/image/geographic/VQA/reasoning tools with fallback retrieval; a generation agent executes a generate–verify–correct loop. ~\cite{avg260623221}
+
+\paragraph{Qwen-Image-Agent.}
+ bridges the context gap in T2I generation by constructing full generation context from underspecified user input via three-tier planning (information/content/generation-level) and four-source grounding (reasoning, search, memory, feedback). Its unified context-centric design enables multi-image and multi-turn generation while preventing context drift.~\cite{avg260626907}
+
+\subsubsection{Workflow Construction and Task Reformulation}
+These systems choose and sequence heterogeneous image operations. Their primary object of control is a toolpath, workflow graph, or reformulated editing task rather than a single renderer call.
+
+\paragraph{CAISE}
+ is a dataset and task for conversational image search and editing, where an agent generates executable commands (search, color/brightness/contrast/rotation/background removal) from dialogue and visual context. The dataset contains 1,611 dialogues and 6,173 commands; the baseline generator-extractor model achieves 46.43\% exact accuracy vs. 90.0\% for human experts. ~\cite{kim2022caise}
+
+\paragraph{GenArtist.}
+ is a unified image generation/editing system driven by an MLLM agent. It decomposes complex prompts, builds a planning tree of generation/editing/auxiliary nodes with visual verification after each generation, selects tools from a heterogeneous library, supplies missing positions via detectors/segmentation/pose-depth preprocessors, and backtracks to sibling tools on failure.~\cite{wang2024genartist}
+
+\paragraph{RestoreAgent.}
+ is an MLLM-driven agent that selects task order and models for mixed image degradations (denoising, deraining, dehazing, deblurring, JPEG removal, low-light enhancement). A vision encoder + Llama3 controller predicts the next tool from current image and history, with step-wise reassessment and rollback on failure. ~\cite{avg240718035}
+
+\paragraph{AgenticIR.}
+ is an LLM/VLM-driven system that restores images with multiple interacting degradations (noise, blur, compression...) by composing specialist models via a perception–scheduling–execution–reflection–rescheduling loop; failed operations trigger rollback and re-planning. A fine-tuned DepictQA provides degradation descriptions and success judgments; offline exploration enumerates tool sequences on held-out images and summarizes success patterns into retrievable documents for scheduling.~\cite{avg241017809}
+
+\paragraph{HybridAgent.}
+ is an agentic image restoration system with a FastAgent for direct prompts (routing tools in ~12\% of SlowAgent time) and a fine-tuned SlowAgent for ambiguous requests; a FeedbackAgent judges cleanness and can trigger further restoration. Tools are built via three-stage training (base model → LoRA single-task tools → mixed-degradation tool), enabling joint restoration to replace damaging long chains.~\cite{avg250310120}
+
+\paragraph{CoSTA*.}
+ is a cost-sensitive agent that plans and executes multi-turn image edits via LLM-driven subtask tree generation, tool subgraph construction over 24 tools, and A* search balancing quality and runtime with a tunable cost-quality parameter; a VLM validator checks each subtask and triggers retries or alternative paths on failure. ~\cite{gupta2025costa}
+
+\paragraph{ComfyGPT}
+ is a multi-agent system that generates executable ComfyUI workflows from natural-language task descriptions. ReformatAgent converts JSON workflows to link-centered diagrams, FlowAgent predicts diagrams (trained with SFT + GRPO with validity rewards), RefineAgent retrieves current node definitions from a database to replace invalid nodes, and ExecuteAgent submits the final workflow. ~\cite{huang2025comfygpt}
+
+\paragraph{Q-Agent.}
+ is a quality-driven image restoration (IR) agent that addresses multiple degradations via CoT-based perception and greedy IQA-guided restoration. A fine-tuned MLLM answers per-degradation Yes/No questions; at each step, all candidate operations are applied, ranked by an aggregate of five NR-IQA metrics, and the best is greedily selected until no improvement. ~\cite{avg250407148}
+
+\paragraph{FaSTA*.}
+ extends CoSTA* by mining reusable tool sequences (subroutines) from prior traces via LLM-based inductive reasoning and storing them with activation conditions in a rule table. It first attempts fast planning using these rules, with VLM checks validating each subroutine; only when no rule applies or a check fails does it fall back to localized A* search. ~\cite{gupta2025fasta}
+
+\paragraph{Restore-R1.}
+ is a lightweight reinforcement-learned agent that predicts restoration tool sequences in a single forward pass, eliminating runtime reflection/rollback. A CLIP+MLP policy is trained via PPO/GRPO using DeQA-Score as the reward, without ground-truth labels. ~\cite{avg251218599}
+
+\paragraph{Derain-Agent.}
+ is a plug-and-play post-deraining enhancer that refines initial derained outputs by predicting one of 16 predefined tool paths (denoising, deblurring, color correction) and pixel-wise strength maps from a ResNet34 feature extractor, then executing the path once. ~\cite{avg260311866}
+
+\paragraph{TIR-Agent.}
+is a trainable VLM agent that learns direct tool-calling policies for multi-degradation restoration via SFT + RL, replacing costly heuristic search. A Qwen3-VL-8B controller selects task and model per step from current image and history; EDP diversifies SFT trajectories, while MAR dynamically reweights FR/NR metrics to prevent reward hacking. ~\cite{avg260327742}
+
+\paragraph{IMAGAgent.}
+ is a plan–execute–reflect agent for multi-turn image editing that prevents error accumulation and semantic drift. A VLM planner decomposes instructions into atomic sub-tasks; a controller dynamically composes segmentation, detection, retrieval, and editing tools from the current image and history; multiple VLM experts critique intermediate outputs; and an aggregator converts feedback into corrective actions, with up to three retries per turn. ~\cite{avg260329602}
+
+\paragraph{Adaptive Task Reformulation.}
+ATR improves image editing by reformulating ambiguous tasks without modifying the backbone. A profiler extracts target and scene context; a router selects direct/rewritten editing, spatial decoupling, or localized workspace; a planner executes sequentially with state, feedback, and fallback. ~\cite{avg260415917}
+
+\paragraph{From Plans to Pixels.}
+ is an experiential learning framework for long-horizon advertisement editing. A checklist-guided planner decomposes abstract instructions into subtasks; a reward-trained orchestrator selects tools/regions from a heterogeneous editor library; a VLM judge provides outcome rewards, infeasible subtasks are pruned, and a distilled verifier re-ranks intermediate candidates. ~\cite{avg260515181}
+
+\paragraph{OPERA}
+ is an end-to-end framework for multi-tool cooperative image restoration. A GRPO-trained planning agent emits complete tool compositions directly from the input, receiving final restoration quality as reward; 16 restoration tools are jointly fine-tuned through generated chains, enabling cooperative behavior. ~\cite{avg260522104}
+
+\paragraph{GenClaw.}
+ is a code-driven agentic image generation framework that decouples creation into Conceptualize–Sketch–Color stages: it retrieves contextual knowledge via search/reasoning, constructs executable visual code (SVG/HTML/Canvas/Three.js) as an intermediate layout, then renders photorealism via an image generator. ~\cite{ye2026genclaw}
+
+\paragraph{DiTTo.}
+ is an order-aware restoration agent framework that decouples training from real-expert calls via a simulator (US-IR + AiO-IQA) that reduces ORTD construction from $\mathcal{O}((N^{\mathrm{D}})^2)$ to $\mathcal{O}(N^{\mathrm{D}})$ calls. A VLM agent is SFT-trained on simulated trajectories, then aligned to a small real-expert set via decomposed DPO (DP/OR/Tool axes); new experts require updating only the alignment stage.~\cite{avg260530915}
+
+\paragraph{IEA.}
+IEA is an amateur-friendly conversational editor that performs global photo retouching via 16 parameterized tools (brightness, exposure, contrast, etc.), emitting explicit tool calls rather than synthesizing pixels. A Qwen2.5-VL-7B policy is trained in three stages: Stage 1 distills expert programs from GIER for SFT; Stage 2 applies GRPO with likeness and usefulness rewards; Stage 3 adds synthetic Image-Edit, Image-Summary, and Image-Refine data to enable history summarization and feedback-driven refinement. ~\cite{avg260608016}
+
+\paragraph{CanvasAgent.}
+ is a tool-augmented agent for complex multi-step image workflows across 11 tools (generation, edit, grounding, etc.). Trained via SFT + GRPO on CanvasCraft (140K SFT trajectories + 10K RL tasks), it maintains asset state, supports plan revision and rollback. SFT+RL substantially outperforms SFT-only across overall reward, alignment, and trajectory quality; human evaluation also favors it over Qwen3-VL-32B.~\cite{avg260705465}
+
+
+\subsection{Stateful Image Generation and Editing}
+Stateful image systems retain information needed to preserve identity, user intent, scene structure, and earlier decisions. The literature separates turn-level user and context management from explicit scene, narrative, and trajectory representations.
+
+\subsubsection{Multi-Turn User, Subject, and Context Management}
+These systems retain information that is needed across turns, including user preferences, subject identity, prior operations, context, and candidate quality. The persistent representation makes a later action dependent on more than the current prompt.
+
+\paragraph{AutoStudio.}
+AutoStudio is a training-free multi-agent framework for multi-turn interactive image generation. It stores subject features with persistent IDs; a subject manager parses dialogue, a layout generator predicts bounding boxes, a supervisor refines spatial relations, and a P-UNet drawer renders the final image via subject-initialized generation.~\cite{cheng2024autostudio}
+
+\paragraph{Preference Adaptive and Sequential Text-to-Image Generation (PASTA)}
+PASTA is an RL agent for multi-turn T2I generation that iteratively refines prompts via adaptive expansion slates guided by user selections and a learned preference model. Trained on 7,000 human rater sequences + 30,000 simulated rollouts, its user model achieves ~70\% accuracy on held-out metrics.  ~\cite{nabati2025pasta}
+
+\paragraph{StoryState.}
+StoryState is an agent-based state controller for consistent and editable storybooks. It externalizes each story as $S=(C,W,\{S_i\})$—a character sheet, global world state, and page-level scene states—maintained by Planner and State Manager agents. A Prompt Writer maps this state to global/page prompts; local edits update a single $S_i$, identity edits update $C$ and propagate to affected pages; a Consistency Critic verifies outputs against the state and neighboring pages. ~\cite{sarkar2026storystate}
+
+\paragraph{Agent Banana.}
+Agent Banana is a hierarchical planner-executor agentic framework for professional image editing that addresses over-editing, multi-turn fidelity loss, and native 4K resolution. It decomposes vague instructions into atomic operations, performs localized editing via Image Layer Decomposition to preserve non-target regions, and uses Context Folding for stable long-horizon state tracking, with self-reflection enabling retry, rollback, and replanning. ~\cite{ye2026agentbanana}. 
+
+\paragraph{Generation Navigator.}
+Generation Navigator frames multi-turn text-to-image generation as a state-conditioned action-making problem, where a learned multimodal navigator dynamically chooses to STOP, REFINE, or REGENERATE based on the current image and reviewer feedback~\cite{avg260517969}. To train this policy, the system constructs 103K trajectories and applies PRE-GRPO, a trajectory-level reinforcement learning objective that jointly rewards peak quality, retention against degradation, and turn efficiency. 
+
+\subsubsection{Scene, Narrative, and Trajectory State Management}
+For multi-object edits and visual narratives, systems externalize scene structure, causal relations, candidate branches, or operation histories. This turns an image sequence into an addressable state space for planning and recovery.
+
+\paragraph{I2E}
+ reformulates compositional image editing as interaction within a structured environment, using a Decomposer to segment objects, recover occlusions, and build physically ordered layers via DAG-based spatial propagation~\cite{avg260103741}. A physics-aware VLA Editor translates instructions into atomic actions (REMOVE, MOVE, FALL, RESIZE, EDIT, INSERT) through chain-of-thought reasoning, executing object-level edits without global pixel resampling.
+
+\paragraph{MSRAMIE}
+ is a training-free multimodal agent framework that handles complex multi-instruction image editing by decomposing lengthy requests into structured sub-tasks through iterative interactions between an MLLM-based Instructor and a plug-in editing Actor~\cite{avg260316967}. It constructs a Tree-of-States for flexible state transitions, backtracking, and resampling, while a Graph-of-References retrieves nearby states to avoid redundant exploration. 
+
+\paragraph{LogiStory.}
+ targets multi-image story visualization by explicitly modeling visual logic—causal and perceptual coherence across characters, actions, and scenes over time~\cite{avg260328082}. A multi-agent system extracts entities, causal events, and panel scripts; a Local Causal Monitor checks each frame against accumulated narrative memory, while a Global Causal Verifier maintains a story-level causal graph and triggers regeneration or editing upon inconsistency.
+
+\subsection{Multi-Agent Systems for Image Generation and Editing}
+Multi-agent systems allocate visual creation work among specialized roles. Their value depends on how role outputs, shared state, and evaluator feedback determine later actions, rather than on the number of participating agents.
+
+\subsubsection{Collaborative Generation, Composition, and Domain Design}
+This group distributes generation, analysis, design, or evaluation work across specialized roles. It includes contextual comparisons that clarify the difference between model-level cooperation and task-level visual creation control.
+
+\paragraph{Message Passing Multi-Agent GANs.}
+This early work explores unsupervised image generation with two generators that share a discriminator and exchange learned messages via a common message generator, with competing or conceding objectives encouraging complementary behavior~\cite{avg161201294}. 
+
+\paragraph{Anywhere.}
+ replaces end-to-end inpainting with a multi-agent pipeline for foreground-conditioned image generation, preserving object integrity and supporting optional text guidance~\cite{xie2024anywhere}. A Foreground Analyzer and Prompt Creator generate scene prompts; a Template Repainter repairs mask violations; and a Quality Evaluator triggers regeneration when needed.
+
+\paragraph{Marmot.}
+ addresses counting, attribute-binding, and spatial errors in text-to-image generation via object-level divide-and-conquer~\cite{sun2025marmot}. An Object-Aware Agent decomposes the scene into subtasks; an Object Correction System with decision-execution-verification operates on individual masks or object-pair boxes, retrying upon failure; a Pixel-Domain Stitching Smoother merges corrected regions via mask-guided optimization.
+
+\paragraph{MCCD}
+ enhances complex text-to-image generation through a multi-agent parsing module and hierarchical compositional diffusion~\cite{avg250502648}. A conductor schedules six specialist agents with forward reasoning and evaluator-triggered backward feedback; the diffusion module renders parsed elements via depth-aware Gaussian masks, regional enhancement, and boundary smoothing.
+
+\paragraph{T2I-Copilot.}
+ addresses ambiguous text-to-image prompts through a training-free multi-agent system that interprets user intent, selects appropriate models, and iteratively refines outputs~\cite{chen2025t2icopilot}. An Input Interpreter extracts entities, attributes, and ambiguities; a Generation Engine selects and executes the optimal generation or editing route; and a Quality Evaluator scores aesthetic and alignment criteria, triggering regeneration with structured suggestions when scores fall below a threshold. 
+
+\paragraph{From Image Generation to Infrastructure Design.}
+This work applies multi-agent image editing to bicycle-lane visualization as a constrained street-scene editing problem~\cite{avg250905469}. A Locator Agent identifies roadway geometry; a Prompt Agent formalizes user intent; a Design Generation Agent produces candidates via highlight-first cascading; and an Evaluator Agent reranks candidates and verifies hard constraints, triggering regeneration when none pass.
+
+\paragraph{GenPilot.}
+ optimizes text-to-image prompts at test- time via a multi-agent system that iteratively refines inputs to improve semantic alignment~\cite{avg251007217}. An error-analysis stage decomposes prompts and combines VQA with caption comparison to localize mismatches; a test-time optimization stage generates candidate rewrites, scores them with an MLLM, clusters candidates, and uses memory to guide subsequent rounds.
+
+\paragraph{Collaborative Text-to-Image Generation.}
+This work explores multimodal text-to-image generation via domain-specialized agents (architecture, portraiture, landscape) coupled with PPO training and multimodal fusion~\cite{avg251010633}. A text-enhancement subsystem and an image-generation subsystem each contain specialized agents; PPO optimizes them with a composite reward over similarity, quality, and diversity, while contrastive learning and bidirectional attention enforce cross-modal alignment. 
+
+\paragraph{Multi Agents Semantic Emotion Aligned Music to Image Generation.}
+\textbf{Problem and setting.} MESA-MIG studies music-conditioned image generation in which visual content should reflect both musical semantics and continuous valence--arousal emotion, rather than relying only on low-level audio similarity~\cite{avg251223320}. \textbf{Method and mechanism.} An audio encoder and BART captioner extract instrumentation, rhythm, genre, and other semantic cues, while a parallel regression head predicts valence and arousal. Scene, verb, style, color, and composition agents transform these representations into visual attributes. A rule-based validator flags redundant, malformed, or affectively inconsistent attributes, and a prompt agent assembles validated alternatives for WanX 2.1-Turbo. The generated image is scored afterward by aesthetic, semantic, and cross-modal emotion models. \textbf{Evaluation and results.} The paper reports generation evaluation on 400 matched music--image pairs drawn from non-overlapping DEAM and EMOTIC partitions. MESA-MIG obtains an aesthetic score of 6.24/10 and semantic similarity of 0.895, compared with 5.88 and 0.870 for IMEMNet, 4.11 and 0.864 for SonicDiffusion, and 3.75 and 0.817 for Sound2Scene. Its music valence--arousal head also reduces valence RMSE from 0.238 to 0.150 relative to Music2Emotion. \textbf{Evidence boundary.} The specialists and validator form an interpretable L2 orchestration pipeline, but validation occurs before rendering and the measured output does not alter a subsequent generation action. The study depends on learned affect estimators, a curated cross-modal pairing procedure, and relatively small evaluation sets; it reports no human study of whether the generated image conveys the intended musical emotion and no deployed artifact-repair loop.
+
+\paragraph{M3.}
+ is a training-free multi-agent framework that refines text-to-image outputs through iterative, validated editing~\cite{avg260206166}. A Planner decomposes prompts into checklists; a Checker evaluates each constraint; a Refiner generates edit instructions for failures; an Editor executes edits; and a Verifier accepts only edits that improve alignment over the previous best. 
+
+\paragraph{coDrawAgents.}
+ is a multi-agent  framework for compositional text-to-image generation where an Interpreter adaptively chooses between direct generation and layout-aware mode~\cite{avg260312829}. In layout-aware mode, a Planner incrementally proposes placements for priority-grouped objects grounded in the evolving canvas, a Checker validates and refines spatial and semantic consistency, and a Painter synthesizes the partial image to inform subsequent iterations. 
+
+\paragraph{AI-Gram.}
+\textbf{Problem and setting.} AI-Gram is a continuously operating, image-centric social environment used to study how autonomous visual agents form reply chains, social ties, and collective visual patterns without human-authored posts or comments~\cite{avg260421446}. \textbf{Method and mechanism.} Each persona-conditioned agent repeatedly observes recent posts, interactions, its feed, and the social graph; a multimodal language model then selects posting, commenting, visual reply, liking, following, waiting, or other supported actions. For a visual reply, the selected target image is supplied as pixels to GPT-4o, which reasons over it and constructs a prompt for FLUX. The reply and resulting interactions become environment state available to subsequent decisions. Memory is episodic: recent activity is reloaded at each cycle, while no cross-session learned memory is accumulated. \textbf{Evaluation and results.} At the reported snapshot, 1,007 agents had produced 6,255 posts, 8,286 comments, and 4,684 image-bearing replies. The study identifies 498 visual chains of depth at least two, with mean depth 4.26 and maximum depth 60. Consecutive-image chain coherence is 0.702, compared with a random-pair null of 0.626; posts in chains average 13.0 recorded interactions versus 1.7 outside chains, although chain replies are included in the engagement count. \textbf{Evidence boundary.} Perceived images and social feedback change later actions, supporting L3 environment-conditioned behavior. AI-Gram is primarily a social-dynamics research platform rather than a method optimized against a user-specified visual artifact. Fixed personas, episodic memory, the weak coupling between reasoning and FLUX, and observational correlations prevent an L4 claim about persistent creative state or robust long-horizon artifact recovery.
+
+\paragraph{InterleaveThinker.}
+ enables long-horizon interleaved text-image generation by decoupling global planning from stepwise execution through a multi-agent framework~\cite{avg260613679}. A Planner produces an N-step plan upfront; at each step, a frozen image generator executes the instruction, and a Critic evaluates the result against the plan, issuing binary judgments and refined prompts. The Critic is trained with dual-reward GRPO combining judgment accuracy and correction quality. 
+
+\paragraph{AuDiffusion.}
+ is a multi-agent diffusion framework with Prompt, Layout, and Executor agents for controllable text-to-image generation~\cite{avgdoi101007s40747025022111}. The Prompt Agent enriches semantics; the Layout Agent selects ControlNet modules via capability-requirement matching; the Executor synthesizes images using an AuMamba backbone with linear-time state-space scans and windowed attention. A shared blackboard stores states and triggers targeted revisions when quality falls below threshold.
+
+\paragraph{Multi-agent Collaborative Pathways for Chinese Traditional Architectural Image Generation.}
+\textbf{Problem and setting.} This system generates images of Chinese traditional architecture from non-specialist requests while attempting to preserve historically specific form, color systems, decorative symbols, and cultural meaning~\cite{avgdoi101038s41598025181307}. \textbf{Method and mechanism.} A domain knowledge base encodes entities, architectural components, spatial rules, symbolism, and historical versions. Intent understanding and prompt-generation agents ground vague requests in this knowledge; a Stable Diffusion LoRA plus Canny ControlNet renders the image. An aesthetic and cultural-relevance agent returns scores and error flags to a workflow scheduler. Depending on the diagnosed cause, the scheduler revisits prompt generation, changes rendering parameters, or returns to intent interpretation, with a maximum iteration count preventing unbounded execution. \textbf{Evaluation and results.} Sixty participants, comprising 20 domain experts, 20 relevant students, and 20 general users, score anonymized outputs. The MAS prototype reports $4.65\pm0.25$ for architectural form, $4.72\pm0.20$ for color fidelity, and $4.71\pm0.22$ for decorative-symbol consistency, compared with $4.50\pm0.28$, $4.58\pm0.26$, and $4.61\pm0.29$ for the same generator driven by expert-authored prompts. Its average CLIP score is $0.89\pm0.03$, compared with $0.86\pm0.04$ for that baseline. \textbf{Evidence boundary.} Visual and cultural error reports determine targeted rerouting, providing L3 artifact-conditioned correction. The evidence comes from one cultural case study and an author-built knowledge base; CLIP against the optimized prompt is not a direct measure of historical truth, and the evaluation does not isolate the contribution of repeated correction from knowledge grounding and model specialization. A single pass averages about 166.7 seconds, with additional iteration cost.
+
+\paragraph{MUSES}
+ generates 2D images with precise 3D control by leveraging 3D layouts, models, and rendering as intermediate guidance~\cite{ding2025muses}. A Layout Manager plans 2D layouts via in-context learning and lifts them to 3D (depth, orientation, camera) via chain-of-thought; a Model Engineer retrieves or generates 3D assets and aligns them to camera using a fine-tuned CLIP classifier; an Image Artist assembles the scene in Blender and renders depth/Canny controls for final diffusion. 
+
+
+\subsubsection{Collaborative Editing, Completion, and Restoration}
+These systems divide image modification into complementary planning, execution, evaluation, and specialized restoration or completion roles. Their evidence concerns whether this division improves an evolving edited artifact.
+
+\paragraph{CCA}
+ addresses complex image editing by deploying two generator agents that independently decompose instructions and execute tools, and a discriminator that compares outputs, provides subtask-level feedback, and triggers parameter adjustments or tool reselection across rounds~\cite{hang2024cca}. A best-candidate bank enables cross-round comparison, with early stopping when quality meets requirements (up to five rounds). 
+
+\paragraph{MAIR}
+ is a multi-agent system for complex image restoration, guided by a real-world degradation prior that reverses scene, imaging, and compression artifacts in sequence~\cite{avg250309403}. A Scheduler agent plans the overall restoration order using perception, textual experience, and user instructions; Expert agents then sequentially remove specific degradations by selecting from registered tools, executing, and reflecting on results before passing to the next. 
+
+\paragraph{CREA}
+ is a multi-agent framework for creative image editing and generation~\cite{venkatesh2025crea}. A Creative Director sets the vision; a Prompt Architect fuses six creativity-principled prompts; a Generative Executor synthesizes images; a Critic scores six creative dimensions; and a Refinement Strategist adjusts prompts over up to three iterative rounds based on weak scores.
+
+\paragraph{Talk2Image.}
+ is a multi-agent system for multi-turn conversational image generation and editing, where later instructions accumulate with earlier scene content and affect only requested regions~\cite{avg250806916}. A multi-turn intention parser converts dialogue history into structured cumulative specifications; specialized agents execute generation, editing, segmentation, VQA, and chat via DAG-scheduled operations with blackboard-based coordination; and multi-view feedback scores semantic alignment and visual consistency, triggering retries until a threshold is met. 
+
+\paragraph{Multi-Agent Amodal Completion.}
+This multi-agent framework reconstructs occluded or truncated objects and outputs layered RGBA assets~\cite{avg250917757}. An Occlusion Agent identifies front-back relations, a Segmentation Agent extracts masks, a Boundary Agent estimates canvas expansion, and a Description Agent provides semantic guidance; these upfront decisions define a single inpainting mask and prompt for one-pass FLUX-ControlNet synthesis, with attention maps fused to generate the alpha channel.
+
+\paragraph{ImageEdit-R1.}
+ addresses complex, multi-step image editing instructions through a reinforcement learning-enhanced multi-agent framework~\cite{avg260308059}. A decomposition agent (Qwen2.5-VL-7B) parses user requests into actions, subjects, and goals; a sequencing agent orders sub-requests; a diffusion-based editor executes them. GRPO trains the decomposition agent with format, action, subject, and goal rewards without modifying the editor.
+
+\paragraph{CAMEO}
+ is a hierarchical multi-agent framework for conditional image editing that replaces single-pass generation with quality-aware, feedback-driven refinement~\cite{pu2026cameo}. A Strategic Director interprets requests and selects constraints; a Visual Research Specialist retrieves or synthesizes references; a Quality Critic evaluates intermediate outputs across task-adaptive dimensions and returns structured deviations; and a Refinement Editor applies targeted corrections, looping until thresholds are met. 
+
+\paragraph{APE}
+APE is a lightweight framework that post-trains small language models as prompt enhancers for image generation and editing  without modifying downstream models~\cite{avg260600204}. Its single-agent (SAPE) and multi-agent (MAPE) variants decompose enhancement into router-selected field rewriting and composer fusion, trained via SFT and GRPO/GDPO on downstream rewards (PickScore, CLIPScore, HPSv2.1, GPT-based editing judgments). 
+
+
+\subsection{Native and Unified Agentic Models for Image Creation}
+Native and unified models place reasoning, understanding, generation, and sometimes tool use within a common multimodal policy. This organization is discussed separately from the feedback and workflow mechanisms analyzed in earlier groups.
+
+\subsubsection{Native and Unified Models for Reasoning and Generation}
+Native and unified models integrate image understanding, reasoning, and generation in one learned policy. The grouping concerns the implementation locus of these functions, not an automatic claim of high autonomy.
+
+\paragraph{ImAgent.}
+ImAgent is a training-free unified multimodal agent that enables adaptive test-time scaling for image generation and editing through a policy controller that dynamically selects actions based on observation history~\cite{avg251111483}. Built on a single UMM, its action space includes direct generation/editing, CoT prompt enhancement, image-conditioned prompt revision, local detail refinement, Best-of-N sampling, and STOP; invalid actions fall back to direct generation. 
+
+\paragraph{UniReason 1.0.}
+ unifies text-to-image generation and editing within a shared framework for requests requiring implicit world knowledge~\cite{avg260202437}. World-knowledge-enhanced textual reasoning expands underspecified prompts into explicit guidance before synthesis; the model then observes the generated image, reflects, and applies editing-style refinement to correct discrepancies. Training uses an agent pipeline (generator → verifier → refiner → judge) and two-stage SFT on reasoning and interleaved refinement samples.
+
+\paragraph{VisionCreator.}
+VisionCreator is a native visual-generation agentic model unifying Understanding, Thinking, Planning, and Creation for complex image/video creation with multi-step tool invocation~\cite{avg260302681}. Progressive Specialization Training uses 4k expert-filtered trajectories, while Virtual Reinforcement Learning optimizes long-horizon planning in a simulated 36-tool environment with plan, format, execution, result, consistency, and trajectory rewards; average trajectories span 15 steps (64\% >20).
+
+
+
+\paragraph{VisionCreator-R1.}
+ extends VisionCreator's UTPC framework with Reflection, forming a UTPCR loop that inspects intermediate images, identifies deviations, and triggers targeted edits or regeneration~\cite{avg260308812}. Reflection-Plan Co-Optimization first learns reflection on single-image tasks, then mixes reflection-strong and planning-strong trajectories before multi-task RL with reflection, plan, format, tool, and result rewards.
+
+
+\subsubsection{Models for Grounded, Spatial, and Open-World Creation}
+This group extends unified policies to world knowledge, spatial reasoning, and tool-mediated open-world generation. It concentrates on models whose primary contribution is grounded creation within an integrated multimodal policy.
+
+\paragraph{Unify-Agent.}
+ is an end-to-end unified multimodal agent for world-grounded image synthesis, reformulating generation as a sequential process of prompt understanding, multimodal evidence search, grounded recaptioning, and final synthesis~\cite{avg260329620}.  A unified model diagnoses missing knowledge, performs textual and visual search, and transforms retrieved evidence into a compact recaption trained on 143k annotated trajectories.
+
+\paragraph{Boogu-Image-0.1.}
+Boogu-Image-0.1 is an open image-generation and editing model family designed for complex, multilingual, and text-rich requirements under constrained budgets~\cite{avg260713125}. Its core generator uses Qwen3-VL-8B as instruction encoder with a curated data syllabus; at inference, a DeepSeek-V4-Flash agent performs reasoning-oriented prompt rewriting and routes between Base and Turbo variants by task complexity, with reflection and Best-of-N as optional scaling. 
+
+\paragraph{ToolArtist.}
+ToolArtist is a fully agentic image-generation model obtained by post-training a unified multimodal model, where reasoning, external tool use, and native image generation are coordinated within a single policy~\cite{zhao2026toolartist}. Supervised trajectories are collected from a teacher agent with search and generation tools then converted to UMM-native format; RAD-GRPO jointly optimizes with intent and quality rewards. 
+
+\subsection{Data, Evaluation, and Safety for Agentic Image Generation}
+Data construction, learning, evaluation, and safety research supports the development and assessment of image agents. These studies determine how controllers are trained, what claims of reusable experience are supported, and how quality or safety failures can be measured.
+
+\subsubsection{Data Construction, Policy Learning, and Reusable Experience}
+This group studies how visual-agent data, policies, workflows, and experience stores are constructed or improved. The central question is what, if anything, persists beyond a single trajectory and improves a later task.
+
+\paragraph{Gen-n-Val.}
+ is an agentic framework for generating synthetic instance segmentation data to address data scarcity and long-tailed imbalance~\cite{huang2025gennval}. A TextGrad-optimized LLM generates detailed prompts for Layer Diffusion to produce transparent single-instance foregrounds with alpha-channel masks; a VLM validator checks class identity, single view, object integrity, and plain background before accepted instances are composited into training scenes. 
+
+\paragraph{SIDiffAgent.}
+ is a training-free self-improving diffusion agent that refines text-to-image generation via iterative prompt engineering, evaluation, and editing, supported by experience memory~\cite{avg260202051}. An orchestrator handles intent analysis and adaptive negative prompting; an evaluator triggers up to two corrections; a guidance agent stores and retrieves past trajectories to guide future generations.
+
+
+
+\paragraph{Socratic-Geo.}
+ is an autonomous multi-agent framework for geometry data synthesis and reasoning, where a Solver's failed attempts trigger a Teacher to diagnose gaps, modify parameterized Python drawing code, and validate new problems via Reflect (solvability) and RePI (visual validity) before adding them to the curriculum~\cite{avg260203414}. A Generator is separately fine-tuned on accumulated image-code-instruction triplets to distill programmatic drawing into diffusion-based generation. 
+
+\paragraph{PaAgent.}
+  is a portrait-aware image restoration agent that selects restoration experts via a self-evolving portrait bank with RAG, while subjective-objective RL with GRPO refines its degradation perception.~\cite{avg260317055}. A Qwen-based module perceives degradation using images, scores, and task history; RAG queries a bank of stored triplets to recommend the next expert, with each interaction added back to the bank.
+
+
+
+\paragraph{ScaleEdit-12M}
+ ScaleEditor is an open-source multi-agent framework for constructing large-scale image editing datasets without costly commercial APIs, producing 12M instruction-image-edit triplets across 23 tasks~\cite{avg260320644}. Source image expansion combines retrieval and synthesis; a task router assigns images to specialized editing agents; task-aware verification scores instruction following, editing consistency, and generation quality, retaining only high-scoring pairs. 
+
+
+
+\paragraph{GenEvolve.}
+\textbf{Problem and setting.} GenEvolve studies open-ended image generation in which an agent must decide when to retrieve facts and reference images, activate generation knowledge, and translate those resources into an executable prompt--reference program~\cite{chen2026genevolve}. \textbf{Method and mechanism.} Each attempt is a multimodal tool trajectory ending in a prompt and an ordered reference set. After supervised trajectory tuning, group-relative policy optimization samples several attempts per request and scores both the generated image and the program. Tool-Orchestrated Visual Experience Distillation compares the best and worst trajectories, abstracts differences into search, knowledge, reference, prompt, and failure-avoidance slots, conditions a privileged teacher on retrieved experience, and distills the resulting token-level preferences into the student policy. \textbf{Evaluation and results.} On GenEvolve-Bench, the open-generator configuration reaches a KScore of 0.3663, compared with 0.3493 for Gen-Searcher using the same Qwen-Image-Edit executor; pairing GenEvolve with Nano Banana Pro reaches 0.5739, compared with 0.5298 for the raw generator. On the external WISE benchmark, GenEvolve obtains an overall WiScore of 0.82, compared with 0.78 for Mind-Brush and 0.77 for Gen-Searcher. An ablation progresses from 0.3480 for SFT, to 0.3548 for SFT plus GRPO without visual experience, and to 0.3663 for the full method. \textbf{Evidence boundary.} Experience extracted from earlier training trajectories changes the reusable student policy and improves held-out requests, satisfying the survey's L5 cross-task improvement criterion. This is post-training self-evolution rather than online continual adaptation: the deployed student has no runtime visual-experience memory. Results also rely on proprietary multimodal judges and, in the strongest setting, a proprietary generator, so the policy gains should be separated from executor quality.
+
+\paragraph{EvoIR-Agent.}
+\textbf{Problem and setting.} EvoIR-Agent restores images with coupled degradations while reducing the trial-and-error cost of selecting both a restoration order and a specialized tool. It treats the restored image, the selected tool path, and the target preference for fidelity or perceptual quality as information that can be reused in subsequent cases~\cite{avg260522208}. \textbf{Method and mechanism.} The runtime follows perception, planning, execution, reflection, and rollback. Its hierarchical experience pool stores three forms of guidance: high-level textual insights, degradation-type mappings, and retrieved fine-grained degradation-pattern records. After a batch of restoration records accumulates, an experience-evolution procedure adds, replaces, updates, or deletes entries, then stabilizes their priorities from quality rankings. Thus later planning and rollback can retrieve guidance that reflects previous restoration outcomes. \textbf{Evaluation and results.} The evaluation includes 1,440 synthetic MiO100 images and two 50-pair FoundIR settings. Under the AgenticIR-compatible tool setting, EvoIR-Agent obtains Group A/B/C PSNR of 23.49/23.41/21.52, compared with 21.04/20.55/18.82 for AgenticIR. On FoundIR low-light plus noise, it reaches 17.81 PSNR and 0.7093 SSIM with 4.73 tool invocations, compared with 16.77, 0.6410, and 15.91 for 4KAgent. After two experience-evolution rounds on Group B, the reported unified quality index rises from 0.0761 to 0.9824 while total rollback decreases from 2.50 to 1.29. For the out-of-distribution FoundIR test, learning a fresh pool from 20 images and evaluating on the remaining 30 yields 24.50 PSNR and 0.8272 SSIM for low-light plus noise, compared with 17.93 and 0.7064 when reusing the original zero-shot pool. \textbf{Evidence boundary.} Intermediate reflection and rollback provide L4 recovery, while the experience pool is explicitly updated and transferred to later held-out restoration cases, supporting L5 cross-task mechanism improvement. This is batch-wise adaptation using benchmark data and quality signals, not autonomous unrestricted deployment; transferred prior experience can harm an out-of-distribution setting, as the reported zero-shot low-light-plus-noise result shows.
+
+\paragraph{OctoT2I.}
+\textbf{Problem and setting.} OctoT2I addresses selection among text-to-image models with different quality, latency, and energy profiles, where fixed routing priors cannot track each model's capability frontier~\cite{jiang2026octot2i}. \textbf{Method and mechanism.} During inference, a stateful multi-round router consults long-term tool knowledge and task-local execution memory, chooses a generator, evaluates prompt--image alignment, and stores the score for the next decision. Its self-evolving Propose--Solve--Evaluate--Learn loop defines conceptual dimensions, generates exploration prompts, measures each tool's Pass@1, prunes mastered or unproductive combinations, and updates both empirical records and semantic capability profiles. \textbf{Evaluation and results.} With five generation tools, OctoT2I scores 0.96 on GenEval and 0.6618 on T2I-CompBench++, compared with 0.93 and 0.6332 for Flow-GRPO. Average GenEval inference time is 10.02 seconds, versus 19.07 seconds for Flow-GRPO. Replacing learned knowledge with expert-written priors lowers GenEval from 0.96 to 0.93; on WISE, adding one newly explored tool raises the average from 0.54 to 0.61 using 60 exploration prompts, and adding a second raises it to 0.71. \textbf{Evidence boundary.} Current-task scores alter later routing, satisfying L3, while self-interaction updates long-term knowledge that improves later prompts and integrates unseen tools, providing L5 cross-task improvement evidence under this survey's criterion. This improvement updates a router knowledge base rather than generator weights; evaluation uses model-based alignment scorers, the default decision horizon is four rounds, and the system does not demonstrate L4-style authority management or extended project recovery.
+
+\paragraph{A Task-Driven and Quality-Assured Agent Framework for SAR Data Generation.}
+\textbf{Problem and setting.} SAGA generates synthetic-aperture-radar augmentation data for downstream recognition tasks, where a useful image-generation workflow must respect dataset schemas and assess whether its outputs meet SAR-specific quality constraints~\cite{avg260628896}. It is adjacent evidence because the artifact is specialized training data rather than an end-user visual creation. \textbf{Method and mechanism.} The system profiles a dataset against a schema, ranks alternative generation plans, executes a recipe DAG, and uses observer checks with bounded repair. A policy memory stores planning and verification evidence so later requests can reuse validated recipes. \textbf{Evaluation and results.} Experiments use 210,105 SAR images, 35 schema cases, and 80 planning requests. SAGA makes 34 of 35 schema decisions correctly, accepts 95\% of valid cases and rejects all invalid cases; plan selection reaches 92.5\% Top-1 and 97.5\% Top-3 with no invalid skill selections. The observer attains 90.0\% recall and 91.8\% F1, and the full system improves eight downstream task groups by 7.4 points on average over no augmentation. Removing memory lowers the reported gain from 7.25 to 6.33 and the composite score from 90.4 to 84.9. \textbf{Evidence boundary.} Cross-run policy memory provides adjacent L5-style evidence for reusable data-construction knowledge, while the observer and bounded repair provide artifact-conditioned correction. The evidence is SAR-specific, relies on private data and task-specific quality criteria, and does not show that the same controller transfers to general image creation.
+
+Evaluation, methodological, and safety studies make the corresponding capability or failure mode observable without being counted as another generation architecture.
+
+\paragraph{Self-Evolving Agentic Image Restoration via Deliberate Planning and Intuitive Execution.}
+\textbf{Problem and setting.} SEAR addresses restoration of images with coupled degradations, for which the quality of a restoration depends on a sequence of specialized operations and early mistakes can remove information needed by later operations~\cite{avg260628971}. \textbf{Method and mechanism.} A deliberate planner uses language-model scheduling and pruning-aware Monte Carlo tree search to explore restoration paths. A hybrid no-reference reward ranks candidate paths, with a multimodal tournament used as an additional safeguard. High-reward trajectories are distilled into episodic memory indexed by degradation-aware state fingerprints; when a similar state recurs, an intuitive executor retrieves the stored strategy rather than searching again. \textbf{Evaluation and results.} The paper evaluates 1,440 MiO100-derived synthetic images covering 16 mixed degradations and a 100-pair real-world set assembled from six restoration benchmarks. On the synthetic Group B setting, SEAR reports 22.1332 PSNR, 0.7251 SSIM, and 0.2890 LPIPS, compared with 21.7160 PSNR for AgenticIR. On the real-world suite, it reports 24.4078 PSNR, 0.7425 SSIM, 0.3371 LPIPS, 0.4519 CLIP-IQA, and 54.6686 MUSIQ. Removing episodic memory increases the average number of tool calls from 8.15 to 16.75. \textbf{Evidence boundary.} Artifact-conditioned search and reuse support stateful long-horizon restoration, and the retrieved trajectories are evaluated as reusable knowledge for later cases, providing L5 evidence under the survey criterion. The claimed improvement remains conditional on the state-fingerprint retrieval scheme, the fixed restoration-tool library, and the calibration of no-reference and multimodal evaluators; the experiments do not establish safe generalization to arbitrary degradation distributions.
+
+\paragraph{DataEvolver.}
+\textbf{Problem and setting.} DataEvolver concerns construction of training data for text-rich image generation, where one-time crawl--filter pipelines discard rejected samples even though OCR, semantic, layout, and quality failures can guide later collection rounds~\cite{avg260631537}. \textbf{Method and mechanism.} A Retriever gathers topic-aware candidates; a Verifier accepts or rejects them using perceptual quality, OCR, semantic consistency, and duplicate checks; a Critic summarizes pass rates and rejection causes into semantic feedback; and a Generator fills under-covered regions with targeted synthesis. The resulting feedback memory updates later retrieval queries and generation prompts while deduplicating near-identical experience entries. \textbf{Evaluation and results.} Under a matched 0.75M-data budget, PixArt-$\alpha$ trained on DataEvolver data reaches OCR-F1 of 8.45 on TextScenesHQ and 9.08 on LongTextBench, versus 4.56 and 6.71 for the strongest reported baseline. For Show-o2, the corresponding values are 0.45 and 0.44, versus 0.19 and 0.27. At the 0.1M scale, removing the Critic reduces OCR-F1 from 1.78 to 1.01 on TextScenesHQ and from 2.16 to 0.90 on LongTextBench; removing targeted generation yields 1.40 and 1.37. \textbf{Evidence boundary.} Round-level verification is retained and changes later data-construction actions, establishing L5 evidence for a reusable construction policy. This is evidence about improving the data supply for a downstream renderer, not an end-to-end controller that repairs its own generated image during user-facing inference. Reported scaling is a trend rather than a fitted law, and noisy OCR, semantic scoring, or image-quality estimates can propagate into later policy updates.
+
+\paragraph{COMFYCLAW.}
+\textbf{Problem and setting.} COMFYCLAW targets recurring image-generation requests implemented as ComfyUI workflows, where an agent must construct a valid typed graph, meet node and model constraints, diagnose visual failures, and avoid rediscovering the same workflow repair in later tasks~\cite{avg260701709}. \textbf{Method and mechanism.} The harness exposes stage-gated tools for typed directed-acyclic-graph editing, parameter setting, execution, and rollback of invalid edits. A region-level VLM verifier converts visual defects into repair suggestions. Successful trajectories, execution errors, and verifier feedback are distilled into progressively disclosed skills; a proposed skill is validated on held-out tasks before it is committed to the library and becomes available to later workflows. \textbf{Evaluation and results.} Experiments span GenEval2, DPG-Bench, OneIG-EN, and OneIG-ZH, two image backbones, and three agent models. For Claude-Sonnet-4.5 with Z-Image-Turbo, COMFYCLAW raises the four-benchmark average from 67.94 to 77.78; with LongCat it raises the average from 67.08 to 75.52. The paper reports a four-point advantage over a harness-only verifier baseline and a ten-point advantage over no-refinement control, plus a 2,400-image human study. It retains 318 evolved skills, which account for roughly half of later skill invocations. \textbf{Evidence boundary.} Validated skills are created from prior trajectories and reused in later tasks, supporting L5 cross-task mechanism improvement. The evidence concerns ComfyUI graph construction rather than unrestricted visual creation, and all four main scores are judged by Qwen3-VL-8B-Instruct; skill quality remains sensitive to verifier error, benchmark coverage, graph-complexity constraints, and compatibility of the available nodes and models.
+
+\paragraph{Search Beyond What Can Be Taught.}
+\textbf{Problem and setting.} This work studies world-knowledge-intensive requests for which indiscriminate web or image search can corrupt concepts, copy irrelevant visual structure, or retrieve information that the current generator already represents adequately~\cite{wang2026searchgen}. \textbf{Method and mechanism.} A noise-resistant reasoner applies a Gate--Filter--Integrate protocol: it decides whether and in which modality to search, selects evidence that fills a specific knowledge gap, and converts the retained content into a grounded generation specification. Co-training then moves the generator--reasoner knowledge boundary in two stages. Online DPO teaches the generator stable knowledge and robustness to imperfect references; rejection-sampling fine-tuning recalibrates the reasoner to search only for knowledge that remains outside the updated generator. \textbf{Evaluation and results.} On the held-out SearchGen-Bench evaluation, the Klein-4B configuration improves monotonically from 26.4 after reasoner SFT, to 29.2 after generator DPO, and to 31.8 after reasoner recalibration, slightly above the 31.2 frontier-oracle result on the same generator. The corresponding Bagel progression is 23.4, 24.7, and 26.8. Pairing the recalibrated reasoner with the original rather than the DPO generator reduces Klein-4B performance from 31.8 to 26.8, supporting generator-specific policy calibration. \textbf{Evidence boundary.} Generator and reasoner parameters are updated from visual outcomes, reused on unseen prompts, and validated across two generator architectures, satisfying L5 cross-task self-improvement in this survey. The experiment contains one offline DPO pass followed by one offline reasoner-training pass; the authors identify multi-round co-training as future work. It therefore does not demonstrate recursive online self-evolution during deployment, and its reward signal depends on a Gemini-3-Flash judge despite reported human correlation.
+
+The strongest continual-learning claims retain and reuse skills, toolpaths, or experience on held-out tasks. Offline reinforcement learning, self-generated data, or a self-improvement label alone do not establish that a deployed controller accumulates reusable experience.
+
+\subsubsection{Evaluation and Safety}
+Evaluation and safety studies provide the measurements and adversarial evidence needed to assess image-agent behavior. They are not treated as image-creation controllers merely because they use planning, search, or multiple roles.
+
+\paragraph{A Unified Agentic Framework for Evaluating Conditional Image Generation.}
+\textbf{Problem and setting.} CIGEval evaluates conditional image generation, where a score must account for source-image preservation, multiple concepts, and diverse controls rather than prompt alignment alone~\cite{avg250407046}. \textbf{Method and mechanism.} Its evaluator decomposes the assessment task, selects visual-analysis tools, and produces a fine-grained explanation alongside a score. The authors also synthesize evaluation trajectories to fine-tune smaller multimodal models. \textbf{Evaluation and results.} Across seven conditional-generation tasks, the GPT-4o version reaches a 0.4625 correlation with human assessments, close to the reported 0.47 inter-annotator correlation. A 7B open-source evaluator is fine-tuned using 2.3K filtered evaluation trajectories and is reported to exceed prior GPT-4o-based evaluation baselines. \textbf{Evidence boundary.} This is an evaluation architecture rather than a visual-creation controller, so no L-level is assigned. It supplies evidence about verifier design and explainability, while its reported agreement still depends on the human annotation protocol, the selected toolbox, and model-mediated trajectory synthesis.
+
+\paragraph{EdiVal-Agent.}
+\textbf{Problem and setting.} EdiVal-Agent evaluates multi-turn and compound image editing when each instruction can modify one object while later edits must preserve satisfied constraints and unaffected regions~\cite{avg250913399}. \textbf{Method and mechanism.} The evaluator converts edit requests and image history into object-centered criteria, assesses instruction following, object and background consistency, and visual quality at each turn, and aggregates the evidence into task-level results. Its benchmark annotations cover 724 objects in 13 categories. \textbf{Evaluation and results.} The paper reports per-instruction and per-turn success rates for multi-turn and complex-edit modes, together with DINOv3 and pixel-based consistency measures and human-preference scores. The breakdown makes clear that scores differ substantially across edit type and turn, exposing accumulated preservation failures that a final-image-only assessment conceals. \textbf{Evidence boundary.} EdiVal-Agent is an evaluation instrument rather than an autonomous editor, so it receives no L-level. Its measurements depend on automated object decomposition, evaluator judgments, image resizing, and the selected GEdit-Bench distribution; it provides a concrete source of diagnostic evidence for L3--L4 editing systems.
+
+\paragraph{Blueprint-Bench.}
+\textbf{Problem and setting.} Blueprint-Bench tests whether systems can transform interior photographs into an accurate two-dimensional apartment floor plan, making spatial connectivity and relative room size explicit visual constraints~\cite{avg250925229}. \textbf{Method and mechanism.} The benchmark contains 50 apartments with about 20 interior images each. It extracts a room-connectivity graph from each produced plan and computes a weighted similarity from edge overlap, degree correlation, graph density, room count, door count, and door orientation. \textbf{Evaluation and results.} It compares leading language models, image generators, and computer-use agents against random and human baselines. Most models are at or below the random baseline; agentic iterative refinement does not yield statistically meaningful improvement, and all tested systems remain substantially below the human result on the 12-apartment human-comparison subset. \textbf{Evidence boundary.} Blueprint-Bench is a diagnostic benchmark, not a generation method or evidence of an autonomy level. Its score omits room type and shape, and strict output formatting can confound spatial reasoning with instruction following; nevertheless, it identifies an empirical gap that a closed-loop visual controller must address.
+
+\paragraph{Value-Aligned Prompt Moderation.}
+\textbf{Problem and setting.} VALOR addresses unsafe, ambiguous, and value-sensitive requests to text-to-image systems, where a prompt-only filter may miss indirect intent and an unconditional refusal may remove legitimate creative content~\cite{avg251111693}. \textbf{Method and mechanism.} A zero-shot controller combines layered prompt analysis, value reasoning, and intention disambiguation. It selectively rewrites a problematic request, generates an image, and applies a post-generation safety check; an unsafe output can trigger a style-guided regeneration that retains the permitted semantic content. \textbf{Evaluation and results.} Experiments cover adversarial, ambiguous, and value-sensitive prompts. The paper reports reductions in unsafe outputs of up to 100.00\% while retaining prompt usefulness and creative diversity under its evaluation protocol. \textbf{Evidence boundary.} The image-level safety check can change the next generation attempt, giving bounded L3 correction for safety moderation. VALOR is not a general visual creator and does not retain task experience, so it does not establish L5 improvement; its safety claims remain sensitive to the threat set, value rubric, and post-hoc safety classifier.
+
+\paragraph{OrchJail.}
+\textbf{Problem and setting.} OrchJail studies safety failures in tool-calling text-to-image agents, focusing on attacks that distribute a harmful objective across individually acceptable planning and tool-execution steps~\cite{avg260507414}. \textbf{Method and mechanism.} Its orchestration-guided fuzzer mutates requests, plans, and tool-call sequences, observes safety decisions and generated outcomes, and searches for compositions that bypass guards at the controller--tool interface. \textbf{Evaluation and results.} The paper evaluates the resulting attack trajectories against tool-calling image-generation agents and reports successful bypasses that are missed by safeguards applied to individual prompts or tool calls. The study localizes failures to orchestration and cross-step semantic composition rather than only to the underlying image model. \textbf{Evidence boundary.} OrchJail is a red-team evaluation, not an image-creation controller and therefore receives no L-level. Its results demonstrate an attack surface and depend on the tested tools, policies, and threat model; they should not be interpreted as a quality or autonomy result for the affected generators.
+
+\paragraph{Whispers in the Noise.}
+\textbf{Problem and setting.} Whispers in the Noise examines whether concept-erased diffusion models can be induced to recover suppressed concepts, including safety-sensitive content, through interventions in the denoising trajectory~\cite{avg260518150}. \textbf{Method and mechanism.} The proposed ConceptAgent is a training-free black-box multi-agent procedure that constructs surrogate visual priors, reasons about the generation trajectory, and alters intermediate denoising states through surrogate-guided noise initialization. \textbf{Evaluation and results.} Across diffusion backbones and concept-erasure methods, the study evaluates concept-awakening accuracy and CLIP-based generation fidelity. It reports competitive or stronger scores than the compared training-based and zero-shot baselines, and demonstrates recovery of both ordinary and safety-sensitive erased concepts. \textbf{Evidence boundary.} This is safety evidence rather than a creative-generation architecture, and it receives no L-level. The method executes a single inference pass without online optimization or retained cross-task learning; its conclusions rely on surrogate quality, the selected erased concepts, and the benchmark classifiers used to recognize them.
+
+
+\paragraph{RedEdit.}
+\textbf{Problem and setting.} RedEdit tests whether image-safety classifiers remain reliable when an initially benign photograph is transformed through a sequence of ordinary editing operations~\cite{avg260606140}. \textbf{Method and mechanism.} The red-team agent formulates editing as a search tree, uses Monte Carlo tree search to select image edits, queries the target classifier as feedback, and expands paths that increase the target unsafe score while controlling visual plausibility. \textbf{Evaluation and results.} Experiments measure classifier vulnerabilities under iterative photo editing and show that the search procedure discovers adversarial edit trajectories that evade static safety judgments more effectively than non-search baselines. The analysis attributes failures to the classifier's limited robustness to composed semantic changes. \textbf{Evidence boundary.} This is a controlled safety attack rather than a constructive AVG method, so it has no autonomy-level assignment. Its evidence is useful for evaluating verifier robustness, but attack success is conditioned on the target classifier, edit operators, query budget, and safety definition.
+
+\paragraph{Does AI Understand Imaging?.}
+\textbf{Problem and setting.} ImagingBench tests whether multimodal agents can reason about computational imaging, including image formation, inverse reconstruction, sensing, optics, and calibration, rather than produce visually plausible but physically inconsistent outputs~\cite{avg260707189}. \textbf{Method and mechanism.} The benchmark defines 20 subtasks in five categories and three protocols: fixed expert-guided reconstruction, planner-guided reconstruction, and forward-system simulation for consistency checking. It evaluates proprietary and open image-centric multimodal systems alongside task-specific non-agentic baselines using raw task metrics and normalized aggregates. \textbf{Evaluation and results.} Agentic systems remain consistently weaker than specialized methods, with particularly large gaps in lensless imaging, event reconstruction, time-of-flight imaging, and holography. Planner guidance produces only modest and inconsistent gains over the fixed expert-prompt protocol, while visually plausible outputs often have poor reference-based fidelity. \textbf{Evidence boundary.} ImagingBench is a benchmark rather than an image-generation architecture, so no L-level is assigned. Its evidence is nevertheless directly relevant to AVG because it distinguishes semantic plausibility from physical and reference-grounded correctness; conclusions are limited to the implemented task suite and available model interfaces.
+
+These studies broaden assessment beyond final appearance to object-level edit correctness, spatial reasoning, physical fidelity, safety moderation, and verifier robustness. Their diagnostic outputs become evidence for AVG only when a separate controller uses them to choose a corrective action.
+
+Across image tasks, corrective precision depends on whether the system retains an addressable representation of the artifact and connects verification evidence to a later action. Masks, object tables, edit histories, preference records, degradation estimates, and executable workflows can support localized revision; undifferentiated scores often lead to global resampling. The evidence remains uneven for verifier calibration, causal diagnosis, rollback, budget-aware stopping, and persistent improvement beyond one task.
+
+\FloatBarrier

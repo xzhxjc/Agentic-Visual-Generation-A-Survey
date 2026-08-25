@@ -1,0 +1,25 @@
+# LaTeX build files
+*.aux
+*.bbl
+*.bcf
+*.blg
+*.fdb_latexmk
+*.fls
+*.log
+*.out
+*.run.xml
+*.synctex.gz
+*.toc
+*.xdv
+build/
+build_*/
+
+# Python cache
+__pycache__/
+*.py[cod]
+
+# Local editor and system files
+.DS_Store
+Thumbs.db
+.vscode/
+.idea/

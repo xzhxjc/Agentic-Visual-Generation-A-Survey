@@ -1,0 +1,60 @@
+\section{Agentic Structured Visual Document and Presentation Generation}
+\label{sec:structured-documents}
+
+Structured visual documents couple long-range narrative decisions with page-level geometry. Their state includes source material, section hierarchy, slide or page roles, assets, layout constraints, style, citations, and edit history. The relevant systems are compared by whether they keep these representations connected when content is retrieved, composed, rendered, inspected, and revised.
+
+\subsection{Interleaved reports and structured multimodal content.}
+Reports and interleaved content require the agent to decide when prose, images, tables, or diagrams should carry the argument, and to keep citations and retrieved evidence aligned with those decisions.
+
+\paragraph{A Composable Agentic System for Automated Visual Data Reporting}
+This auditable multi-agent system automates visual reporting by externalizing logic to deterministic modules, producing interactive Observable reports and executable Marimo notebooks.~\cite{avg250905721}. The DSPy-driven system delegates chart design to Draco and uses Langfuse for traceability, and while it won the VISxGenAI Challenge, evidence remains case-based.
+
+\paragraph{TVIR}
+TVIR presents a hierarchical multi-agent framework for text-visual interleaved report generation with provenance-tracked visual assets, alongside a 100-task benchmark evaluating citation grounding and multimodal visual quality~\cite{avg260602320}.  Source-grounded chart construction proves central to performance, yet feedback-driven re-planning is absent and its LLM-based evaluation demands broader human validation.
+
+\subsection{Presentation and poster composition.}
+Slides and posters require coordinated decisions about narrative role, information density, asset selection, typography, and page geometry. Treating each page as an isolated image loses the state needed for coherent revision.
+
+\paragraph{PosterGen}
+PosterGen introduces an aesthetic-aware multi-agent framework for paper-to-poster generation, where specialized agents collaboratively distill narrative, allocate layout, and apply color and typography to produce editable PPTX posters~\cite{avg250817188}. Evaluations show quality approaching human-designed posters, yet the pipeline remains a predetermined cascade without feedback-driven replanning, and its fixed three-column layout defines the boundary.
+
+\paragraph{PreGenie}
+PreGenie employs a multi-agent framework for visual presentation generation, where a summarizer and image captioner extract multimodal content, a code generator produces Slidev Markdown, and code and page reviewers iteratively inspect both syntax and rendered visuals to detect overflow, misalignment, and density issues before regenerating problematic pages~\cite{xu2025pregenie}.
+
+\paragraph{ETPDesigner}
+ETPDesigner introduces a multi-agent framework for transforming scripts into interactive theater programs, using RAG-enhanced ToT poster synthesis with VLM self-refinement and a global style anchor for cross-page consistency~\cite{avg260719947}.
+
+\paragraph{Towards Verifiable Multimodal Deep Research}
+PTAH presents a multi-agent harness for verifiable multimodal deep research, organizing Planning, Research, and Writing phases with a Visual Working Memory that retains image provenance and context, while a Verifier enforces stage-wise factual and cross-modal consistency through rule-based and model-based checks~\cite{avg260529861}. Test-time scaling with six refinement operations further improves sections, images, and rendered HTML.
+
+\subsection{Structured diagrams and software documentation.}
+Software diagrams are visual documents whose correctness depends on named entities, typed relations, and consistency with an underlying repository or requirements specification. These systems are grouped here because their primary artifact is a structured documentation view rather than an analysis of scientific data.
+
+\paragraph{NOMAD}
+ decomposes UML class diagram generation into specialized agents for entity extraction, relationship comprehension, model integration, and PlantUML articulation, with an optional verifier that checks outputs against requirements and requests revisions~\cite{avg251122409}. Experiments show improved F1 scores (0.656→0.696 on eight cases, 0.736→0.836 on Northwind), yet attribute extraction remains the primary weakness.
+
+\paragraph{Code2UML}
+ employs a multi-agent architecture with deterministic IR compaction to generate seven UML diagram types from source code repositories across four languages, where Planner, Analyzer, Diagram, and Corrector agents collaborate to produce PlantUML outputs with diagram-specific syntax validation~\cite{avg260524453}. 
+
+\paragraph{SAGE}
+SAGE is a browser-based tool for prompt-guided editing of software diagrams, parsing Draw.io XML into an editable graph model, translating natural language requests into structured edit intents, and applying deterministic graph operations with validation and versioned rollback~\cite{avg260701102}. 
+
+\subsection{Rendering-grounded revision and document-level evidence.}
+Rendered pages expose overflow, overlap, alignment, and readability failures that are invisible in an outline or source tree. Document-level feedback additionally tests cross-page consistency and the cost imposed on human reviewers.
+
+\paragraph{Multi-Agent Synergy-Driven Iterative Visual Narrative Synthesis}
+RCPS introduces a multi-stage framework for automated presentation generation, combining R-CoT narrative planning, a learned layout prototype generator that produces symbolic layout descriptions, and an iterative multi-modal refinement loop where visual and logical critics guide targeted edits until quality thresholds are met~\cite{avg250713285}.
+
+\paragraph{Presenting a Paper is an Art}
+EvoPresent introduces a self-improving multi-agent framework for academic presentation generation, where Storyline, Scholar, Design, and Checker agents iteratively refine slides guided by PresAesth, a multi-task RL aesthetic model trained on scoring, defect adjustment, and comparison tasks~\cite{avg251005571}. 
+
+\paragraph{DeepPresenter}
+DeepPresenter introduces a dual-agent framework where Researcher and Presenter collaborate in a shared file environment, using inspect tools to render slides into pixels and expose post-render defects, enabling observation-driven revision~\cite{zheng2026deeppresenter}. The compact DeepPresenter-9B is trained on filtered trajectories with extrinsic verification, yet inference lacks an external critic, and the system remains sensitive to context overflow and does not support cross-task updating.
+
+\paragraph{ATP-Bench}
+ATP-Bench is a benchmark for evaluating multimodal models' tool-planning ability in interleaved text-image generation, where models must decide when and how to invoke reference, diffusion, search, code, or edit tools across 25 visual-critical intents and 7,702 QA pairs~\cite{avg260329902}. A Multi-Agent MLLM-as-a-Judge system separates precision inspection, missed-opportunity detection, and chief judgment, correlating strongly with human evaluations ($\rho=0.89$). Gemini 3 Pro achieves the best reported scores (79.88 final score, 81.77\% success rate, 0.49 missed images). As a benchmark, ATP-Bench does not address persistent state, rollback, recovery, or cross-task learning in deployed systems. 
+
+
+Document agents become genuinely artifact-grounded when outline state, evidence state, layout state, and rendered observations remain synchronized. Current systems establish useful loops around rendering and revision, while source fidelity, cross-page memory, and human approval remain essential controls.
+
+\FloatBarrier

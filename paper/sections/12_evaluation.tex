@@ -1,0 +1,158 @@
+\section{Evaluating Agentic Visual Generation}
+\label{sec:evaluation}
+
+High artifact quality does not, by itself, demonstrate effective agency. A stronger evaluation must identify whether an agent satisfies the intended goal, makes competent intermediate decisions, improves the result because of feedback, and does so at an acceptable cost. This distinction follows the operational definition developed earlier in the survey: agency is evidenced when an observation of the evolving artifact, environment, or interaction history changes a later action. A visually appealing result may instead arise from a stronger base generator, repeated sampling, a larger inference budget, or chance. Evaluation must therefore separate the quality of the produced artifact from the behavior of the loop that produced it.
+
+We organize the evidence into four complementary levels. Artifact-level evaluation asks whether the final visual result is perceptually and presentationally acceptable. Goal-level evaluation asks whether the requested content and constraints are satisfied. Trajectory-level evaluation examines whether planning, observation, diagnosis, repair, and stopping are competent and causally useful. System and human-centered evaluation asks whether these gains remain worthwhile under realistic resource, reliability, safety, and interaction constraints. Section~\ref{subsec:evaluation-gaps} then identifies the main gaps that prevent these four levels from forming a unified evaluation protocol and states the minimum controls needed for reliable comparison.
+
+\begin{keytakeaway}[Evaluating Agentic Visual Generation at a Glance]
+\begin{keypoints}
+  \item \textbf{Artifact quality:} asks whether the final visual result is perceptually and presentationally acceptable.
+  \item \textbf{Goal and constraint satisfaction:} asks whether the requested content and constraints are satisfied.
+  \item \textbf{Trajectory and decision quality:} examines whether planning, observation, diagnosis, repair, and stopping are competent and causally useful.
+  \item \textbf{System and human-centered evaluation:} asks whether the gains remain worthwhile under realistic resource, reliability, safety, and interaction constraints.
+  \item \textbf{Remaining evaluation gaps:} identify what prevents these levels from forming a unified evaluation protocol and the controls needed for reliable comparison.
+\end{keypoints}
+\end{keytakeaway}
+
+\subsection{Artifact Quality}
+\label{subsec:artifact-quality}
+
+Artifact-level metrics assess the intrinsic quality of the rendered result, including realism, aesthetics, perceptual fidelity, clarity, temporal stability, geometric appearance, and human preference. They remain necessary because an agentic trajectory that produces an inferior artifact has limited practical value. At the same time, artifact quality is not a modality-independent quantity. A sharp and aesthetically convincing image, a temporally coherent video, a cleanly rendered 3D object, a legible scientific figure, a well-composed slide deck, and a visually faithful interface expose different perceptual failures and therefore require different evidence. Recent evaluation frameworks accordingly combine modality-specific signals rather than treating a single image-text similarity score as a universal measure~\cite{avg260329139,avg260530090,avg250913399,avg260601057,avg260526144,avg250407046}.
+
+The meaning of artifact quality changes with the visual artifact and its mode of use. Structured-document evaluations, for example, combine rendered-page inspection, layout rules, readability checks, and human review to assess typography, alignment, overflow, and cross-page consistency~\cite{xu2025pregenie,zheng2026deeppresenter}. Section~\ref{subsec:goal-satisfaction} then turns from intrinsic artifact quality to goal and constraint satisfaction, while Sections~\ref{subsec:trajectory-quality} and~\ref{subsec:system-human-eval} examine the trajectory, system, and human conditions under which both are achieved.
+
+No single evaluation protocol is sufficient across these domains. \textbf{Reference-based metrics} are useful when a target image, rendering, or layout is available. However, they can penalize valid alternatives in open-ended creation and may fail to isolate the region affected by an edit. \textbf{Learned multimodal judges} are more flexible, yet their scores depend on prompt formulation, perceptual sensitivity, and alignment with human judgments.
+
+\textbf{Tool-augmented evaluators} address part of this limitation by grounding judgments in regions, image differences, scene descriptions, code, or other observable evidence. CIGEval illustrates this strategy by combining a multimodal evaluator with specialized visual tools across conditional image-generation tasks~\cite{avg250407046}. EdiVal-Agent instead separates global visual quality from instruction following and the preservation of unchanged content~\cite{avg250913399}.
+
+\textbf{Human validation} complements automated diagnostics in long-form video and procedural 3D benchmarks because aggregate perceptual scores do not fully capture multi-shot quality or the acceptability of a rendered shape~\cite{avg260530090,avg260601057}. These studies support an evaluator portfolio in which reference-based, learned, tool-grounded, and human signals play complementary roles.
+
+The main limitation of artifact-level evaluation is that it describes the result without establishing why it was obtained or whether it is correct for the task. Image-centric metrics can reward outputs that are visually plausible while violating explicit structure, data, geometry, or functionality. SciFlow-Bench shows this failure directly: a scientific diagram can appear coherent while omitting components, reversing relations, or hallucinating labels, which motivates inverse parsing and structural recoverability measures beyond visual similarity~\cite{avg260209809}. In Web development, VISTA finds that visual fidelity and functional correctness are only partially coupled, so a screenshot that resembles the specification does not guarantee correct interaction behavior~\cite{avg260526144}. Likewise, 3DCodeBench reports that successfully rendered objects may still contain disconnected or floating geometric components~\cite{avg260601057}. Artifact quality is therefore a necessary first layer, but it cannot establish goal satisfaction, competent decision making, or effective use of feedback. The next level must evaluate the requested goals and constraints directly.
+
+\subsection{Goal and Constraint Satisfaction}
+\label{subsec:goal-satisfaction}
+
+Goal-level evaluation asks whether the produced artifact satisfies the operational specification rather than merely appearing plausible. A visual request may combine positive semantic requirements, including objects, attributes, relations, identities, and events, with prohibitions, geometric or structural constraints, factual and data requirements, soft preferences, preservation requirements, and executable behaviors. These requirements are heterogeneous: the presence of an object, the direction of an arrow, the dimensions of a room, the value encoded by a chart, and the behavior of a button are not instances of the same measurement problem. Goal satisfaction should therefore be represented as a set of verifiable conditions rather than compressed prematurely into a single perceptual score~\cite{avg260329139,avg250913399,avg260707189,avg260526144,avg250925229,avg260209809}.
+
+The verifier must consequently match the type and granularity of each constraint. \textbf{Object and attribute requirements} can be checked with detectors, localized crops, and multimodal semantic judgments. \textbf{Spatial and relational constraints} require symbolic or geometric evidence. Blueprint-Bench, for example, compares room-connectivity graphs and relative size rankings rather than judging floor-plan appearance alone~\cite{avg250925229}. SciFlow-Bench inverse-parses rendered scientific diagrams and compares recovered nodes and edges with canonical graphs, thereby testing whether the intended structure survives rendering~\cite{avg260209809}. \textbf{Executable artifacts} require visual judgments to be combined with DOM-grounded matching, browser tests, or workflow-based interaction tests, as in VISTA and Vision2Web~\cite{avg260526144,avg260326648}. \textbf{Physical consistency} can be tested through forward-system simulation, as in ImagingBench~\cite{avg260707189}. These examples show why a preference model cannot substitute for exact geometry, graph structure, executable behavior, or physical validity.
+
+Editing tasks add an asymmetric requirement: the requested region or relation must change, while unrelated content must remain stable. EdiVal-Agent makes this distinction explicit by separating instruction following, content consistency, and global visual quality. Its evaluator combines detector-based symbolic checks, semantic judgments on detector-guided crops, similarity measurements for unchanged objects and backgrounds, and a human-preference model for overall visual quality~\cite{avg250913399}. HOI-Edit further shows that relation editing cannot be reduced to isolated entity detection. A successful human-object interaction edit must establish the requested interaction while preserving the grounded human-object pair, which motivates region-sensitive evaluation of both relational plausibility and entity retention~\cite{avg260619073}. In multi-turn settings, these conditions should be checked after each revision against an evolving specification because an earlier satisfied constraint may be lost during a later edit.
+
+Reporting must preserve this decomposition. A defensible protocol should provide per-category success rates, an all-constraints-satisfied rate, and separate preservation scores where editing is involved. \textbf{Hard constraints} should act as validity conditions: a missing component, reversed dependency, incorrect data value, or broken interaction should not be compensated for by stronger aesthetics elsewhere. \textbf{Soft preferences and human judgments} remain appropriate for properties such as communicative clarity, style, or pedagogical effectiveness, but they should be reported separately from deterministic checks~\cite{avg260329139,avg250516832}. This separation also makes failure diagnosis more informative. An aggregate score may show that a system underperforms, whereas category-level results reveal whether the bottleneck is semantic grounding, spatial reasoning, structural recoverability, factual correctness, or executable behavior~\cite{avg250913399,avg260526144,avg260209809}.
+
+Goal-level success nevertheless remains an outcome property. It does not establish that the agent selected competent intermediate actions or that feedback caused the successful result. A fixed pipeline, a stronger generator, or repeated candidate search may also produce a constraint-compliant artifact. Evaluation must therefore proceed from whether the goal was met to how it was met. The next level examines planning, tool selection, diagnosis, revision, recovery, and stopping as decisions along the generation trajectory, using matched alternatives to test whether adaptation is responsible for the gain.
+
+\subsection{Trajectory and Decision Quality}
+\label{subsec:trajectory-quality}
+
+Trajectory-level evaluation asks two progressively stronger questions: whether the agent makes competent decisions along the generation trajectory, and whether its adaptation to intermediate evidence causally improves the result. Answering either question requires more than a chronological list of prompts, reasoning text, or tool calls. An evaluable trace should expose the task state available before each decision, the selected action, the resulting visual or executable observation, the feedback derived from that observation, and the state, plan, or action updated next. The basic unit of analysis is therefore an observable state--action transition. The presence of a component named planner, critic, or memory does not establish that the component used evidence correctly or contributed to the outcome~\cite{avg250915160,avg260526144,avg260608091}.
+
+Decision correctness can then be decomposed according to where a choice is made in the loop. Planning translates the goal into executable and testable dependencies; action selection chooses a necessary tool with valid parameters; diagnosis identifies the actual failure at an appropriate location and granularity; revision or recovery repairs that failure without damaging already satisfied constraints; and stopping terminates the process when further actions no longer provide sufficient expected value. Table~\ref{tab:trajectory-evaluation-targets} pairs the observable failure modes at each decision point with the intervention needed to test them.
+
+\begin{table}[t]
+  \caption{Evaluation targets for state-dependent decisions in the \AVG{} trajectory.}
+  \label{tab:trajectory-evaluation-targets}
+  \small
+  \setlength{\tabcolsep}{5pt}
+  \renewcommand{\arraystretch}{1.08}
+  \renewcommand{\tabularxcolumn}[1]{m{#1}}
+  \begin{tabularx}{\textwidth}{@{}
+    >{\raggedright\arraybackslash\bfseries}m{0.25\textwidth}
+    >{\raggedright\arraybackslash}m{0.33\textwidth}
+    >{\raggedright\arraybackslash}X@{}}
+    \toprule
+    Decision target & \textbf{Observable failure measures} & \textbf{Matched intervention or control} \\
+    \midrule
+    Planning and specification & Constraint omissions; dependency violations; non-executable plans & Compare learned planning with annotated or fixed plans under the same executor \\
+    \midrule
+    Action and tool selection & Missed tool opportunities; unnecessary or invalid calls; parameter errors & Fix the tool inventory and replace only the selection policy; ATP-Bench provides tool-planning annotations~\cite{avg260329902} \\
+    \midrule
+    Observation and diagnosis & False alarms; missed failures; localization error; miscalibrated confidence & Inject known failures or compare diagnoses with oracle error labels \\
+    \midrule
+    Revision and recovery & Repair failure; collateral damage; repeated failure; unsuccessful rollback & Compare feedback-guided repair with no feedback, uniform retry, corrupted feedback, and oracle feedback \\
+    \midrule
+    Stopping and budget allocation & Premature termination; unnecessary actions; post-peak quality degradation & Apply common call or time limits and compare learned stopping with fixed stopping rules \\
+    \bottomrule
+  \end{tabularx}
+\end{table}
+\FloatBarrier
+
+Existing benchmarks provide partial evidence for decision correctness, but they also show why trace observability must not be confused with competence. ATP-Bench evaluates tool planning through tool-call precision, missed opportunities, parameter checks, placement checks, and comparison with curated tool sets. By separating planning from changing tool backends, it offers a relatively clean diagnosis of model-side selection behavior~\cite{avg260329902}. Its boundary is equally important: a correct tool plan does not show that executing the plan improves the visual artifact. VideoWeaver moves closer to end-to-end analysis by reading execution traces, tool-call records, metadata, intermediate files, and final videos, and by reporting both process and output metrics~\cite{avg260608091}. However, several of its process scores indicate whether a checkpoint occurred rather than whether the associated decision was correct. These benchmarks therefore support a distinction between trace coverage, decision correctness, and downstream effect.
+
+\textbf{Matched counterfactuals} are needed to establish the causal utility of adaptation by intervening on the loop rather than observing it alone. The most informative comparison holds the input, executor, tool access, and resource budget constant, and then moves from single-pass generation to repeated sampling or best-of-N selection, a uniform retry policy, a matched fixed workflow, and finally an adaptive agent. A no-feedback condition tests whether observations are necessary, while corrupted-feedback and oracle-feedback variants test robustness to misleading evidence and the upper bound supplied by correct diagnosis. Each control removes a different alternative explanation: more samples, deterministic repair, a stronger preset workflow, or privileged feedback may otherwise be mistaken for learned decision making.
+
+Available evidence illustrates the value of this counterfactual design. GameDevBench varies whether otherwise comparable coding agents receive editor screenshots, runtime video, both, or neither. Visual feedback raises GPT-5.4 pass@1 from 41.1\% to 52.0\% in the reported setting, but the gain varies across model--harness combinations and some configurations decline~\cite{avg260211103}. The result supports a causal benefit for feedback within matched configurations rather than a universal benefit from adding more feedback. 3DCodeBench compares single-turn generation, a uniform stateless retry loop driven by Blender error traces, and autonomous coding-agent harnesses under fixed time budgets. Retry and agentic execution both improve executability, but the full harness does not improve conditional shape quality among scripts that already execute~\cite{avg260601057}. Blueprint-Bench likewise finds no meaningful gain from agent-based iterative refinement over single-pass spatial reconstruction~\cite{avg250925229}, while ImagingBench reports small and inconsistent changes when an adaptive Planner replaces a strong fixed Expert prompt and notes that its protocol does not establish causal use of the forward model~\cite{avg260707189}. Together, these results show that an adaptive agent should be compared with strong non-adaptive alternatives rather than with single-pass generation alone.
+
+Recovery, rollback, and stopping reveal where an adaptive trajectory fails. A useful protocol should distinguish four failure sources. \textbf{Diagnosis bottlenecks} occur when the system does not identify the relevant error. \textbf{Policy bottlenecks} arise when the error is recognized but the next action is inappropriate. \textbf{Executor bottlenecks} occur when a sound action fails to produce the intended visual change. \textbf{Stopping bottlenecks} arise when the system continues after reaching its best available state. Corresponding measures include error-localization accuracy, repair success, collateral-damage rate, repeated-failure rate, rollback success, and post-peak quality degradation. Controlled execution errors and corrupted feedback can test whether the agent recovers from adverse evidence rather than merely following any critique it receives. These tests remain proposed protocol elements rather than a mature shared standard, because current AVG benchmarks expose only subsets of the required failure--repair cycles~\cite{avg260601057,avg260526144,avg260608091}.
+
+Trajectory quality must finally be normalized by the opportunity and cost of adaptation. The shortest trajectory is not necessarily the best, because verification and rollback add useful steps, while a longer trajectory may simply repeat failed actions. Evaluation should therefore report calls to the first valid artifact, unnecessary-action rate, successful repair per call, improvement per generator invocation, and quality--cost curves, together with outcome quality under common call, time, and compute limits. VISTA demonstrates why behavioral descriptors cannot substitute for these competence measures. Its Surgical Diff Score characterizes localized patching versus full-file rewriting, but is only weakly related to task success and partly depends on the tools exposed by the harness~\cite{avg260526144}. Editing locality and raw path length describe how a system acts; they do not independently establish that it acts well.
+
+The unit of reporting is consequently the complete model--harness--tool--feedback--budget configuration rather than the language model alone~\cite{avg260605525,avg260526144}. Trajectory studies should disclose model and harness versions, available tools and skills, feedback sources, call and time limits, retry and failure-handling rules, and variation across repeated trials. Trajectory-level evaluation should separate three claims.
+
+\begin{keytakeaway}[Agency, Decision Competence, and Effective Agency]
+\begin{keypoints}
+  \item \textbf{Agency:} an intermediate observation changes a later action.
+  \item \textbf{Decision competence:} the changed action is appropriate given the observed state.
+  \item \textbf{Effective agency:} a matched counterfactual shows that the adaptation improves the result under a controlled resource budget.
+\end{keypoints}
+\end{keytakeaway}
+
+Exposed reasoning, repeated self-critique, or additional calls establish none of these claims on their own. Even a causally useful trajectory may remain too expensive, variable, unsafe, or difficult for users to inspect and override; Section~\ref{subsec:system-human-eval} therefore evaluates whether trajectory gains remain worthwhile at the level of the deployed system and its surrounding human interaction.
+
+\subsection{System and Human-Centered Evaluation}
+\label{subsec:system-human-eval}
+
+System-level evaluation asks whether gains attributed to an agentic loop remain worthwhile once resources, operational failures, and human labor are made visible. The evaluated unit is the deployed model--harness--tool configuration, including the generators and evaluators used, tool interfaces, execution environment, recovery policy, and autonomy setting. A system that obtains a strong artifact through costly calls, unstable retries, or extensive human correction is not equivalent to one that reaches comparable quality reliably and autonomously. These measures should therefore accompany artifact-, goal-, and trajectory-level results~\cite{avg250915160,avg260605525,avg260526144,avg260608091}.
+
+\begin{table}[t]
+  \caption{System and human-centered dimensions for evaluating deployed \AVG{}.}
+  \label{tab:system-human-evaluation}
+  \small
+  \setlength{\tabcolsep}{5pt}
+  \renewcommand{\arraystretch}{1.08}
+  \renewcommand{\tabularxcolumn}[1]{m{#1}}
+  \begin{tabularx}{\textwidth}{@{}
+    >{\raggedright\arraybackslash\bfseries}m{0.29\textwidth}
+    >{\raggedright\arraybackslash}X@{}}
+    \toprule
+    Dimension & \textbf{Recommended observations and measures} \\
+    \midrule
+    Resource demand & Model and tool calls; tokens; GPU time; latency; monetary cost; time to first valid artifact; quality--cost frontier \\
+    \midrule
+    Reliability and repeatability & Mean and dispersion across runs; confidence intervals; pass@$k$; pass$^k$; timeout, crash, and refusal rates; repeated failures; recovery rate \\
+    \midrule
+    Operational reproducibility & Model, harness, tool, prompt, evaluator, and dependency versions; seeds; budgets; retry rules; logs; intermediate artifacts \\
+    \midrule
+    Safety and privacy & Unsafe artifacts and tool actions; policy bypasses; red-team attack success; sensitive-data exposure, transmission, retention, and provenance \\
+    \midrule
+    Controllability and human authority & Autonomy mode; approvals and rejections; intervention opportunities; override and rollback success; state visibility; autonomous completion rate \\
+    \midrule
+    Workload, accessibility, and trust calibration & Completion time; turns and corrections; workload and usability scales; accessibility barriers; error detection; appropriate reliance; expertise-stratified results \\
+    \bottomrule
+  \end{tabularx}
+\end{table}
+\FloatBarrier
+
+Resource accounting reveals trade-offs hidden by endpoint rankings. In GameDevBench, multimodal feedback increases monetary cost in most settings, reaching 3.3 times in one GPT-5.4 configuration, while gains vary by model and harness~\cite{avg260211103}. 3DCodeBench jointly reports per-query cost, output tokens, wall-clock time, throughput, and human-preference Elo, revealing a saturating cost--quality relationship~\cite{avg260601057}. VideoWeaver records tool calls, language, image, and video tokens, and generation time, showing that stronger long-video workflows often consume more planning and coordination resources~\cite{avg260608091}. SciVisAgentSkills further finds that identical skills reduce token use in Claude Code but increase it in Codex~\cite{avg260605525}. Comparisons should therefore use common call, time, and monetary budgets and report Pareto frontiers or quality at fixed budgets.
+
+Reliability differs from obtaining one favorable sample. A best run or pass@$k$ rewards additional attempts, whereas pass$^k$ and failure distributions measure consistent success. SciVisAgentSkills runs each configuration three times and reports the mean, standard deviation, pass@$k$, and pass$^k$~\cite{avg260605525}; this is a useful minimum but provides limited precision for heterogeneous, long-horizon tasks. Stronger protocols should publish per-case results and seeds, distinguish model stochasticity from benchmark sampling and human-rating uncertainty, and record timeouts, crashes, refusals, recovery attempts, and cost variance. Model, harness, tool, prompt, dependency, and evaluator versions should also be fixed or disclosed, because performance depends on the surrounding configuration~\cite{avg260608091}.
+
+Human-centered evaluation asks whether initiative is allocated effectively and accountably. HiLSVA conducts a controlled study with twelve participants of varied expertise across full-auto, half-auto, and mixed-initiative settings~\cite{avg260626614}. Mean execution time rises from 9.83 to 11.67 and 13.50 minutes, but the overall difference is not significant; the result suggests a possible oversight--efficiency trade-off rather than a confirmed speed effect. Participants value action approval, autonomy adjustment, feedback, provenance, and the ability to revisit earlier steps. However, the questionnaire measures perceived transparency rather than calibrated trust, and the design does not isolate adaptation from the additional human feedback it receives. Evaluations should therefore log human-provided information, corrections, approvals, and direct manipulations, and stratify results by autonomy mode and expertise~\cite{avg260626614}.
+
+Personalization is not a substitute for interactive evaluation. DirectorBench uses seven synthetic user profiles and fourteen annotators to expose preference-specific weaknesses in long-form video, showing why equal-weight averages can hide failures for particular users~\cite{avg260530090}. It does not, however, measure real intervention, workload, or trust calibration. Interactive studies should test whether users detect errors, intervene at consequential moments, override or roll back actions, and rely appropriately on the system. Accessibility should likewise be tested---not inferred from a natural-language interface---across input methods, perceptual and motor demands, language, expertise, and alternative representations.
+
+Safety belongs to the full loop, not only the final frame. RedEdit shows that an adaptive editing agent can make 76.2\% of unsafe images evade a black-box classifier in fewer than two edits on average while retaining 93.0\% of their malicious semantics~\cite{avg260606140}. Although designed for red-teaming, the study demonstrates how repeated observation and revision can expand the attack surface beyond endpoint moderation. Evaluation should inspect unsafe intermediate artifacts, tool actions, external transmissions, policy bypasses, and the cumulative effect of individually benign edits. Privacy reporting should likewise track which user assets enter APIs, evaluators, logs, caches, or shared memory, who can retrieve them, and for how long. Because such measurements remain rare, missing privacy evidence should be treated as an evaluation gap rather than evidence of safety.
+
+No single score can combine quality, cost, reliability, safety, and human authority without hiding value judgments. A more informative comparison reports a quality--resource--reliability profile under a declared autonomy setting, supplemented by safety and human-centered results. This profile can identify Pareto-dominated systems while keeping normative trade-offs visible. Section~\ref{subsec:evaluation-gaps} summarizes the gaps that still prevent such reporting from becoming a shared evaluation protocol.
+
+\subsection{Remaining Evaluation Gaps}
+\label{subsec:evaluation-gaps}
+
+The central gap is not a lack of endpoint metrics, but the fragmentation of evaluation across artifacts, goals, trajectories, and deployed systems. Most benchmarks specialize in one modality or one evaluation level and do not connect final quality and constraint satisfaction with the decisions, failures, resource use, and human interventions that produced them. Consequently, a high endpoint score may show that a system works in a particular configuration without establishing whether the agentic loop caused the gain or whether the gain remains worthwhile at matched cost~\cite{avg250913399,avg260601057,avg260526144,avg260608091}.
+
+Trajectory and feedback evidence is particularly limited. Few benchmarks release action-level traces or compare adaptive agents under equal budgets with fixed workflows, uniform retry, no-feedback, and corrupted-feedback conditions. Evaluator circularity creates a related gap when the training reward, online critic, stopping signal, and final judge share models or prompts~\cite{avg260211103,avg260601057,avg251123002}. \textbf{Minimum controls} for reliable comparison include a task-validated external evaluator or blinded human assessment, repeated trials, matched resource budgets, and disclosure of the model--harness--tool configuration and scoring protocol~\cite{avg260329139,avg250407046,avg260608091}.
+
+\begin{keytakeaway}[Key Takeaways]
+Evaluation remains uneven across modalities and human concerns. Progress requires a shared core protocol that preserves artifact-, goal-, trajectory-, and system-level evaluation while allowing modality-specific checks. The objective is not a single universal score, but an auditable account of what improved, whether adaptation caused the improvement, what it cost, and where the system may still fail.
+\end{keytakeaway}

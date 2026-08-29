@@ -1,0 +1,47 @@
+
+\definecolor{avgmapblue}{HTML}{22558A}
+\definecolor{avgmapgreen}{HTML}{23845D}
+\ifdefined\avgmapfont\else\newcommand{\avgmapfont}{\rmfamily}\fi
+\makebox[\linewidth][c]{%
+\resizebox{0.98\linewidth}{!}{%
+\begin{tikzpicture}[
+  avg branch/.style={draw=avgmapblue!58, fill=avgmapblue!9, text=black!88, rounded corners=2.5pt, line width=0.48pt, text width=42mm, minimum height=8.8mm, align=center, inner xsep=2.2mm, inner ysep=0.9mm, outer sep=0pt, execute at begin node={\hyphenpenalty=10000\exhyphenpenalty=10000\relax}, font=\avgmapfont\fontsize{7.35}{8.35}\selectfont\bfseries},
+  avg papers/.style={draw=avgmapblue!25, fill=avgmapblue!2, text=black!88, rounded corners=2.5pt, line width=0.38pt, text width=115mm, minimum height=8.8mm, align=left, inner xsep=3mm, inner ysep=0.9mm, outer sep=0pt, execute at begin node={\hyphenpenalty=10000\exhyphenpenalty=10000\relax}, font=\avgmapfont\fontsize{7.15}{8.25}\selectfont\bfseries},
+  avg benchmark branch/.style={avg branch, draw=avgmapgreen!78, fill=avgmapgreen!15, text=avgmapgreen!45!black},
+  avg benchmark papers/.style={avg papers, draw=avgmapgreen!72, fill=avgmapgreen!7, text=black!88},
+  avg root/.style={draw=avgmapblue, fill=avgmapblue!94!black, text=white, rounded corners=2.5pt, line width=0.55pt, minimum width=9mm, minimum height=36mm, inner sep=0pt, outer sep=0pt},
+  avg line/.style={draw=black!28, line width=0.45pt, line cap=round},
+  avg benchmark line/.style={draw=avgmapgreen!78, line width=0.55pt, line cap=round}
+]
+\matrix (avgmap) [matrix of nodes, row sep=1.35mm, column sep=3mm, ampersand replacement=\&, nodes={anchor=center}] {
+  \node[avg branch] (c5b1) {Scripts and Pre-production}; \& \node[avg papers] (c5p1) {Anim-Director~\cite{avg240809787}, AnimAgents~\cite{avg251117906}, Mind-of-Director~\cite{avg260314790}, AnimeAgent~\cite{avg260220664}.}; \\
+  \node[avg branch] (c5b2) {Multi-shot Orchestration}; \& \node[avg papers] (c5p2) {AniME~\cite{avg250818781}, Cutscene Agent~\cite{avg260425318}, DreamFactory~\cite{xie2024dreamfactory}, Google Flow~\cite{roman2026flowagents}, FilmWorld~\cite{avg260719038}.}; \\
+  \node[avg branch] (c5b3) {Timelines and Post-production}; \& \node[avg papers] (c5p3) {LAVE~\cite{wang2024lave}, EditDuet~\cite{avg250910761}, Aurora~\cite{avg260518748}, CutClaw~\cite{avg260329664}, DIRECT~\cite{avg260404875}.}; \\
+  \node[avg branch] (c5b4) {Feedback and Recovery}; \& \node[avg papers] (c5p4) {VISTA~\cite{long2026vista}, GenMAC~\cite{huang2024genmac}, MoReGen~\cite{avg251204221}, PhysAgent~\cite{li2026physagent}, SCMAPR~\cite{avg260405489}.}; \\
+  \node[avg branch] (c5b5) {Skill Evolution and Diagnostics}; \& \node[avg papers] (c5p5) {SCPE~\cite{avg260619073}, VideoWeaver~\cite{avg260608091}.}; \\
+  \node[avg benchmark branch] (c5b6) {Benchmarks}; \& \node[avg benchmark papers] (c5p6) {CutsceneBench~\cite{avg260425318}.}; \\
+};
+\coordinate (c5trunktop) at ($(c5b1.west)+(-4.6mm,0)$);
+\coordinate (c5trunkbottom) at ($(c5b6.west)+(-4.6mm,0)$);
+\coordinate (c5rootnw) at ($(c5b1.north west)+(-15.5mm,0)$);
+\coordinate (c5rootse) at ($(c5b6.south west)+(-7.6mm,0)$);
+\node[avg root, fit=(c5rootnw)(c5rootse)] (c5root) {};
+\node[rotate=90, align=center, text=white, font=\avgmapfont\fontsize{7.05}{8.15}\selectfont] at (c5root.center) {{\bfseries CHAPTER 5}\\[0.55mm]{\fontsize{6.2}{7.15}\selectfont Video, film, and animation}};
+\draw[avg line] (c5trunktop) -- (c5trunkbottom);
+\coordinate (c5trunkmid) at ($(c5trunktop)!0.5!(c5trunkbottom)$);
+\draw[avg line] (c5root.east) -- (c5trunkmid);
+\draw[avg line] (c5trunktop |- c5b1.west) -- (c5b1.west);
+\draw[avg line] (c5b1.east) -- (c5p1.west);
+\draw[avg line] (c5trunktop |- c5b2.west) -- (c5b2.west);
+\draw[avg line] (c5b2.east) -- (c5p2.west);
+\draw[avg line] (c5trunktop |- c5b3.west) -- (c5b3.west);
+\draw[avg line] (c5b3.east) -- (c5p3.west);
+\draw[avg line] (c5trunktop |- c5b4.west) -- (c5b4.west);
+\draw[avg line] (c5b4.east) -- (c5p4.west);
+\draw[avg line] (c5trunktop |- c5b5.west) -- (c5b5.west);
+\draw[avg line] (c5b5.east) -- (c5p5.west);
+\draw[avg benchmark line] (c5trunktop |- c5b6.west) -- (c5b6.west);
+\draw[avg benchmark line] (c5b6.east) -- (c5p6.west);
+\end{tikzpicture}%
+}%
+}

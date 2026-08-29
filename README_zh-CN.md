@@ -1,27 +1,37 @@
-# 智能体式视觉生成综述
+# Agentic Visual Generation: A Survey
 
-这是 `Agentic Visual Generation: A Survey` 的 GitHub 项目包。
+[English README](README.md)
 
-AVG 将视觉创作定义为一个目标驱动的闭环过程：系统保留任务相关状态，观察产物或环境，并让运行时证据改变后续视觉创作动作。
+本仓库仅包含综述论文 **Agentic Visual Generation: A Survey** 的当前可编译源码。
 
-## 文件结构
+本文关注这样一类视觉创作系统：运行时对正在演化的视觉产物、任务环境或交互历史的观察，会改变之后的视觉创作决策。
 
-- `paper/acm-version/`：原 ACM 论文项目；
-- `paper/reading-version/`：单栏阅读版项目；
-- `docs/writing/`：术语、写作规范和全文结构；
-- `docs/planning/`：章节规划、前沿规划和可读性规划；
-- `docs/research/`：技术报告、模型发布和 AVG 分类资料；
-- `scripts/`：可公开的项目脚本；
-- `assets/`：主页图片和 Logo 的占位说明；
-- `literature/`：本地文献库占位说明，原始文献未打包上传。
+> 实用判据：若运行时证据会改变后续视觉创作动作，该过程就是 agentic 的。
 
-## 说明
+## 论文源码
 
-图片和 Logo 暂时没有放入公开上传包，主页和阅读版中保留了占位说明。确定公开素材和授权后，将文件放入 `assets/` 或 `paper/reading-version/assets/` 即可。
+所有必要文件均位于 [`paper/`](paper/)：
 
-## 主要入口
+```text
+paper.tex              # 主入口
+sections/              # 各章正文
+figures/               # 正文实际引用的图片与 TikZ 图源
+references.bib         # 参考文献
+hust.cls, assets/      # 排版、字体与标识依赖
+```
 
-- [英文主页](README.md)
-- [技术报告资料](docs/research/技术报告补充.md)
-- [AVG 属性核查](docs/research/technical_release_avg_classification.md)
-- [写作规范](docs/writing/paper_writing_preferences.md)
+内容覆盖图像生成与编辑、视频与动画、3D/CAD/world、科学可视化、结构化文档、UI/Web、跨域系统，以及训练、评估和研究前沿。
+
+## 构建
+
+在 `paper/` 目录中使用 XeLaTeX 与 BibTeX 执行：
+
+```bash
+latexmk -xelatex -interaction=nonstopmode -halt-on-error paper.tex
+```
+
+使用 Overleaf 时，上传 `paper/` 的全部内容，并将 `paper.tex` 设为主文档。
+
+## 状态
+
+这是持续更新的综述。作者信息、投稿版本和公开发布版本确定后，将添加正式引用记录。

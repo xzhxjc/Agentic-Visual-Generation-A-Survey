@@ -1,0 +1,44 @@
+
+\definecolor{avgmapblue}{HTML}{22558A}
+\definecolor{avgmapgreen}{HTML}{23845D}
+\ifdefined\avgmapfont\else\newcommand{\avgmapfont}{\rmfamily}\fi
+\makebox[\linewidth][c]{%
+\resizebox{0.98\linewidth}{!}{%
+\begin{tikzpicture}[
+  avg branch/.style={draw=avgmapblue!58, fill=avgmapblue!9, text=black!88, rounded corners=2.5pt, line width=0.48pt, text width=42mm, minimum height=8.8mm, align=center, inner xsep=2.2mm, inner ysep=0.9mm, outer sep=0pt, execute at begin node={\hyphenpenalty=10000\exhyphenpenalty=10000\relax}, font=\avgmapfont\fontsize{7.35}{8.35}\selectfont\bfseries},
+  avg papers/.style={draw=avgmapblue!25, fill=avgmapblue!2, text=black!88, rounded corners=2.5pt, line width=0.38pt, text width=115mm, minimum height=8.8mm, align=left, inner xsep=3mm, inner ysep=0.9mm, outer sep=0pt, execute at begin node={\hyphenpenalty=10000\exhyphenpenalty=10000\relax}, font=\avgmapfont\fontsize{7.15}{8.25}\selectfont\bfseries},
+  avg benchmark branch/.style={avg branch, draw=avgmapgreen!78, fill=avgmapgreen!15, text=avgmapgreen!45!black},
+  avg benchmark papers/.style={avg papers, draw=avgmapgreen!72, fill=avgmapgreen!7, text=black!88},
+  avg root/.style={draw=avgmapblue, fill=avgmapblue!94!black, text=white, rounded corners=2.5pt, line width=0.55pt, minimum width=9mm, minimum height=36mm, inner sep=0pt, outer sep=0pt},
+  avg line/.style={draw=black!28, line width=0.45pt, line cap=round},
+  avg benchmark line/.style={draw=avgmapgreen!78, line width=0.55pt, line cap=round}
+]
+\matrix (avgmap) [matrix of nodes, row sep=1.35mm, column sep=3mm, ampersand replacement=\&, nodes={anchor=center}] {
+  \node[avg branch] (c8b1) {Interleaved Reports}; \& \node[avg papers] (c8p1) {Composable Visual Data Reporting~\cite{avg250905721}, TVIR~\cite{avg260602320}.}; \\
+  \node[avg branch] (c8b2) {Presentations and Posters}; \& \node[avg papers] (c8p2) {PosterGen~\cite{avg250817188}, PreGenie~\cite{xu2025pregenie}, PresentAgent~\cite{avg250704036}, ETPDesigner~\cite{avg260719947}, Verifiable Deep Research~\cite{avg260529861}.}; \\
+  \node[avg branch] (c8b3) {Diagrams and Documentation}; \& \node[avg papers] (c8p3) {NOMAD~\cite{avg251122409}, Code2UML~\cite{avg260524453}, SAGE~\cite{avg260701102}.}; \\
+  \node[avg branch] (c8b4) {Rendering-Grounded Revision}; \& \node[avg papers] (c8p4) {Iterative Visual Narrative Synthesis~\cite{avg250713285}, Presenting a Paper is an Art~\cite{avg251005571}, DeepPresenter~\cite{zheng2026deeppresenter}.}; \\
+  \node[avg benchmark branch] (c8b5) {Benchmarks}; \& \node[avg benchmark papers] (c8p5) {TVIR benchmark~\cite{avg260602320}, PresentEval~\cite{avg250704036}, ATP-Bench~\cite{avg260329902}, DATAREEL~\cite{avg260425220}.}; \\
+};
+\coordinate (c8trunktop) at ($(c8b1.west)+(-4.6mm,0)$);
+\coordinate (c8trunkbottom) at ($(c8b5.west)+(-4.6mm,0)$);
+\coordinate (c8rootnw) at ($(c8b1.north west)+(-15.5mm,0)$);
+\coordinate (c8rootse) at ($(c8b5.south west)+(-7.6mm,0)$);
+\node[avg root, fit=(c8rootnw)(c8rootse)] (c8root) {};
+\node[rotate=90, align=center, text=white, font=\avgmapfont\fontsize{7.05}{8.15}\selectfont] at (c8root.center) {{\bfseries CHAPTER 8}\\[0.55mm]{\fontsize{6.2}{7.15}\selectfont Documents and presentations}};
+\draw[avg line] (c8trunktop) -- (c8trunkbottom);
+\coordinate (c8trunkmid) at ($(c8trunktop)!0.5!(c8trunkbottom)$);
+\draw[avg line] (c8root.east) -- (c8trunkmid);
+\draw[avg line] (c8trunktop |- c8b1.west) -- (c8b1.west);
+\draw[avg line] (c8b1.east) -- (c8p1.west);
+\draw[avg line] (c8trunktop |- c8b2.west) -- (c8b2.west);
+\draw[avg line] (c8b2.east) -- (c8p2.west);
+\draw[avg line] (c8trunktop |- c8b3.west) -- (c8b3.west);
+\draw[avg line] (c8b3.east) -- (c8p3.west);
+\draw[avg line] (c8trunktop |- c8b4.west) -- (c8b4.west);
+\draw[avg line] (c8b4.east) -- (c8p4.west);
+\draw[avg benchmark line] (c8trunktop |- c8b5.west) -- (c8b5.west);
+\draw[avg benchmark line] (c8b5.east) -- (c8p5.west);
+\end{tikzpicture}%
+}%
+}

@@ -1,0 +1,35 @@
+
+\definecolor{avgmapblue}{HTML}{22558A}
+\definecolor{avgmapgreen}{HTML}{23845D}
+\ifdefined\avgmapfont\else\newcommand{\avgmapfont}{\rmfamily}\fi
+\makebox[\linewidth][c]{%
+\resizebox{0.98\linewidth}{!}{%
+\begin{tikzpicture}[
+  avg branch/.style={draw=avgmapblue!58, fill=avgmapblue!9, text=black!88, rounded corners=2.5pt, line width=0.48pt, text width=42mm, minimum height=12.5mm, align=center, inner xsep=2.2mm, inner ysep=0.9mm, outer sep=0pt, execute at begin node={\hyphenpenalty=10000\exhyphenpenalty=10000\relax}, font=\avgmapfont\fontsize{7.35}{8.35}\selectfont\bfseries},
+  avg papers/.style={draw=avgmapblue!25, fill=avgmapblue!2, text=black!88, rounded corners=2.5pt, line width=0.38pt, text width=115mm, minimum height=12.5mm, align=left, inner xsep=3mm, inner ysep=0.9mm, outer sep=0pt, execute at begin node={\hyphenpenalty=10000\exhyphenpenalty=10000\relax}, font=\avgmapfont\fontsize{7.15}{8.25}\selectfont\bfseries},
+  avg benchmark branch/.style={avg branch, draw=avgmapgreen!78, fill=avgmapgreen!15, text=avgmapgreen!45!black},
+  avg benchmark papers/.style={avg papers, draw=avgmapgreen!72, fill=avgmapgreen!7, text=black!88},
+  avg root/.style={draw=avgmapblue, fill=avgmapblue!94!black, text=white, rounded corners=2.5pt, line width=0.55pt, minimum width=9mm, minimum height=36mm, inner sep=0pt, outer sep=0pt},
+  avg line/.style={draw=black!28, line width=0.45pt, line cap=round},
+  avg benchmark line/.style={draw=avgmapgreen!78, line width=0.55pt, line cap=round}
+]
+\matrix (avgmap) [matrix of nodes, row sep=1.35mm, column sep=3mm, ampersand replacement=\&, nodes={anchor=center}] {
+  \node[avg branch] (c10b1) {Representative Systems}; \& \node[avg papers] (c10p1) {Multi-agent Qinqiang opera framework~\cite{avg250415552}, Cognitive-structured Multimodal Agent~\cite{avg260708497}, Node-Based Editing~\cite{avg251103227}, Action Agent~\cite{avg260501477}, Agentic AI for Personalized Physiotherapy~\cite{avg260421154}, Sol Video Inference Engine~\cite{avg260623743}, PaperTalker~\cite{avg251005096}.}; \\
+  \node[avg benchmark branch] (c10b2) {Benchmarks}; \& \node[avg benchmark papers] (c10p2) {GameDevBench~\cite{avg260211103}, Paper2Video~\cite{avg251005096}.}; \\
+};
+\coordinate (c10trunktop) at ($(c10b1.west)+(-4.6mm,0)$);
+\coordinate (c10trunkbottom) at ($(c10b2.west)+(-4.6mm,0)$);
+\coordinate (c10rootnw) at ($(c10b1.north west)+(-15.5mm,0)$);
+\coordinate (c10rootse) at ($(c10b2.south west)+(-7.6mm,0)$);
+\node[avg root, fit=(c10rootnw)(c10rootse)] (c10root) {};
+\node[rotate=90, align=center, text=white, font=\avgmapfont\fontsize{7.05}{8.15}\selectfont] at (c10root.center) {{\bfseries CHAPTER 10}\\[0.55mm]{\fontsize{6.2}{7.15}\selectfont Cross-domain generation}};
+\draw[avg line] (c10trunktop) -- (c10trunkbottom);
+\coordinate (c10trunkmid) at ($(c10trunktop)!0.5!(c10trunkbottom)$);
+\draw[avg line] (c10root.east) -- (c10trunkmid);
+\draw[avg line] (c10trunktop |- c10b1.west) -- (c10b1.west);
+\draw[avg line] (c10b1.east) -- (c10p1.west);
+\draw[avg benchmark line] (c10trunktop |- c10b2.west) -- (c10b2.west);
+\draw[avg benchmark line] (c10b2.east) -- (c10p2.west);
+\end{tikzpicture}%
+}%
+}

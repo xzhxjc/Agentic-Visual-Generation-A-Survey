@@ -43,7 +43,7 @@
 <p><sup>1</sup> AI4GC Lab, Zhejiang University · <sup>2</sup> Hong Kong University of Science and Technology · <sup>3</sup> Cornell University · <sup>4</sup> College of Artificial Intelligence, Zhejiang University</p>
 
 <p>
-  <a href="paper/paper.tex">Read the paper source</a>
+  <a href="paper/paper.pdf">Read the paper PDF</a>
   &nbsp;&nbsp;·&nbsp;&nbsp;
   <a href="paper/">Browse the source</a>
   &nbsp;&nbsp;·&nbsp;&nbsp;
@@ -97,7 +97,7 @@
 | **Ongoing** | Metadata, publication status, figures, and chapter coverage are being checked against primary sources. |
 
 <p align="center">
-  <a href="paper/paper.tex"><img src="https://img.shields.io/badge/Read-paper-111827?style=for-the-badge&logo=readme&logoColor=white" alt="Read paper"></a>
+  <a href="paper/paper.pdf"><img src="https://img.shields.io/badge/Read-paper-111827?style=for-the-badge&logo=readme&logoColor=white" alt="Read paper PDF"></a>
   <a href="paper/sections/03_operating_loop.tex"><img src="https://img.shields.io/badge/Explore-framework-0f766e?style=for-the-badge&logo=diagram&logoColor=white" alt="Explore framework"></a>
   <a href="paper/references.bib"><img src="https://img.shields.io/badge/Browse-BibTeX-2563eb?style=for-the-badge&logo=academia&logoColor=white" alt="Browse BibTeX"></a>
 </p>

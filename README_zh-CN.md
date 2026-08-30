@@ -43,7 +43,7 @@
 <p><sup>1</sup> AI4GC Lab，浙江大学 · <sup>2</sup> 香港科技大学 · <sup>3</sup> Cornell University · <sup>4</sup> 浙江大学人工智能学院</p>
 
 <p>
-  <a href="paper/paper.tex">阅读论文源码</a>
+  <a href="paper/paper.pdf">阅读论文 PDF</a>
   &nbsp;&nbsp;·&nbsp;&nbsp;
   <a href="paper/">浏览源码</a>
   &nbsp;&nbsp;·&nbsp;&nbsp;
@@ -97,7 +97,7 @@
 | **持续进行** | 根据一手来源核对文献元数据、发表状态、图表和章节覆盖。 |
 
 <p align="center">
-  <a href="paper/paper.tex"><img src="https://img.shields.io/badge/阅读论文-111827?style=for-the-badge&logo=readme&logoColor=white" alt="阅读论文"></a>
+  <a href="paper/paper.pdf"><img src="https://img.shields.io/badge/阅读论文-111827?style=for-the-badge&logo=readme&logoColor=white" alt="阅读论文 PDF"></a>
   <a href="paper/sections/03_operating_loop.tex"><img src="https://img.shields.io/badge/查看框架-0f766e?style=for-the-badge&logo=diagram&logoColor=white" alt="查看框架"></a>
   <a href="paper/references.bib"><img src="https://img.shields.io/badge/浏览-BibTeX-2563eb?style=for-the-badge&logo=academia&logoColor=white" alt="浏览 BibTeX"></a>
 </p>

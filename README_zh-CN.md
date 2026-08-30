@@ -19,10 +19,28 @@
   <strong>Keming Ye</strong><sup>1</sup> ·
   <strong>Long Chen</strong><sup>2</sup> ·
   <strong>Zheqi Lv</strong><sup>3</sup> ·
+  <strong>Zhan Qu</strong><sup>1</sup> ·
+  <strong>Biao Yi</strong><sup>1</sup> ·
+  <strong>Tianqi Liu</strong><sup>1</sup> ·
+  <strong>Junhao Chen</strong><sup>1</sup> ·
+  <strong>Jie Yang</strong><sup>1</sup> ·
+  <strong>Zhibo Zhu</strong><sup>1</sup> ·
+  <strong>Zhouzhou Shen</strong><sup>1</sup> ·
+  <strong>Honghui Sheng</strong><sup>1</sup> ·
+  <strong>Yurun Chen</strong><sup>1</sup> ·
+  <strong>Yuqing Zhang</strong><sup>1</sup> ·
+  <strong>Shuanghe Zhu</strong><sup>1</sup> ·
+  <strong>Wenkai Wang</strong><sup>1</sup> ·
+  <strong>Tao Xiong</strong><sup>1</sup> ·
+  <strong>Kuncheng Lin</strong><sup>1</sup> ·
+  <strong>Qihang Yu</strong><sup>1</sup> ·
+  <strong>Kui Chen</strong><sup>1</sup> ·
+  <strong>Yufan Xiong</strong><sup>1</sup> ·
+  <strong>Zhou Zhao</strong><sup>4</sup> ·
   <strong>Shengyu Zhang</strong><sup>1,#</sup>
 </p>
 
-<p><sup>1</sup> AI4GC Lab，浙江大学 · <sup>2</sup> 香港科技大学 · <sup>3</sup> Cornell University</p>
+<p><sup>1</sup> AI4GC Lab，浙江大学 · <sup>2</sup> 香港科技大学 · <sup>3</sup> Cornell University · <sup>4</sup> 浙江大学人工智能学院</p>
 
 <p>
   <a href="paper/paper.tex">阅读论文源码</a>

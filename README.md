@@ -21,6 +21,18 @@
   <img src="https://img.shields.io/badge/license-MIT-f59e0b?style=flat-square" alt="MIT license">
 </p>
 
+<p>
+  <a href="#at-a-glance">Overview</a>
+  &nbsp;·&nbsp;
+  <a href="#research-map">Research Map</a>
+  &nbsp;·&nbsp;
+  <a href="#navigate-the-paper">Chapters</a>
+  &nbsp;·&nbsp;
+  <a href="#paper-source">Source</a>
+  &nbsp;·&nbsp;
+  <a href="#living-survey">Contribute</a>
+</p>
+
 </div>
 
 <p align="center">
@@ -28,6 +40,37 @@
 </p>
 
 <p align="center"><em>Agentic visual generation organized as a closed loop over goals, memory, tools, perception, action, and cross-task improvement.</em></p>
+
+> **Project snapshot · August 2026**
+>
+> A living survey and public LaTeX repository for visual creation systems that plan, use tools, inspect intermediate results, and revise their behavior.
+
+## What's New
+
+| Update | Description |
+| --- | --- |
+| **Framework** | A behavioral definition and five-level autonomy scale organize the survey. |
+| **Coverage** | The current release spans image, video, 3D/CAD, scientific visualization, documents, UI/Web, training, and evaluation. |
+| **Repository** | The source tree is kept compact so the paper can be read, compiled, and extended directly. |
+
+<p align="center">
+  <a href="paper/paper.tex"><img src="https://img.shields.io/badge/Read-paper-111827?style=for-the-badge&logo=readme&logoColor=white" alt="Read paper"></a>
+  <a href="paper/sections/03_operating_loop.tex"><img src="https://img.shields.io/badge/Explore-framework-0f766e?style=for-the-badge&logo=diagram&logoColor=white" alt="Explore framework"></a>
+  <a href="paper/references.bib"><img src="https://img.shields.io/badge/Browse-BibTeX-2563eb?style=for-the-badge&logo=academia&logoColor=white" alt="Browse BibTeX"></a>
+</p>
+
+<details>
+<summary><strong>Contents at a glance</strong></summary>
+
+- [Overview](#at-a-glance)
+- [Research Map](#research-map)
+- [What the Survey Adds](#what-the-survey-adds)
+- [Navigate the Paper](#navigate-the-paper)
+- [Paper Source](#paper-source)
+- [Build](#build)
+- [Living Survey](#living-survey)
+
+</details>
 
 ## At A Glance
 
@@ -67,6 +110,18 @@ The paper connects three views of the field:
 </p>
 
 <p align="center"><em>The autonomy scale moves from fixed generation toward feedback adaptation, long-horizon control, and continual self-improvement.</em></p>
+
+<details>
+<summary><strong>Framework in one view</strong></summary>
+
+| Layer | Scope |
+| --- | --- |
+| **Behavior** | Observation-dependent actions that can revise, branch, verify, or stop a visual creation process |
+| **Autonomy** | L1 fixed execution → L2 feedback adaptation → L3 tool and workflow control → L4 long-horizon operation → L5 cross-task improvement |
+| **Components** | Goals and planning · memory · tools · perception · action · cross-task self-improvement |
+| **Domains** | Images · video and animation · 3D/CAD/worlds · scientific visualization · structured documents · UI/Web |
+
+</details>
 
 ## What The Survey Adds
 
@@ -131,6 +186,15 @@ The survey is maintained as a continuing research project. Updates may include:
 - updates to the public project index.
 
 Please use primary sources when proposing an update and record the affected section, source link, and change in the pull request or issue.
+
+### Contribution Checklist
+
+| Before opening an update | Check |
+| --- | --- |
+| New paper or project | Add a primary source and a stable BibTeX record |
+| New figure or table | Confirm the caption, source attribution, and local path |
+| Textual revision | Keep terminology consistent with the framework and chapter scope |
+| Release update | Compile `paper/paper.tex` and remove generated artifacts from the public tree |
 
 ## Citation
 

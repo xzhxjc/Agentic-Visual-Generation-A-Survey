@@ -21,6 +21,18 @@
   <img src="https://img.shields.io/badge/license-MIT-f59e0b?style=flat-square" alt="MIT 许可证">
 </p>
 
+<p>
+  <a href="#一眼了解">项目概览</a>
+  &nbsp;·&nbsp;
+  <a href="#研究地图">研究地图</a>
+  &nbsp;·&nbsp;
+  <a href="#论文导航">章节导航</a>
+  &nbsp;·&nbsp;
+  <a href="#论文源码">源码</a>
+  &nbsp;·&nbsp;
+  <a href="#持续更新">参与维护</a>
+</p>
+
 </div>
 
 <p align="center">
@@ -28,6 +40,37 @@
 </p>
 
 <p align="center"><em>以目标、记忆、工具、感知、行动和跨任务自我改进为核心的视觉创作闭环。</em></p>
+
+> **项目快照 · 2026 年 8 月**
+>
+> 一个持续更新的视觉生成综述与公开 LaTeX 仓库，关注能够规划、调用工具、检查中间结果并调整行为的视觉创作系统。
+
+## 最新进展
+
+| 更新 | 内容 |
+| --- | --- |
+| **框架** | 用行为定义和五级自主性体系组织全文。 |
+| **覆盖范围** | 当前覆盖图像、视频、3D/CAD、科学可视化、结构化文档、UI/Web、训练与评估。 |
+| **仓库结构** | 保持源码目录紧凑，便于直接阅读、编译和扩展。 |
+
+<p align="center">
+  <a href="paper/paper.tex"><img src="https://img.shields.io/badge/阅读论文-111827?style=for-the-badge&logo=readme&logoColor=white" alt="阅读论文"></a>
+  <a href="paper/sections/03_operating_loop.tex"><img src="https://img.shields.io/badge/查看框架-0f766e?style=for-the-badge&logo=diagram&logoColor=white" alt="查看框架"></a>
+  <a href="paper/references.bib"><img src="https://img.shields.io/badge/浏览-BibTeX-2563eb?style=for-the-badge&logo=academia&logoColor=white" alt="浏览 BibTeX"></a>
+</p>
+
+<details>
+<summary><strong>内容速览</strong></summary>
+
+- [项目概览](#一眼了解)
+- [研究地图](#研究地图)
+- [本文提供什么](#本文提供什么)
+- [论文导航](#论文导航)
+- [论文源码](#论文源码)
+- [编译](#编译)
+- [持续更新](#持续更新)
+
+</details>
 
 ## 一眼了解
 
@@ -67,6 +110,18 @@
 </p>
 
 <p align="center"><em>自主性从固定生成逐步扩展到反馈适应、长时程控制和持续自我改进。</em></p>
+
+<details>
+<summary><strong>框架一览</strong></summary>
+
+| 层次 | 范围 |
+| --- | --- |
+| **行为** | 基于观察调整动作，可以修订、分支、验证或终止视觉创作过程 |
+| **自主性** | L1 固定执行 → L2 反馈适应 → L3 工具与流程控制 → L4 长时程运行 → L5 跨任务改进 |
+| **组件** | 目标与规划 · 记忆 · 工具 · 感知 · 行动 · 跨任务自我改进 |
+| **领域** | 图像 · 视频与动画 · 3D/CAD/世界 · 科学可视化 · 结构化文档 · UI/Web |
+
+</details>
 
 ## 本文提供什么
 
@@ -131,6 +186,15 @@ latexmk -xelatex -interaction=nonstopmode -halt-on-error paper.tex
 - 更新公开项目索引。
 
 建议使用一手来源提交更新，并在 issue 或 pull request 中记录涉及章节、来源链接和修改内容。
+
+### 更新检查清单
+
+| 提交更新前 | 检查内容 |
+| --- | --- |
+| 新论文或项目 | 添加一手来源和稳定的 BibTeX 条目 |
+| 新图或新表 | 核对图注、来源署名和本地路径 |
+| 正文修改 | 保持框架术语与章节范围一致 |
+| 版本发布 | 编译 `paper/paper.tex`，并从公开目录移除生成产物 |
 
 ## 引用
 

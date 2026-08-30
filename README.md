@@ -72,6 +72,30 @@
 
 </details>
 
+## Surveyed Papers
+
+The survey currently tracks **386 bibliography records** across the visual creation stack. The full index is organized by publication year and provides a direct paper or DOI link whenever the BibTeX record contains one.
+
+<p align="center">
+  <a href="PAPERS.md"><img src="https://img.shields.io/badge/Explore-386%20papers-0f766e?style=for-the-badge&logo=readme&logoColor=white" alt="Explore 386 papers"></a>
+  <a href="paper/references.bib"><img src="https://img.shields.io/badge/Source-references.bib-2563eb?style=for-the-badge&logo=latex&logoColor=white" alt="Source references.bib"></a>
+</p>
+
+<table>
+  <tr>
+    <td><strong>Foundations</strong><br>generative models · multimodality · representation</td>
+    <td><strong>Agentic Systems</strong><br>planning · tools · memory · reflection</td>
+    <td><strong>Visual Domains</strong><br>image · video · 3D · documents · UI/Web</td>
+  </tr>
+  <tr>
+    <td><strong>Learning</strong><br>training · adaptation · self-improvement</td>
+    <td><strong>Evaluation</strong><br>benchmarks · quality · reliability · safety</td>
+    <td><strong>Frontiers</strong><br>emerging systems and open directions</td>
+  </tr>
+</table>
+
+> The index is generated from [`paper/references.bib`](paper/references.bib), so metadata updates should be made in the BibTeX source first.
+
 ## At A Glance
 
 Visual generation becomes **agentic** when runtime evidence changes a later creation action. The evidence may come from the evolving artifact, an execution environment, a verifier, or the interaction history; the action may revise a prompt, select a tool, repair a region, re-plan a workflow, or stop.

@@ -72,6 +72,30 @@
 
 </details>
 
+## 收录论文
+
+当前综述追踪 **386 条 BibTeX 文献记录**，覆盖视觉创作系统的主要技术链路。完整索引按发表年份组织；只要 BibTeX 条目中包含，就会提供论文或 DOI 的直接入口。
+
+<p align="center">
+  <a href="PAPERS.md"><img src="https://img.shields.io/badge/浏览-386%20篇论文-0f766e?style=for-the-badge&logo=readme&logoColor=white" alt="浏览 386 篇论文"></a>
+  <a href="paper/references.bib"><img src="https://img.shields.io/badge/来源-references.bib-2563eb?style=for-the-badge&logo=latex&logoColor=white" alt="来源 references.bib"></a>
+</p>
+
+<table>
+  <tr>
+    <td><strong>基础模型</strong><br>生成模型 · 多模态 · 表示学习</td>
+    <td><strong>Agentic 系统</strong><br>规划 · 工具 · 记忆 · 反思</td>
+    <td><strong>视觉领域</strong><br>图像 · 视频 · 3D · 文档 · UI/Web</td>
+  </tr>
+  <tr>
+    <td><strong>学习机制</strong><br>训练 · 适应 · 自我改进</td>
+    <td><strong>评估体系</strong><br>Benchmark · 质量 · 可靠性 · 安全</td>
+    <td><strong>前沿方向</strong><br>新兴系统与开放问题</td>
+  </tr>
+</table>
+
+> 该索引从 [`paper/references.bib`](paper/references.bib) 生成，因此应先在 BibTeX 源文件中更新文献元数据。
+
 ## 一眼了解
 
 当运行时证据会改变后续视觉创作动作时，视觉生成过程具有 **agentic** 特征。证据可以来自不断演化的视觉产物、执行环境、验证器或交互历史；动作可以是修改提示词、选择工具、修复局部区域、重新规划流程或停止执行。

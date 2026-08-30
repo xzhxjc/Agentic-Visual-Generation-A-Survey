@@ -51,7 +51,7 @@ This survey builds a common vocabulary for systems that create and edit:
 ## Research Map
 
 <p align="center">
-  <img src="paper/figures/avg_literature_growth_by_year_domain_autonomy.jpg" alt="Survey literature growth and coverage" width="88%">
+  <img src="paper/figures/avg_literature_autonomy.png" alt="Survey literature growth, domain coverage, and autonomy" width="92%">
 </p>
 
 The paper connects three views of the field:
@@ -61,6 +61,12 @@ The paper connects three views of the field:
 | **Operating loop** | How does a visual agent decide and act? | 1–3 |
 | **Creation domains** | What kinds of artifacts can it create? | 4–10 |
 | **Learning and evidence** | How does it improve, and how should it be evaluated? | 11–12 + Frontiers |
+
+<p align="center">
+  <img src="paper/figures/avg_autonomy_staircase.jpg" alt="Five-level autonomy scale" width="92%">
+</p>
+
+<p align="center"><em>The autonomy scale moves from fixed generation toward feedback adaptation, long-horizon control, and continual self-improvement.</em></p>
 
 ## What The Survey Adds
 
@@ -98,7 +104,7 @@ paper/
 ├── sections/                 # Chapter sources
 ├── figures/                  # Figures used by the manuscript
 ├── references.bib            # Bibliography
-├── hust.cls                  # Local document class
+├── agentic_visual_generation.cls # Local document class
 └── assets/                   # Fonts and logos
 ```
 

@@ -171,8 +171,15 @@
 
 \newcommand{\emailfont}{\fontsize{7.2}{8.4}\selectfont}
 \newcommand\emaillist{}
-\newcommand\emailformat[2][]{ {\emailfont\ttfamily\color{hustgray}\href{mailto:#2}{#2}} }
-\newcommand\email[1]{\addtolist{#1}{\emaillist}{\emailformat}{, }}
+\newcommand\emailformat[2][]{%
+  {\emailfont\ttfamily\color{hustgray}%
+    \if\relax\detokenize{#1}\relax
+      \href{mailto:#2}{#2}%
+    \else
+      #1: \href{mailto:#2}{#2}%
+    \fi}%
+}
+\newcommand\email[2][]{\addtolist[#1]{#2}{\emaillist}{\emailformat}{, }}
 
 \newcommand{\checkdatafont}
 {\fontsize{7.92}{10}\selectfont}

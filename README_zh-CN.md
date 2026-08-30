@@ -51,7 +51,7 @@
 ## 研究地图
 
 <p align="center">
-  <img src="paper/figures/avg_literature_growth_by_year_domain_autonomy.jpg" alt="文献增长与领域覆盖" width="88%">
+  <img src="paper/figures/avg_literature_autonomy.png" alt="文献增长、领域覆盖与自主性" width="92%">
 </p>
 
 本文从三个层次组织研究：
@@ -61,6 +61,12 @@
 | **运行闭环** | 视觉 Agent 如何决定和执行？ | 第 1–3 章 |
 | **创作领域** | 它可以创作哪些视觉产物？ | 第 4–10 章 |
 | **学习与证据** | 它如何改进，又应如何评估？ | 第 11–12 章与前沿章节 |
+
+<p align="center">
+  <img src="paper/figures/avg_autonomy_staircase.jpg" alt="五级自主性阶梯" width="92%">
+</p>
+
+<p align="center"><em>自主性从固定生成逐步扩展到反馈适应、长时程控制和持续自我改进。</em></p>
 
 ## 本文提供什么
 
@@ -98,7 +104,7 @@ paper/
 ├── sections/                 # 各章正文
 ├── figures/                  # 正文使用的图
 ├── references.bib            # 参考文献
-├── hust.cls                  # 本地文档类
+├── agentic_visual_generation.cls # 本地文档类
 └── assets/                   # 字体与标识
 ```
 

@@ -138,9 +138,6 @@ The survey currently tracks **386 bibliography records** across the visual creat
 
 The collection below is the homepage view of the survey bibliography. Each record links back to its paper or DOI and to the authoritative BibTeX entry.
 
-<details>
-<summary><strong>Open the complete paper collection (386 records)</strong></summary>
-
 ### 2026
 
 - **AdaTurn: Budget-Aware Test-Time Scaling for Active Visual Perception Agents** — Liang, Susan et al. · *arXiv preprint arXiv:2607.14547* (2026) · [Paper](https://arxiv.org/abs/2607.14547) · [`liang2026adaturn`](paper/references.bib)
@@ -555,8 +552,6 @@ The collection below is the homepage view of the survey bibliography. Each recor
 ### 2001
 
 - **Sketching Interfaces: Toward More Human Interface Design** — Landay, James A. et al. · *Computer* (2001) · [Paper](https://doi.org/10.1109/2.910894) · [`landay2001sketching`](paper/references.bib)
-
-</details>
 
 ## At A Glance
 

@@ -138,9 +138,6 @@
 
 下面的论文集合直接呈现综述的文献库。每条记录链接到论文或 DOI，并回链到权威 BibTeX 条目。
 
-<details>
-<summary><strong>展开完整论文集合（386 条记录）</strong></summary>
-
 ### 2026
 
 - **AdaTurn: Budget-Aware Test-Time Scaling for Active Visual Perception Agents** — Liang, Susan et al. · *arXiv preprint arXiv:2607.14547* (2026) · [Paper](https://arxiv.org/abs/2607.14547) · [`liang2026adaturn`](paper/references.bib)
@@ -555,8 +552,6 @@
 ### 2001
 
 - **Sketching Interfaces: Toward More Human Interface Design** — Landay, James A. et al. · *Computer* (2001) · [Paper](https://doi.org/10.1109/2.910894) · [`landay2001sketching`](paper/references.bib)
-
-</details>
 
 ## 一眼了解
 

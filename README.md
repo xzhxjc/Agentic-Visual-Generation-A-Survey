@@ -46,6 +46,8 @@
 
 <p><sup>1</sup> AI4GC Lab, Zhejiang University · <sup>2</sup> Hong Kong University of Science and Technology · <sup>3</sup> Cornell University · <sup>4</sup> College of Artificial Intelligence, Zhejiang University · <sup>5</sup> School of Software Technology, Zhejiang University</p>
 
+<p><sup>*</sup> Co-first authors · <sup>+</sup> Project leader · <sup>#</sup> Corresponding authors</p>
+
 <p>
   <a href="PAPERS.md#browse-by-field">Browse the paper index</a>
   &nbsp;&nbsp;·&nbsp;&nbsp;
@@ -58,14 +60,13 @@
   <img src="https://img.shields.io/badge/status-living%20survey-2f855a?style=flat-square" alt="Living survey">
   <img src="https://img.shields.io/badge/source-curated%20index-2563eb?style=flat-square" alt="Curated index">
   <img src="https://img.shields.io/badge/license-MIT-f59e0b?style=flat-square" alt="MIT license">
+  <a href="https://www.preprints.org/manuscript/202609.0173/v1"><img src="https://img.shields.io/badge/preprint-Preprints-7c3aed?style=flat-square" alt="Preprint on Preprints"></a>
 </p>
 
 <p>
   <a href="https://ai4gc.org/">Lab</a>
   &nbsp;·&nbsp;
   <a href="https://www.zju.edu.cn/english/">Institution</a>
-  &nbsp;·&nbsp;
-  <a href="https://github.com/xzhxjc/Agentic-Visual-Generation-A-Survey">Repository</a>
 </p>
 
 <p>
@@ -74,8 +75,6 @@
   <a href="PAPERS.md#browse-by-field">Field Index</a>
   &nbsp;·&nbsp;
   <a href="#research-map">Research Map</a>
-  &nbsp;·&nbsp;
-  <a href="#survey-structure">Chapters</a>
   &nbsp;·&nbsp;
   <a href="#public-contents">Contents</a>
   &nbsp;·&nbsp;

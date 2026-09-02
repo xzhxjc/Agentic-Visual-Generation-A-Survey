@@ -46,6 +46,8 @@
 
 <p><sup>1</sup> AI4GC Lab，浙江大学 · <sup>2</sup> 香港科技大学 · <sup>3</sup> Cornell University · <sup>4</sup> 浙江大学人工智能学院 · <sup>5</sup> 浙江大学软件技术学院</p>
 
+<p><sup>*</sup> 共同第一作者 · <sup>+</sup> 项目负责人 · <sup>#</sup> 通讯作者</p>
+
 <p>
   <a href="PAPERS.md#browse-by-field">浏览论文索引</a>
   &nbsp;&nbsp;·&nbsp;&nbsp;
@@ -58,14 +60,13 @@
   <img src="https://img.shields.io/badge/status-living%20survey-2f855a?style=flat-square" alt="持续更新">
   <img src="https://img.shields.io/badge/source-整理索引-2563eb?style=flat-square" alt="整理索引">
   <img src="https://img.shields.io/badge/license-MIT-f59e0b?style=flat-square" alt="MIT 许可证">
+  <a href="https://www.preprints.org/manuscript/202609.0173/v1"><img src="https://img.shields.io/badge/preprint-Preprints-7c3aed?style=flat-square" alt="Preprints 预印本"></a>
 </p>
 
 <p>
   <a href="https://ai4gc.org/">实验室主页</a>
   &nbsp;·&nbsp;
   <a href="https://www.zju.edu.cn/english/">学校主页</a>
-  &nbsp;·&nbsp;
-  <a href="https://github.com/xzhxjc/Agentic-Visual-Generation-A-Survey">项目仓库</a>
 </p>
 
 <p>

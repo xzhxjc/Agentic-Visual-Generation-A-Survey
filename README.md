@@ -110,7 +110,7 @@
 | **Ongoing** | Metadata, publication status, figures, and chapter coverage are being checked against primary sources. |
 
 <p align="center">
-  <a href="PAPERS.md"><img src="https://img.shields.io/badge/Explore-paper-index-111827?style=for-the-badge&logo=readme&logoColor=white" alt="Explore paper index"></a>
+  <a href="PAPERS.md"><img src="https://img.shields.io/badge/Explore%20paper%20index-111827?style=for-the-badge&logo=readme&logoColor=white" alt="Explore paper index"></a>
   <a href="references.bib"><img src="https://img.shields.io/badge/Browse-BibTeX-2563eb?style=for-the-badge&logo=academia&logoColor=white" alt="Browse BibTeX"></a>
 </p>
 

@@ -109,11 +109,8 @@
 
 | Date | Update |
 | --- | --- |
-| **2026-09-02** | The public project homepage is now live, with a field-organized paper index and complete metadata. |
-| **2026-09-02** | *Agentic Visual Generation: A Survey* is now available as a [Preprints manuscript](https://www.preprints.org/manuscript/202609.0173/v1), with a corresponding [DOI](https://doi.org/10.20944/preprints202609.0173.v1). |
-| **2026-09-02** | Reorganized all 389 bibliography records into a field-first, collapsible index with complete metadata and direct links. |
-| **2026-08-30** | Reorganized the repository homepage around taxonomy, paper discovery, and field navigation. |
-| **Ongoing** | Metadata, publication status, figures, and chapter coverage are being checked against primary sources. |
+| **2026-09-02** | The public project homepage is now live. |
+| **2026-09-02** | *Agentic Visual Generation: A Survey* has been published on [Preprints](https://www.preprints.org/manuscript/202609.0173/v1). |
 
 <p align="center">
   <a href="PAPERS.md"><img src="https://img.shields.io/badge/Explore%20paper%20index-111827?style=for-the-badge&logo=readme&logoColor=white" alt="Explore paper index"></a>

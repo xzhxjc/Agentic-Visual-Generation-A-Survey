@@ -96,12 +96,8 @@
 
 | 日期 | 更新 |
 | --- | --- |
-| **2026-09-02** | 项目主页正式上线，提供按领域组织的论文索引与完整元数据。 |
-| **2026-09-02** | 综述 *Agentic Visual Generation: A Survey* 已在 [Preprints](https://www.preprints.org/manuscript/202609.0173/v1) 上线，并提供对应的 [DOI](https://doi.org/10.20944/preprints202609.0173.v1)。 |
-| **2026-09-02** | 将 389 条参考文献重组为按领域组织的可折叠索引，并补齐完整元数据与直接链接。 |
-| **2026-08-30** | 增加当前综述追踪的 389 条文献记录的完整可浏览索引。 |
-| **2026-08-30** | 重新组织项目主页，突出分类体系、论文发现和领域导航。 |
-| **持续进行** | 根据一手来源核对文献元数据、发表状态、图表和章节覆盖。 |
+| **2026-09-02** | 项目主页正式上线。 |
+| **2026-09-02** | 综述 *Agentic Visual Generation: A Survey* 已在 [Preprints](https://www.preprints.org/manuscript/202609.0173/v1) 发布。 |
 
 <p align="center">
   <a href="PAPERS.md"><img src="https://img.shields.io/badge/浏览-论文索引-111827?style=for-the-badge&logo=readme&logoColor=white" alt="浏览论文索引"></a>

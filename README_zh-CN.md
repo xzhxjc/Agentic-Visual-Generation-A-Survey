@@ -96,6 +96,8 @@
 
 | 日期 | 更新 |
 | --- | --- |
+| **2026-09-02** | 项目主页正式上线，提供按领域组织的论文索引与完整元数据。 |
+| **2026-09-02** | 综述 *Agentic Visual Generation: A Survey* 已在 [Preprints](https://www.preprints.org/manuscript/202609.0173/v1) 上线，并提供对应的 [DOI](https://doi.org/10.20944/preprints202609.0173.v1)。 |
 | **2026-09-02** | 将 389 条参考文献重组为按领域组织的可折叠索引，并补齐完整元数据与直接链接。 |
 | **2026-08-30** | 增加当前综述追踪的 389 条文献记录的完整可浏览索引。 |
 | **2026-08-30** | 重新组织项目主页，突出分类体系、论文发现和领域导航。 |
@@ -231,7 +233,19 @@
 
 ## 引用
 
-作者、投稿信息和公开版本确定后，将补充正式引用记录。
+请按以下公开预印本引用（[Preprints 页面](https://www.preprints.org/manuscript/202609.0173/v1) · [DOI](https://doi.org/10.20944/preprints202609.0173.v1)）：
+
+```bibtex
+@article{202609.0173,
+  author = {Xing, Zihan and Wang, Jin and Xia, Rong and Ye, Keming and Qu, Zhan and Yi, Biao and Liu, Tianqi and Chen, Junhao and Yang, Jie and Zhu, Zhibo and Shen, Zhouzhou and Sheng, Honghui and Chen, Yurun and Zhang, Yuqing and Zhu, Shuanghe and Wang, Wenkai and Xiong, Tao and Lin, Kuncheng and Yu, Qihang and Chen, Kui and Xiong, Yufan and Li, Juncheng and Zhang, Wenqiao and Lv, Zheqi and Zang, Chengxi and Chen, Long and Zhao, Zhou and Zhang, Shengyu and Wu, Fei},
+  title = {Agentic Visual Generation: A Survey},
+  journal = {Preprints},
+  year = {2026},
+  month = {September},
+  doi = {10.20944/preprints202609.0173.v1},
+  url = {https://doi.org/10.20944/preprints202609.0173.v1}
+}
+```
 
 ## 许可证
 

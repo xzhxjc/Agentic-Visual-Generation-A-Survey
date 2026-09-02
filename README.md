@@ -109,6 +109,8 @@
 
 | Date | Update |
 | --- | --- |
+| **2026-09-02** | The public project homepage is now live, with a field-organized paper index and complete metadata. |
+| **2026-09-02** | *Agentic Visual Generation: A Survey* is now available as a [Preprints manuscript](https://www.preprints.org/manuscript/202609.0173/v1), with a corresponding [DOI](https://doi.org/10.20944/preprints202609.0173.v1). |
 | **2026-09-02** | Reorganized all 389 bibliography records into a field-first, collapsible index with complete metadata and direct links. |
 | **2026-08-30** | Reorganized the repository homepage around taxonomy, paper discovery, and field navigation. |
 | **Ongoing** | Metadata, publication status, figures, and chapter coverage are being checked against primary sources. |
@@ -243,7 +245,19 @@ Please use primary sources when proposing an update and record the affected sect
 
 ## Citation
 
-The citable release record will be added after the author list, venue, and public version are finalized.
+Please cite the public preprint as ([Preprints manuscript](https://www.preprints.org/manuscript/202609.0173/v1) · [DOI](https://doi.org/10.20944/preprints202609.0173.v1)):
+
+```bibtex
+@article{202609.0173,
+  author = {Xing, Zihan and Wang, Jin and Xia, Rong and Ye, Keming and Qu, Zhan and Yi, Biao and Liu, Tianqi and Chen, Junhao and Yang, Jie and Zhu, Zhibo and Shen, Zhouzhou and Sheng, Honghui and Chen, Yurun and Zhang, Yuqing and Zhu, Shuanghe and Wang, Wenkai and Xiong, Tao and Lin, Kuncheng and Yu, Qihang and Chen, Kui and Xiong, Yufan and Li, Juncheng and Zhang, Wenqiao and Lv, Zheqi and Zang, Chengxi and Chen, Long and Zhao, Zhou and Zhang, Shengyu and Wu, Fei},
+  title = {Agentic Visual Generation: A Survey},
+  journal = {Preprints},
+  year = {2026},
+  month = {September},
+  doi = {10.20944/preprints202609.0173.v1},
+  url = {https://doi.org/10.20944/preprints202609.0173.v1}
+}
+```
 
 ## License
 

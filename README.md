@@ -127,7 +127,6 @@
 - [Field Index](PAPERS.md#browse-by-field)
 - [Research Map](#research-map)
 - [What the Survey Adds](#what-the-survey-adds)
-- [Survey Structure](#survey-structure)
 - [Public Contents](#public-contents)
 - [Living Survey](#living-survey)
 
@@ -136,11 +135,6 @@
 ## Paper Collection
 
 The survey currently tracks **389 BibTeX records**. The homepage is organized by research field; publication year is retained in each field table as the `Date` column and used for within-field sorting.
-
-<p align="center">
-  <a href="PAPERS.md"><img src="https://img.shields.io/badge/Explore-389%20paper%20field%20index-0f766e?style=for-the-badge&logo=readme&logoColor=white" alt="Explore 389 paper field index"></a>
-  <a href="references.bib"><img src="https://img.shields.io/badge/Source-references.bib-2563eb?style=for-the-badge&logo=latex&logoColor=white" alt="Source references.bib"></a>
-</p>
 
 | Field | Chapters | Records | Years |
 | --- | --- | ---: | --- |
@@ -182,13 +176,15 @@ This survey builds a common vocabulary for systems that create and edit:
   <img src="assets/avg_literature_autonomy.png" alt="Survey literature growth, domain coverage, and autonomy" width="92%">
 </p>
 
-The paper connects three views of the field:
+The paper connects five views of the field:
 
 | View | Question | Chapters |
 | --- | --- | --- |
 | **Operating loop** | How does a visual agent decide and act? | 1–3 |
 | **Creation domains** | What kinds of artifacts can it create? | 4–10 |
-| **Learning and evidence** | How does it improve, and how should it be evaluated? | 11–12 + Frontiers |
+| **Training** | How are visual agents trained and adapted? | 11 |
+| **Evaluation** | How should artifacts, decisions, and systems be evaluated? | 12 |
+| **Frontiers** | What research directions remain open? | Frontiers |
 
 <p align="center">
   <img src="assets/avg_autonomy_staircase.jpg" alt="Five-level autonomy scale" width="92%">
@@ -215,15 +211,6 @@ The paper connects three views of the field:
 - **A six-component framework:** goals and planning, memory, tools, perception, action, and cross-task self-improvement.
 - **A cross-domain view:** the same control questions are compared across image, video, 3D, visualization, document, and UI/Web systems.
 - **An evaluation lens:** artifact quality, goal and constraint satisfaction, trajectory and decision quality, and system or human-centered outcomes.
-
-## Survey Structure
-
-| Chapter | Focus |
-| --- | --- |
-| 01–03 | Scope, foundations, and the operating loop |
-| 04–10 | Image, video, 3D, visualization, documents, UI/Web, and cross-domain systems |
-| 11–12 | Training, adaptation, evaluation, and reliability |
-| Frontiers | Open questions and emerging research directions |
 
 ## Public Contents
 

@@ -495,7 +495,7 @@ Each field is collapsed by default for a compact reading experience. Expand a fi
 
 <a id="cross-domain-applications"></a>
 <details>
-<summary><strong>Cross-Domain Applications</strong> · <code>Ch. 10</code> · <img src="https://img.shields.io/badge/CROSS-DOMAIN%20APPLICATIONS-8%20papers-475569?style=flat-square&labelColor=111827" alt="Cross-Domain Applications: 8 papers" height="20"></summary>
+<summary><strong>Cross-Domain Applications</strong> · <code>Ch. 10</code> · <img src="https://img.shields.io/badge/Cross%20Domain%20Applications-8%20papers-475569?style=flat-square&labelColor=111827" alt="Cross-Domain Applications: 8 papers" height="20"></summary>
 
 > Systems that transfer agentic visual-generation patterns across domains and applications.
 

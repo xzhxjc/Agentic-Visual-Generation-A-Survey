@@ -3,7 +3,7 @@
 %\newboolean{logo}
 
 \NeedsTeXFormat{LaTeX2e}
-\ProvidesClass{hust}
+\ProvidesClass{agentic_visual_generation}
 \LoadClassWithOptions{article}
 % pdfTeX exposes \pdfoutput; XeLaTeX does not.
 \ifdefined\pdfoutput\pdfoutput=1\fi
@@ -49,9 +49,9 @@
 % Reading-version header marks. These files are supplied in assets/.
 % Vector PDF generated from the transparent assets/zju-logo.svg source.
 \newcommand{\hustlogo}{assets/zju-logo.pdf}
-\newcommand{\hustlogowidth}{24mm}
+\newcommand{\hustlogowidth}{20mm}
 \newcommand{\aiGClogo}{assets/ai4gc-logo.png}
-\newcommand{\aiGClogowidth}{18mm}
+\newcommand{\aiGClogowidth}{17mm}
 \newcommand{\githublogo}{assets/github-logo.pdf}
 \newcommand{\githublogowidth}{3.5mm}
 \newcommand{\githubmark}{\raisebox{-0.55mm}{\includegraphics[height=\githublogowidth]{\githublogo}}\hspace{0.8mm}}
@@ -143,7 +143,7 @@
 }
 
 \newcommand{\authorfont}
- {\fontsize{8.8}{10}\selectfont}
+ {\fontsize{9.4}{11}\selectfont}
 
 \newcommand\authorlist{}
 \newcommand\authorformat[2][]{\authorfont {\sffamily #2$^{#1}$}}
@@ -152,7 +152,7 @@
 %给affiliation换成medium字体
 
 \newcommand{\affiliationfont}
- {\fontsize{8.6}{10}\selectfont}
+ {\fontsize{9.2}{11}\selectfont}
 
 \newcommand\affiliationlist{}
 \ifXeTeX
@@ -174,9 +174,9 @@
 \newcommand\emailformat[2][]{%
   {\emailfont\ttfamily\color{hustgray}%
     \if\relax\detokenize{#1}\relax
-      \href{mailto:#2}{#2}%
+      \href{mailto:#2}{\nolinkurl{#2}}%
     \else
-      #1: \href{mailto:#2}{#2}%
+      #1: \href{mailto:#2}{\nolinkurl{#2}}%
     \fi}%
 }
 \newcommand\email[2][]{\addtolist[#1]{#2}{\emaillist}{\emailformat}{, }}
@@ -185,12 +185,12 @@
 {\fontsize{7.92}{10}\selectfont}
 
 \newcommand\checkdatalist{}
-\newcommand\checkdataformat[2][]{{\small {\sffamily\bfseries\color{hustred} #1:} {\color{hustgray}#2}}}
+\newcommand\checkdataformat[2][]{{\checkdatafont {\sffamily\bfseries\color{hustred} #1:} {\color{hustgray}#2}}}
 \newcommand\checkdata[2][]{\addtolist[#1]{#2}{\checkdatalist}{\checkdataformat}{\par}}
 
 
 \newcommand{\abstractinfont}
- {\fontsize{8.6}{10.2}\selectfont}
+ {\fontsize{9.2}{10.8}\selectfont}
 
 \renewcommand{\abstract}[1]{\def\abstractlist{{\abstractinfont #1}}}
 \renewcommand\date[1]{\checkdata[Date]{#1}}
@@ -198,7 +198,7 @@
 
 
 \newcommand{\titlefont}
- {\fontsize{15}{17}\selectfont}
+ {\fontsize{17}{20}\selectfont}
 
 \renewcommand{\title}[1]{\newcommand{\titlelist}{\titlefont{\sffamily #1}}}
 
@@ -252,36 +252,41 @@
 % Abstract box uses gray background style (inspired by fairmeta)
 
 \newcommand{\mymaketitle}{%
+  \newgeometry{top=1.2cm, bottom=1.2cm, left=2.0cm, right=2.0cm}%
   \thispagestyle{empty}%
   \begin{tcolorbox}[
     enhanced, frame hidden, colback=abstractbg,
-    left=8mm, right=8mm, top=9mm, bottom=8mm,
+    height=\textheight, valign=top,
+    left=10mm, right=10mm, top=10mm, bottom=14mm,
     arc=10pt, before skip=0pt, after skip=0pt,
-    grow to left by=1.5pt, grow to right by=1.5pt]
+    grow to left by=9mm, grow to right by=9mm]
     \setlength{\parindent}{0cm}
     \setlength{\parskip}{0cm}
     \begin{center}
-      \href{https://www.zju.edu.cn/english/}{\includegraphics[height=24mm]{\hustlogo}}\hspace{9mm}%
-      \href{https://ai4gc.org/}{\includegraphics[height=22mm]{\aiGClogo}}\\[4mm]
+      \href{https://www.zju.edu.cn/english/}{\includegraphics[height=\hustlogowidth]{\hustlogo}}\hspace{6mm}%
+      \href{https://ai4gc.org/}{\includegraphics[height=\aiGClogowidth]{\aiGClogo}}\\[2mm]
       {\titlelist\par}
-      \vspace{3mm}
+      \vspace{4mm}
       {\authorlist\par}
-      \vspace{2mm}
+      \vspace{3mm}
       {\affiliationlist\par}
-      \vspace{2mm}
+      \vspace{3mm}
       {\contributionlist\par}
-      \ifdefempty{\emaillist}{}{\vspace{1.5mm}\emaillist\par}
+      \ifdefempty{\emaillist}{}{\vspace{2mm}\emaillist\par}
     \end{center}
-    \vspace{3mm}
+    \vfill
+    \vspace{4mm}
     \begin{center}
       \beginabstract
     \end{center}
-    \vspace{1.5mm}
+    \vspace{2mm}
     \abstractlist\par
-    \vspace{3mm}
+    \vfill
+    \vspace{4mm}
     {\setlength{\parskip}{0cm}\ifdefempty{\checkdatalist}{}{\checkdatalist\par}}
   \end{tcolorbox}
   \FloatBarrier
+  \restoregeometry
 }
 
 
@@ -297,7 +302,7 @@
 \if@twocolumn%
 \renewcommand{\maketitle}{
 \twocolumn[%
- \vskip 3mm
+\vskip 6mm
   \mymaketitle
   \hustfrontmatter
   \vskip 8mm

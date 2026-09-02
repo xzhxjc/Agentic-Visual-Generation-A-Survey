@@ -71,6 +71,15 @@ Adaptive Task Reformulation changes the task representation and selects a new re
 
 Taken together, these four operations form a progression: task interpretation produces provenance-marked commitments, commitments compile into a dependency-aware plan, and incoming information updates the affected subgoals of the changed commitment. The resulting records provide the planning substrate that later operations condition on, while keeping unresolved assumptions and plan changes traceable to the information that produced them.
 
+\noindent A representative implementation of this planning pattern is shown in Figure~\ref{fig:ch3-goal-planning-genartist}. GenArtist decomposes a complex request, organizes candidate operations in a planning tree, and routes the selected steps to generation and editing tools with intermediate verification \cite{wang2024genartist}.
+
+\begin{figure}[H]
+  \centering
+  \includegraphics[width=\linewidth]{figures/ch3_goal_planning_genartist.png}
+  \caption{Planning and tool coordination in GenArtist, including task decomposition, a planning tree, tool selection, and position-aware execution. Reproduced from \cite{wang2024genartist}.}
+  \label{fig:ch3-goal-planning-genartist}
+\end{figure}
+
 
 \subsubsection{Memory}
 
@@ -118,6 +127,15 @@ DreamFactory explicitly separates short-term information within a scene from lon
 \paragraph{· Procedural reuse.} Procedural reuse stores a reusable action pattern distilled from one or more episodes. The pattern can specify an operation order, preconditions, parameter relations, expected observations, or a repair strategy, while task-specific values are supplied by the current request. The form of retention determines what the pattern can do: retained as guidance, it informs how the next action is constructed; registered through tool creation as a callable capability with declared inputs and execution conditions, it enters the interface set $\mathcal{I}_t$ and extends the actions available to later decisions. A reusable visual-document skill, for example, preserves the sequence of inspecting source structure, rendering the result, checking the page, and revising the responsible source; a video-composition skill preserves continuity checks while the current scenes and assets change.
 
 Agent Banana uses Context Folding to abstract a growing editing history into asset-, execution-, and planning-level records; its persistent ActionContext keeps the verified effective editing path and the associated image states for later turns, providing task continuity across successive edits \cite{ye2026agentbanana}. Generation Navigator represents each subsequent action using the original prompt, prior actions, generated images, reviewer feedback, and scores accumulated along the trajectory, keeping task-local evidence available for the next decision \cite{avg260517969}. SEAR builds a self-evolving episodic memory that consolidates high-reward restoration trajectories into retrievable expertise and uses a state fingerprint to select relevant prior trajectories, supporting episodic and procedural reuse across related restoration requests \cite{avg260628971}.
+
+\noindent The interaction between short-term trajectory records, evaluation feedback, self-reflection, and longer-term experience is illustrated in Figure~\ref{fig:ch3-memory-reflexion}. Reflexion places these memory forms inside an iterative loop in which feedback from one trial is converted into information used by later trials \cite{shinn2023reflexion}.
+
+\begin{figure}[H]
+  \centering
+  \includegraphics[width=\linewidth]{figures/ch3_memory_reflexion.png}
+  \caption{Reflexion's interaction among trajectory memory, evaluation, self-reflection, long-term experience, and the environment. Reproduced from \cite{shinn2023reflexion}.}
+  \label{fig:ch3-memory-reflexion}
+\end{figure}
 
 
 \subsubsection{Tool}
@@ -171,6 +189,15 @@ AMACE uses separate agents for chart-code generation, chart rendering, and chart
 
 \paragraph{· Combined trajectories.} These dimensions can be combined in the same trajectory. A task may begin with a model call over a reference image, move to code execution for a structured layout, pass the result to an application renderer, and then use a simulator or interaction environment for a task-specific check. Across these combinations, the tool-use record identifies the operation invoked, the representation crossing the interface, the executor or role that acted, and the result made available for the next decision.
 
+\noindent Figure~\ref{fig:ch3-tool-toolformer} shows a complementary view of tool use at the interface level. Toolformer samples candidate API calls, executes them, filters them using their contribution to prediction, and incorporates the retained calls into an augmented dataset \cite{schick2023toolformer}.
+
+\begin{figure}[H]
+  \centering
+  \includegraphics[width=\linewidth]{figures/ch3_tool_toolformer.png}
+  \caption{Toolformer pipeline for sampling, executing, filtering, and retaining API calls in an augmented language-model dataset. Reproduced from \cite{schick2023toolformer}.}
+  \label{fig:ch3-tool-toolformer}
+\end{figure}
+
 \subsubsection{Perception}
 
 \begin{keytakeaway}[Perception]
@@ -203,6 +230,15 @@ Verification checks an explicit requirement, acceptance condition, or property o
 A verification process can combine exact tests, reference-based comparisons, learned judges, source-level checks, simulations, and human review. It can record coverage, granularity, latency, confidence, and disagreement, and can schedule cheap checks before expensive tests. These checks answer different questions about the current result and can be combined when the artifact exposes multiple representations. Verification faces the oracle problem: a test oracle is a predicate that decides whether a behavior is acceptable, and for properties with an explicit specification an exact check serves as that oracle. For open-ended visual properties such as aesthetics or style consistency, no ideal oracle exists, so a learned judge or human review supplies an approximate oracle whose confidence and disagreement are recorded for Action to weigh at decision time.
 
 
+
+\noindent Figure~\ref{fig:ch3-perception-visualwebarena} illustrates the observation context used for visually grounded agent evaluation. It combines web resources, page content, task-specific visual references, and an agent action interface, making the perceptual inputs available to subsequent decisions explicit \cite{koh2024visualwebarena}.
+
+\begin{figure}[H]
+  \centering
+  \includegraphics[width=\linewidth]{figures/ch3_perception_visualwebarena.png}
+  \caption{VisualWebArena's visually grounded task setting, combining self-hosted sites, webpage observations, task specifications, and multimodal agent interaction. Reproduced from \cite{koh2024visualwebarena}.}
+  \label{fig:ch3-perception-visualwebarena}
+\end{figure}
 
 \subsubsection{Action}
 
@@ -243,6 +279,15 @@ Evidence-conditioned action uses Perception output to determine how the trajecto
 
 
 
+\noindent The interleaving of internal reasoning, environment observations, and state-changing operations is shown in Figure~\ref{fig:ch3-action-react}. ReAct represents action as a sequence in which reasoning traces guide external operations and observations update the context for the next decision \cite{yao2023react}.
+
+\begin{figure}[H]
+  \centering
+  \includegraphics[width=\linewidth]{figures/ch3_action_react.png}
+  \caption{Interleaved reasoning, action, and observation trajectories in ReAct across question answering and embodied interaction tasks. Reproduced from \cite{yao2023react}.}
+  \label{fig:ch3-action-react}
+\end{figure}
+
 \subsubsection{Cross-Task Self-Improvement}
 
 \begin{keytakeaway}[Cross-Task Self-Improvement]
@@ -251,6 +296,15 @@ Cross-Task Self-Improvement converts completed trajectories into persistent beha
 
 
 \textbf{Cross-Task Self-Improvement definition.} Cross-Task Self-Improvement is a persistent change in a system's later-task decision process that is produced from experience collected in completed trajectories. Persistence means that the retained information, learned procedure, routing behavior, verifier behavior, or model state survives the completed trajectory and remains available when a subsequent task begins. The later decision can concern reference retrieval, prompt construction, tool selection, action ordering, verification, repair, or another task operation. Action covers corrections performed during the active trajectory. Memory covers information retained for later access. Cross-Task Self-Improvement covers the update that makes retained experience alter a later task decision. Within-action correction operates inside one selected operation. Within-trajectory iteration uses observations and feedback before the current request ends. Episodic cross-task reuse retrieves a prior case or trajectory for a subsequent request. Persistent system adaptation changes a reusable skill, routing rule, construction policy, verifier, or model behavior across subsequent requests. Final artifact quality is an outcome measure. Candidate selection is a decision inside the active trajectory. A later-task behavior change is the defining unit of cross-task self-improvement. The boundary separates two improvement branches: foundation-model improvement updates the model itself through parameter changes, and scaffolding improvement updates the surrounding components such as prompts, memory, tools, and executable agent logic, so the locus of change determines whether the update carries the cost of retraining or the cost of retrieval. The recent survey of self-evolving AI agents organizes this landscape along three dimensions, model-centric evolution (inference-based and training-based), environment-centric evolution (static knowledge, dynamic experience, modular architecture, and agentic topology), and model-environment co-evolution, which align with the two branches above and place visual-generation self-improvement within a broader taxonomy \cite{fang2025selfevolving}.
+
+\noindent Figure~\ref{fig:ch3-cross-task-voyager} presents a cross-task improvement loop in which exploration generates skills, execution feedback refines them, and a skill library supports later tasks. Voyager combines an automatic curriculum, iterative prompting, self-verification, and executable skill reuse across Minecraft tasks \cite{wang2023voyager}.
+
+\begin{figure}[H]
+  \centering
+  \includegraphics[width=\linewidth]{figures/ch3_cross_task_voyager.png}
+  \caption{Voyager's automatic curriculum, iterative prompting mechanism, environment feedback, self-verification, and executable skill library. Reproduced from \cite{wang2023voyager}.}
+  \label{fig:ch3-cross-task-voyager}
+\end{figure}
 
 \textbf{Experience formation and attribution.} Experience formation and attribution covers the conversion of a completed trajectory into reusable information and the linking of observed outcomes to the actions that preceded them.
 

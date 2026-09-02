@@ -1,3 +1,4 @@
+\iffalse
 \section{Challenges and Research Frontiers}
 \label{sec:frontiers}
 
@@ -48,7 +49,10 @@ Foundation models provide the perceptual and generative capabilities that every 
 
 Architecturally, the field is converging on unified models that handle understanding and generation in one backbone, in three broad forms: pure autoregressive, pure diffusion, and hybrid designs that autoregress over semantic tokens while diffusing over pixels. The unification matters for agents because it removes a handoff: a single representation can serve as both the medium of perception and the target of synthesis, which is what makes edits addressable and observations usable as evidence. Unification by itself leaves the capability gaps above in place; it gathers them into one architecture. The sharper formulation is representational: whether the model carries an explicit spatial, temporal, or structural state that an edit can address, or whether each edit must re-sample a global latent wholesale.
 
-Foundation-model progress in an agentic setting calls for a different measurement from a single-shot setting. A more informative question is which downstream agent decisions improve when the foundation model changes under a fixed controller and budget: fewer repair loops for the same edit, fewer misread observations durin\section{Challenges and Research Frontiers}
+Foundation-model progress in an agentic setting calls for a different measurement from a single-shot setting. A more informative question is which downstream agent decisions improve when the foundation model changes under a fixed controller and budget: fewer repair loops for the same edit, fewer misread observations during tool use, fewer violations of preserved regions, and more reliable stopping when the verifier has enough evidence. This keeps the foundation model tied to the behavior the agent is meant to support.
+
+\fi
+\section{Challenges and Research Frontiers}
 \label{sec:frontiers}
 
 Agentic visual generation is developing along three broad paths: expanding the scope of visual agency, increasing the intelligence available to visual agents, and establishing reliable evaluation. Scope expansion concerns the artifacts, project durations, tools, environments, application consequences, and related operating conditions that a system can handle. Intelligence improvement concerns foundation models, system architectures, reasoning, process training, continual learning, collaboration, deployment, and related capabilities. Evaluation concerns the quality, behavior, cost, and consequences of the complete creation process. The three paths also interact: longer projects tend to expose control failures that short tasks leave hidden, a stronger controller magnifies the cost of weak generation and weak verification, and claims about planning, memory, or self-improvement call for evidence at the process level. The subsections below organize each path around concrete failure modes and the research directions they motivate.

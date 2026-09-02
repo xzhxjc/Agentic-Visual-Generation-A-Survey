@@ -92,7 +92,8 @@
 
 | 日期 | 更新 |
 | --- | --- |
-| **2026-08-30** | 增加当前综述追踪的 386 条文献记录的完整可浏览索引。 |
+| **2026-09-02** | 同步最新论文源码，更新文献索引到 389 条，并修正主页中的关键 BibTeX 入口。 |
+| **2026-08-30** | 增加当前综述追踪的 389 条文献记录的完整可浏览索引。 |
 | **2026-08-30** | 重新组织项目主页，突出分类体系、论文发现和源码导航。 |
 | **持续进行** | 根据一手来源核对文献元数据、发表状态、图表和章节覆盖。 |
 
@@ -120,10 +121,10 @@
 
 ## 收录论文
 
-当前综述追踪 **386 条 BibTeX 文献记录**，覆盖视觉创作系统的主要技术链路。完整索引按发表年份组织；只要 BibTeX 条目中包含，就会提供论文或 DOI 的直接入口。
+当前综述追踪 **389 条 BibTeX 文献记录**，覆盖视觉创作系统的主要技术链路。完整索引按发表年份组织；只要 BibTeX 条目中包含，就会提供论文或 DOI 的直接入口。
 
 <p align="center">
-  <a href="PAPERS.md"><img src="https://img.shields.io/badge/浏览-386%20篇论文-0f766e?style=for-the-badge&logo=readme&logoColor=white" alt="浏览 386 篇论文"></a>
+  <a href="PAPERS.md"><img src="https://img.shields.io/badge/浏览-389%20篇论文-0f766e?style=for-the-badge&logo=readme&logoColor=white" alt="浏览 389 篇论文"></a>
   <a href="paper/references.bib"><img src="https://img.shields.io/badge/来源-references.bib-2563eb?style=for-the-badge&logo=latex&logoColor=white" alt="来源 references.bib"></a>
 </p>
 
@@ -658,7 +659,7 @@ paper/
 ├── sections/                 # 各章正文
 ├── figures/                  # 正文使用的图
 ├── references.bib            # 参考文献
-├── agentic_visual_generation.cls # 本地文档类
+├── agentic_visual_generation.cls                   # 本地文档类
 └── assets/                   # 字体与标识
 ```
 

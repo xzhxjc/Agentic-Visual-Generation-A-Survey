@@ -3,6 +3,16 @@
 
 Three-dimensional creation makes state more explicit but also makes visual plausibility an insufficient success criterion. Geometry, topology, dimensions, joints, scene graphs, operation histories, collisions, and simulator outcomes can all be inspected, so agents can act on executable structure rather than pixels alone. This section separates appearance-oriented world construction from editable CAD and from verification-driven refinement.
 
+\begin{keytakeaway}[Agentic 3D, CAD, and World Generation at a Glance]
+\begin{keypoints}
+  \item \textbf{Scene graphs, assets, layouts, and interactive worlds:} combine asset selection, spatial arrangement, scene-graph state, and sometimes simulation.
+
+  \item \textbf{Executable CAD programs and editable solids:} code, sketches, feature operations, and parametric edits provide precise interventions while rendered views offer complementary evidence that the underlying solid remains meaningful.
+
+  \item \textbf{Geometry-aware verification, simulation, and learning:} inspect geometry, physics, compilation, and task function independently of appearance, making 3D a useful setting for reinforcement learning and self-corrective search.
+\end{keypoints}
+\end{keytakeaway}
+
 \begin{figure}[!htbp]
   \centering
   \input{figures/tikz/ch6_representative_systems_benchmarks.tikz.tex}

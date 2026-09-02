@@ -275,13 +275,6 @@ Fourth, the criterion has a minimal form. Selection among sampled candidates bas
 
 The five types mark characteristic combinations of the three dimensions. One-shot generators prescribe the sequence in advance, condition every decision on the initial request, and take a single step from the initial conditions to the artifact. Fixed workflows prescribe the sequence and pass intermediate outputs between stages; the outputs travel along a fixed route, and no decision reads from what they contain. Agent-augmented workflows prescribe the sequence and expose limited choice points; the alternatives at each point are fixed by design, and the choice may or may not depend on runtime observations. Closed-loop visual agents read from the accessible state at their decision points, and those decisions change later creation actions; the operating sequence typically emerges from the decisions, and the minimal form above retains a prescribed schedule. Continually improving agents couple closed-loop control inside a task with cross-trajectory updates to reusable components.
 
-\begin{figure}[t]
-  \centering
-  \includegraphics[width=\textwidth]{figures/ch2_l1l5.png}
-  \caption{L1--L5 autonomy levels. Each level adds a span of state-dependent control on top of the previous one: fixed pipelines (L1), tool and role selection (L2), observation-conditioned revision (L3), long-horizon recovery and adaptive stopping (L4), and cross-task improvement under held-out evaluation (L5). The dashed trajectory emphasizes that the levels are cumulative; a system qualifies as AVG when its evidence supports L3 or higher.}
-  \label{fig:ch2-l1l5}
-\end{figure}
-
 \subsection{Autonomy Levels}
 \label{sec:agentic-visual-generation-autonomy}
 
@@ -308,22 +301,7 @@ L1--L2 describe fixed or tool-assisted operation; L3 adds observation-conditione
   \end{tabularx}
 \end{table}
 
-L1 is the fixed, non-adaptive baseline. L2 exposes an action space through tool, model, or role selection. L3 requires an observation--action dependency (Section~\ref{sec:agentic-visual-generation}): intermediate observations change one or more subsequent decisions. L4 extends this dependency across multiple operations through persistent state, replanning, recovery, and stopping. L5 additionally requires transfer: experience from earlier tasks changes later behavior under held-out evaluation. The levels and the boundary types in Table~\ref{tab:boundary} record the same progression at different granularity: one-shot generators and fixed workflows sit at L1, agent-augmented workflows at L2, closed-loop visual agents at L3 or L4, and continually improving agents at L5; a system qualifies as AVG precisely when its evidence supports L3 or higher. Figure~\ref{fig:avg-autonomy-by-domain} summarizes the distribution of evidence-supported autonomy levels across the surveyed visual domains.
-
-\begin{figure}[t]
-  \centering
-  \includegraphics[width=\textwidth]
-    {figures/avg_autonomy_levels_by_domain.jpg}
-  \caption{Evidence-supported autonomy levels across visual domains in
-  the surveyed corpus. Cell labels report paper counts, and the column
-  labels report the total number of coded papers in each domain. Each
-  paper is assigned the highest level supported by its reported behavior
-  and evaluation evidence. L1--L2 provide non-agentic and tool-assisted
-  baselines, while L3--L5 satisfy the survey's behavioral boundary for
-  agentic visual generation.}
-  \label{fig:avg-autonomy-by-domain}
-\end{figure}
-
+L1 is the fixed, non-adaptive baseline. L2 exposes an action space through tool, model, or role selection. L3 requires an observation--action dependency (Section~\ref{sec:agentic-visual-generation}): intermediate observations change one or more subsequent decisions. L4 extends this dependency across multiple operations through persistent state, replanning, recovery, and stopping. L5 additionally requires transfer: experience from earlier tasks changes later behavior under held-out evaluation. The levels and the boundary types in Table~\ref{tab:boundary} record the same progression at different granularity: one-shot generators and fixed workflows sit at L1, agent-augmented workflows at L2, closed-loop visual agents at L3 or L4, and continually improving agents at L5; a system qualifies as AVG precisely when its evidence supports L3 or higher. 
 Three trends stand out in this distribution. First, feedback adaptation is the most widely evidenced behavior: L3 is the modal level in nearly every domain, and a clear majority of the corpus meets or exceeds the L3 boundary at which a system qualifies as AVG. Second, evidence for the higher levels is unevenly distributed across domains: long-horizon recovery and cross-task improvement are concentrated in the image domain, appear less frequently in video, and become rare in the remaining domains, where reported systems cluster around single-loop correction rather than demonstrated long-horizon control. Third, fixed pipelines persist selectively rather than uniformly: they remain most visible in 3D/CAD, where procedural generation has an established workflow tradition, while other domains report few purely fixed systems. Cross-task improvement remains the least evidenced behavior overall, which motivates the training analysis in Section~\ref{sec:training} and the frontier discussion in Section~\ref{sec:frontiers}.
 
 

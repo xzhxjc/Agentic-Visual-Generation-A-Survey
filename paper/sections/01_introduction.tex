@@ -19,19 +19,22 @@ Avoiding such accumulation requires goal-directed control over the creation traj
 \begin{figure}[t]
   \centering
   \includegraphics[width=\textwidth]
-    {figures/avg_literature_growth_by_year_domain_autonomy.jpg}
-  \caption{Growth and composition of the surveyed literature on agentic
-  visual generation. \textbf{a}, Number of included systems grouped by
-  first arXiv year, with records up to 2023 pooled. \textbf{b}, Visual-domain
-  composition within each period. \textbf{c}, Composition by the highest
-  autonomy level supported by the reported evidence. The asterisk marks
-  partial-year coverage for 2026 at the dataset cutoff. Counts reflect the
-  survey corpus and coding protocol rather than all publications on visual
-  generation.}
-  \label{fig:avg-literature-growth}
+    {figures/avg_literature_autonomy.png}
+  \caption{Literature growth, domain composition, and autonomy distribution
+  in the surveyed corpus. \textbf{a}, Number of included AVG systems grouped
+  by first publication year, with records up to 2023 pooled. \textbf{b},
+  Evidence-supported autonomy levels across visual domains; cell labels
+  report paper counts, while color intensity represents the within-domain
+  rank rather than the absolute count. \textbf{c}, Visual-domain composition
+  within each period. \textbf{d}, Composition by the highest autonomy level
+  supported by the reported behavior and evaluation evidence. The asterisk
+  indicates partial-year coverage for 2026 at the dataset cutoff. Counts
+  reflect the survey corpus and coding protocol rather than all publications
+  on visual generation.}
+  \label{fig:avg-literature-autonomy}
 \end{figure}
 
-Figure~\ref{fig:avg-literature-growth} quantifies this transition across the surveyed corpus; the inclusion criteria and coding protocol are described in Section~\ref{sec:foundations}. The number of systems expands rapidly after 2023 (panel~a), and the growth spans visual domains: closed-loop designs now appear across images, video, three-dimensional assets, data-grounded graphics and documents, and interactive interfaces (panel~b), so the same control questions recur under different representations, constraints, and sources of verification evidence. The composition by autonomy level shifts upward in parallel, with a growing share of systems reporting behaviors beyond fixed pipelines (panel~c), as graded by the L1--L5 levels introduced in Section~\ref{sec:foundations}. Yet the aggregate trend also exposes the gap behind the growth: the designs remain scattered across application papers, autonomy claims rest on heterogeneous evidence, and no unified, control-centered account exists of what makes such systems agentic, how they should be organized, or how they should be evaluated.
+Figure~\ref{fig:avg-literature-autonomy} quantifies this transition across the surveyed corpus; the inclusion criteria and coding protocol are described in Section~\ref{sec:foundations}. The number of systems expands rapidly after 2023 (panel~a), and the growth spans visual domains: closed-loop designs now appear across images, video, three-dimensional assets, data-grounded graphics and documents, and interactive interfaces (panel~c), so the same control questions recur under different representations, constraints, and sources of verification evidence. The composition by autonomy level shifts upward in parallel, with a growing share of systems reporting behaviors beyond fixed pipelines (panel~d), as graded by the L1--L5 levels introduced in Section~\ref{sec:foundations}; panel~b further shows how these evidence-supported levels vary across visual domains. Yet the aggregate trend also exposes the gap behind the growth: the designs remain scattered across application papers, autonomy claims rest on heterogeneous evidence, and no unified, control-centered account exists of what makes such systems agentic, how they should be organized, or how they should be evaluated.
 
 In this survey, we develop that account. We name this class of systems \emph{agentic visual generation} (AVG) and present its working definition below.
 
@@ -39,6 +42,32 @@ In this survey, we develop that account. We name this class of systems \emph{age
 \emph{Agentic visual generation} is goal-driven visual creation organized as a closed loop over a multi-step trajectory. At the decision points exposed to the controller, such as which operation or tool to invoke, which repair target to address, and whether to continue or stop, the system selects among available alternatives based on runtime observations. These observations are drawn from accessible, task-relevant state spanning the evolving visual artifact, its task environment, and the interaction history, which is in turn updated by intermediate artifacts, execution outcomes, external information, user feedback, and other task-relevant sources. The defining behavioral property is therefore a demonstrable observation--action dependency: runtime observations change later action selection.
 \end{keytakeawaytight}
 
+Figure~\ref{fig:avg-autonomy-evolution} situates this behavioral boundary
+within a broader evolution of visual-generation control. The progression
+moves from fixed condition-to-artifact mappings toward increasingly broad
+forms of state-dependent control: runtime tool selection, feedback-driven
+adaptation, long-horizon replanning and recovery, and persistent
+cross-task improvement. The levels are cumulative behavioral categories
+rather than strictly chronological stages; the timeline locates selected
+representative systems historically.
+
+\begin{figure}[t]
+  \centering
+  \includegraphics[width=\textwidth]
+    {figures/avg_autonomy_staircase.jpg}
+  \caption{Evolution of autonomy in visual generation, from fixed
+  condition-to-artifact mappings (L1) to continual self-improvement (L5).
+  The staircase represents the cumulative expansion of control through
+  tool or role assistance (L2), observation-conditioned feedback
+  adaptation (L3), persistent long-horizon replanning and recovery (L4),
+  and cross-task updates to reusable memory, skills, verifiers, policies,
+  or models (L5). The dashed line marks L3 as the behavioral boundary of
+  \AVG{}, while the upward curve indicates the increasing scope of
+  state-dependent control. Representative systems and publication years
+  anchor this conceptual evolution historically; the levels themselves
+  are behavioral rather than strictly chronological.}
+  \label{fig:avg-autonomy-evolution}
+\end{figure}
 
 \paragraph{Review Motivation and Questions.}
 Existing related surveys examine adjacent questions from different starting points. Visual-generation surveys organize the literature around model families, conditioning and editing methods, or particular visual tasks and modalities \cite{yang2025textimage,wang2025imageediting,yin2025spatiotemporal}. The survey of He et al.\ studies how language models participate in multimodal generation and editing, including through tool-mediated interaction \cite{he2024llms}. Agent surveys instead develop concepts, capabilities, and system designs for language agents or multimodal agents across broad task settings \cite{durante2024agentai,xie2024large,jiang2024rationality,schneider2025generative}. At a different level of abstraction, the recent visual-generation roadmap situates agentic generation within a longer progression toward visual intelligence and world modeling \cite{wu2026visualgeneration}.
@@ -75,5 +104,21 @@ This survey makes six contributions:
   \item It organizes evaluation evidence into four complementary levels (artifact quality, goal and constraint satisfaction, trajectory and decision quality, and system and human-centered evaluation) and identifies the remaining gaps in current evaluation practice.
   \item It synthesizes research frontiers for agentic visual generation around expanding the scope of visual agency, increasing the intelligence of visual agents, and establishing reliable evaluation.
 \end{enumerate}
+
+Figure~\ref{fig:survey-representative-systems} provides a cross-domain
+overview of the representative systems and benchmarks examined in
+Chapters~\ref{sec:image-generation}--\ref{sec:cross-domain}.
+
+\begin{figure}[t]
+  \centering
+  \input{figures/tikz/survey_representative_systems_benchmarks.tikz.tex}
+  \caption{Overview of representative systems and benchmarks across the
+  visual domains surveyed in Chapters~4--10. Each row maps a visual domain
+  to selected systems spanning its principal agentic mechanisms, while
+  representative benchmarks are highlighted in green. Detailed
+  subsection-level classifications are provided in the corresponding
+  domain chapters.}
+  \label{fig:survey-representative-systems}
+\end{figure}
 
 The remainder of the survey follows this control-centered organization. Section~\ref{sec:foundations} introduces visual-generation foundations, defines and formalizes AVG, establishes its boundary, and presents the L1--L5 autonomy levels. Section~\ref{sec:components} examines the six analytical components that organize visual-agent systems. Sections~\ref{sec:image-generation}--\ref{sec:cross-domain} compare their realization across visual-creation domains and synthesize the domain evidence. Section~\ref{sec:training} examines trajectory supervision, policy initialization, multimodal reinforcement learning, experience reuse, and transfer. Section~\ref{sec:evaluation} organizes evaluation evidence into four complementary levels and identifies remaining evaluation gaps, Section~\ref{sec:frontiers} examines research frontiers, and Section~\ref{sec:conclusion} concludes the survey.

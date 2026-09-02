@@ -3,6 +3,22 @@
 
 Image creation agents must control an evolving artifact whose relevant state can include composition, masks, object identity, references, edit history, degradation estimates, user preferences, and tool outputs. Section~\ref{sec:analytical-framework} identifies the analytical components used to compare these systems. This section instead organizes image-domain studies by the primary contribution that they demonstrate. Each paper is assigned one location; secondary mechanisms remain relevant for cross-cutting comparison but do not determine a second placement.
 
+\begin{keytakeaway}[Agentic Image Generation at a Glance]
+\begin{keypoints}
+  \item \textbf{Feedback-driven generation and editing:} observe a generated artifact, identify the deviation, and revise a later decision, spanning compositional and design refinement, image-level editing, completion, and restoration.
+
+  \item \textbf{Planning and tool use:} make an image task executable through model routing, external knowledge, structured controls, toolpaths, and task reformulation.
+
+  \item \textbf{Stateful generation and editing:} retain the information needed to preserve identity, user intent, scene structure, and earlier decisions, from turn-level user and context management to explicit scene, narrative, and trajectory representations.
+
+  \item \textbf{Multi-agent systems:} allocate work among specialized roles, whose value depends on how role outputs, shared state, and evaluator feedback determine later actions.
+
+  \item \textbf{Native and unified agentic models:} place reasoning, understanding, generation, and sometimes tool use within a common multimodal policy.
+
+  \item \textbf{Data, evaluation, and safety:} determine how controllers are trained, what claims of reusable experience are supported, and how quality or safety failures can be measured.
+\end{keypoints}
+\end{keytakeaway}
+
 \begin{figure}[!htbp]
   \centering
   \input{figures/tikz/ch4_representative_systems_benchmarks.tikz.tex}

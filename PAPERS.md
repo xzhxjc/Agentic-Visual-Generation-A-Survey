@@ -2,7 +2,7 @@
 
 Complete bibliography index for [Agentic Visual Generation: A Survey](README.md). This page is generated from [`paper/references.bib`](paper/references.bib) and is intended for browsing and discovery; the BibTeX source remains authoritative.
 
-**Records:** 386
+**Records:** 389
 
 ## Browse by Year
 
@@ -192,7 +192,7 @@ Complete bibliography index for [Agentic Visual Generation: A Survey](README.md)
 - **Zero-to-CAD: Agentic Synthesis of Interpretable CAD Programs at Million-Scale Without Real Data** — Mohammadmehdi Ataei et al. (2026) · [Paper](https://arxiv.org/abs/2604.24479) · [`avg260424479`](paper/references.bib)
 ### 2025
 
-- **AgentGym: Evaluating and Training Large Language Model-based Agents across Diverse Environments** — Xi, Zhiheng et al. · *Proceedings of the 63rd Annual Meeting of the Association for Computational Linguistics (Volume 1: Long Papers)* (2025) · [Paper](https://doi.org/10.18653/v1/2025.acl-long.765) · [`xi2024agentgym`](paper/references.bib)
+- **AgentGym: Evaluating and Training Large Language Model-based Agents across Diverse Environments** — Xi, Zhiheng et al. · *Proceedings of the 63rd Annual Meeting of the Association for Computational Linguistics (Volume 1: Long Papers)* (2025) · [Paper](https://doi.org/10.18653/v1/2025.acl-long.1355) · [`xi2024agentgym`](paper/references.bib)
 - **BLIP3o-NEXT: Next Frontier of Native Image Generation** — Chen, Jiuhai et al. · *arXiv preprint arXiv:2510.15857* (2025) · [Paper](https://arxiv.org/abs/2510.15857) · [`blip3o2025next`](paper/references.bib)
 - **CogVideoX: Text-to-Video Diffusion Models with An Expert Transformer** — Yang, Zhuoyi et al. · *The Thirteenth International Conference on Learning Representations* (2025) · [Paper](https://openreview.net/forum?id=LQzN6TRFg9) · [`yang2024cogvideox`](paper/references.bib)
 - **ComfyGPT: A Self-Optimizing Multi-Agent System for Comprehensive ComfyUI Workflow Generation** — Huang, Oucheng et al. · *arXiv preprint arXiv:2503.17671* (2025) · [Paper](https://arxiv.org/abs/2503.17671) · [`huang2025comfygpt`](paper/references.bib)
@@ -300,7 +300,7 @@ Complete bibliography index for [Agentic Visual Generation: A Survey](README.md)
 - **UrbanWorld2.0: A Multimodal Agentic Framework for Reality-Aligned 3D World Generation at City-Scale** — Shengyuan Wang et al. (2025) · [Paper](https://arxiv.org/abs/2511.18005) · [`avg251118005`](paper/references.bib)
 - **VideoGen-Eval: Agent-based System for Video Generation Evaluation** — Yuhang Yang et al. (2025) · [Paper](https://arxiv.org/abs/2503.23452) · [`avg250323452`](paper/references.bib)
 - **Visual Persona: Foundation Model for Full-Body Human Customization** — Jisu Nam et al. · *2025 IEEE/CVF Conference on Computer Vision and Pattern Recognition (CVPR)* (2025) · [Paper](https://doi.org/10.1109/cvpr52734.2025.01736) · [`nam2025visual`](paper/references.bib)
-- **Wan: Open and Advanced Large-Scale Video Generative Models** — Wan Team et al. · *arXiv preprint arXiv:2503.20314* (2025) · [Paper](https://arxiv.org/abs/2503.20314) · [`wan2025`](paper/references.bib)
+- **Wan: Open and Advanced Large-Scale Video Generative Models** — Team Wan et al. · *arXiv preprint arXiv:2503.20314* (2025) · [Paper](https://arxiv.org/abs/2503.20314) · [`wan2025`](paper/references.bib)
 - **World-To-Image: Grounding Text-to-Image Generation with Agent-Driven World Knowledge** — Moo Hyun Son et al. (2025) · [Paper](https://arxiv.org/abs/2510.04201) · [`avg251004201`](paper/references.bib)
 - **WorldCraft: Photo-Realistic 3D World Creation and Customization via LLM Agents** — Xinhang Liu et al. (2025) · [Paper](https://arxiv.org/pdf/2502.15601) · [`avg250215601`](paper/references.bib)
 ### 2024
@@ -349,7 +349,7 @@ Complete bibliography index for [Agentic Visual Generation: A Survey](README.md)
 - **StoryAgent: Customized Storytelling Video Generation via Multi-Agent Collaboration** — Panwen Hu et al. (2024) · [Paper](https://arxiv.org/abs/2411.04925) · [`avg241104925`](paper/references.bib)
 - **TripoSR: Fast 3D Object Reconstruction from a Single Image** — Tochilkin, Dmitry et al. · *arXiv preprint arXiv:2403.02151* (2024) · [Paper](https://arxiv.org/abs/2403.02151) · [`triposr2024`](paper/references.bib)
 - **VFusion3D: Learning Scalable 3D Generative Models from Video Diffusion Models** — Junlin Han et al. · *Lecture Notes in Computer Science* (2024) · [Paper](https://doi.org/10.1007/978-3-031-72627-9_19) · [`vfusion3d2024`](paper/references.bib)
-- **Video Generation Models as World Simulators** — OpenAI (2024) · [Paper](https://openai.com/research/video-generation-models-as-world-simulators) · [`brooks2024sora`](paper/references.bib)
+- **Video Generation Models as World Simulators** — OpenAI (2024) · [Paper](https://openai.com/index/video-generation-models-as-world-simulators/) · [`brooks2024sora`](paper/references.bib)
 - **Visual Autoregressive Modeling: Scalable Image Generation via Next-Scale Prediction** — Keyu Tian et al. · *Advances in Neural Information Processing Systems 37* (2024) · [Paper](https://doi.org/10.52202/079017-2694) · [`tian2024var`](paper/references.bib)
 - **WaitGPT: Monitoring and Steering Conversational LLM Agent in Data Analysis with On-the-Fly Code Visualization** — Liwenhan Xie et al. · *Proceedings of the 37th Annual ACM Symposium on User Interface Software and Technology* (2024) · [Paper](https://doi.org/10.1145/3654777.3676374) · [`avg240801703`](paper/references.bib)
 ### 2023

@@ -3,6 +3,14 @@
 
 Interface generation joins visual appearance to executable behavior. Component trees, style rules, screenshots, browser state, and interaction traces provide complementary views of the same artifact, making this domain a stringent test of whether visual feedback can be translated into code-level repair.
 
+\begin{keytakeaway}[Agentic UI and Web Generation at a Glance]
+\begin{keypoints}
+  \item \textbf{From visual specification to executable interface:} coordinate design intent with component structure and runtime behavior, treating a rendered screenshot as an observation of the program rather than a substitute for functional state.
+
+  \item \textbf{Browser-grounded verification and repair:} combine screenshots, DOM structure, interaction tests, and accessibility checks, where this heterogeneous evidence makes precise repair possible but also reveals failures that a single image metric cannot capture.
+\end{keypoints}
+\end{keytakeaway}
+
 \begin{figure}[!htbp]
   \centering
   \input{figures/tikz/ch9_representative_systems_benchmarks.tikz.tex}

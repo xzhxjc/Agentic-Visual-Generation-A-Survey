@@ -1,28 +1,3 @@
-# LaTeX build files
-*.aux
-*.bbl
-*.bcf
-*.blg
-*.fdb_latexmk
-*.fls
-*.log
-*.out
-*.run.xml
-*.synctex.gz
-*.toc
-*.xdv
-build/
-build_*/
-
-# Generated manuscript PDFs. Figure PDFs under paper/**/figures/ remain tracked.
-paper/**/paper.pdf
-paper/**/build/
-paper/**/build_*/
-
-# Local bibliography-review outputs and safety backups.
-paper/**/reference_audit_*.json
-paper/**/references.bib.bak_*
-
 # Python cache
 __pycache__/
 *.py[cod]

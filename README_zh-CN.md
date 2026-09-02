@@ -1,6 +1,6 @@
 <div align="center">
 
-<img src="paper/assets/ai4gc-logo.png" alt="AI4GC Lab" height="72">
+<img src="assets/ai4gc-logo.png" alt="AI4GC Lab" height="72">
 
 # Agentic Visual Generation
 ## A Survey
@@ -43,16 +43,16 @@
 <p><sup>1</sup> AI4GC Lab，浙江大学 · <sup>2</sup> 香港科技大学 · <sup>3</sup> Cornell University · <sup>4</sup> 浙江大学人工智能学院</p>
 
 <p>
-  <a href="paper/paper.pdf">阅读论文 PDF</a>
+  <a href="PAPERS.md#browse-by-field">浏览论文索引</a>
   &nbsp;&nbsp;·&nbsp;&nbsp;
-  <a href="paper/">浏览源码</a>
+  <a href="references.bib">BibTeX 文献</a>
   &nbsp;&nbsp;·&nbsp;&nbsp;
   <a href="README.md">English</a>
 </p>
 
 <p>
   <img src="https://img.shields.io/badge/status-living%20survey-2f855a?style=flat-square" alt="持续更新">
-  <img src="https://img.shields.io/badge/source-LaTeX-2563eb?style=flat-square" alt="LaTeX 源码">
+  <img src="https://img.shields.io/badge/source-整理索引-2563eb?style=flat-square" alt="整理索引">
   <img src="https://img.shields.io/badge/license-MIT-f59e0b?style=flat-square" alt="MIT 许可证">
 </p>
 
@@ -71,9 +71,9 @@
   &nbsp;·&nbsp;
   <a href="#研究地图">研究地图</a>
   &nbsp;·&nbsp;
-  <a href="#论文导航">章节导航</a>
+  <a href="#论文结构">章节导航</a>
   &nbsp;·&nbsp;
-  <a href="#论文源码">源码</a>
+  <a href="#公开内容">公开内容</a>
   &nbsp;·&nbsp;
   <a href="#持续更新">参与维护</a>
 </p>
@@ -81,14 +81,14 @@
 </div>
 
 <p align="center">
-  <img src="paper/figures/ch3_components.jpg" alt="Agentic Visual Generation 六个核心组件" width="92%">
+  <img src="assets/ch3_components.jpg" alt="Agentic Visual Generation 六个核心组件" width="92%">
 </p>
 
 <p align="center"><em>以目标、记忆、工具、感知、行动和跨任务自我改进为核心的视觉创作闭环。</em></p>
 
 > **项目快照 · 2026 年 9 月 2 日**
 >
-> 一个持续更新的视觉生成综述与公开 LaTeX 仓库，关注能够规划、调用工具、检查中间结果并调整行为的视觉创作系统。
+> 一个持续更新的视觉生成综述与公开论文索引，关注能够规划、调用工具、检查中间结果并调整行为的视觉创作系统。
 
 ## News
 
@@ -96,13 +96,12 @@
 | --- | --- |
 | **2026-09-02** | 将 389 条参考文献重组为按领域组织的可折叠索引，并补齐完整元数据与直接链接。 |
 | **2026-08-30** | 增加当前综述追踪的 389 条文献记录的完整可浏览索引。 |
-| **2026-08-30** | 重新组织项目主页，突出分类体系、论文发现和源码导航。 |
+| **2026-08-30** | 重新组织项目主页，突出分类体系、论文发现和领域导航。 |
 | **持续进行** | 根据一手来源核对文献元数据、发表状态、图表和章节覆盖。 |
 
 <p align="center">
-  <a href="paper/paper.pdf"><img src="https://img.shields.io/badge/阅读论文-111827?style=for-the-badge&logo=readme&logoColor=white" alt="阅读论文 PDF"></a>
-  <a href="paper/sections/03_operating_loop.tex"><img src="https://img.shields.io/badge/查看框架-0f766e?style=for-the-badge&logo=diagram&logoColor=white" alt="查看框架"></a>
-  <a href="paper/references.bib"><img src="https://img.shields.io/badge/浏览-BibTeX-2563eb?style=for-the-badge&logo=academia&logoColor=white" alt="浏览 BibTeX"></a>
+  <a href="PAPERS.md"><img src="https://img.shields.io/badge/浏览-论文索引-111827?style=for-the-badge&logo=readme&logoColor=white" alt="浏览论文索引"></a>
+  <a href="references.bib"><img src="https://img.shields.io/badge/浏览-BibTeX-2563eb?style=for-the-badge&logo=academia&logoColor=white" alt="浏览 BibTeX"></a>
 </p>
 
 <details>
@@ -114,9 +113,8 @@
 - [领域索引](PAPERS.md#browse-by-field)
 - [研究地图](#研究地图)
 - [本文提供什么](#本文提供什么)
-- [论文导航](#论文导航)
-- [论文源码](#论文源码)
-- [编译](#编译)
+- [论文结构](#论文结构)
+- [公开内容](#公开内容)
 - [持续更新](#持续更新)
 
 </details>
@@ -127,7 +125,7 @@
 
 <p align="center">
   <a href="PAPERS.md"><img src="https://img.shields.io/badge/浏览-389%20篇完整领域索引-0f766e?style=for-the-badge&logo=readme&logoColor=white" alt="浏览 389 篇完整领域索引"></a>
-  <a href="paper/references.bib"><img src="https://img.shields.io/badge/来源-references.bib-2563eb?style=for-the-badge&logo=latex&logoColor=white" alt="来源 references.bib"></a>
+  <a href="references.bib"><img src="https://img.shields.io/badge/来源-references.bib-2563eb?style=for-the-badge&logo=latex&logoColor=white" alt="来源 references.bib"></a>
 </p>
 
 | 领域 | 对应章节 | 文献数 | 覆盖年份 |
@@ -143,7 +141,7 @@
 
 > 每个领域都可以完整展开或收起。展开后会显示论文名称、完整作者、年份/月份、会议或期刊、卷期页码、论文/DOI/项目链接，以及对应的 BibTeX key。
 
-详细索引：[`PAPERS.md`](PAPERS.md) · 权威元数据：[`paper/references.bib`](paper/references.bib)
+详细索引：[`PAPERS.md`](PAPERS.md) · 机器可读元数据：[`references.bib`](references.bib)
 
 ## 一眼了解
 
@@ -167,7 +165,7 @@
 ## 研究地图
 
 <p align="center">
-  <img src="paper/figures/avg_literature_autonomy.png" alt="文献增长、领域覆盖与自主性" width="92%">
+  <img src="assets/avg_literature_autonomy.png" alt="文献增长、领域覆盖与自主性" width="92%">
 </p>
 
 本文从三个层次组织研究：
@@ -179,7 +177,7 @@
 | **学习与证据** | 它如何改进，又应如何评估？ | 第 11–12 章与前沿章节 |
 
 <p align="center">
-  <img src="paper/figures/avg_autonomy_staircase.jpg" alt="五级自主性阶梯" width="92%">
+  <img src="assets/avg_autonomy_staircase.jpg" alt="五级自主性阶梯" width="92%">
 </p>
 
 <p align="center"><em>自主性从固定生成逐步扩展到反馈适应、长时程控制和持续自我改进。</em></p>
@@ -204,55 +202,22 @@
 - **跨领域比较：** 统一比较图像、视频、3D、可视化、文档和 UI/Web 系统。
 - **评估视角：** 覆盖产物质量、目标与约束满足、轨迹与决策质量，以及系统和以人为中心的结果。
 
-## 论文导航
+## 论文结构
 
 | 章节 | 内容 |
 | --- | --- |
-| [01 · Introduction](paper/sections/01_introduction.tex) | 范围、动机与综述结构 |
-| [02 · Foundations](paper/sections/02_foundations.tex) | 视觉生成器、多模态、结构化表示与自主性 |
-| [03 · Operating Loop](paper/sections/03_operating_loop.tex) | 规划、记忆、工具、感知、行动与改进 |
-| [04 · Image Generation](paper/sections/04_image_generation.tex) | 图像生成与编辑 Agent |
-| [05 · Video & Animation](paper/sections/05_video_animation.tex) | 长视频、动画与时间控制 |
-| [06 · 3D, CAD & Worlds](paper/sections/06_3d_cad_world.tex) | 结构化资产、可执行 CAD 与世界模型 |
-| [07 · Scientific Visualization](paper/sections/07_scientific_visualization.tex) | 数据驱动的视觉分析与图形生成 |
-| [08 · Structured Documents](paper/sections/08_structured_documents.tex) | 幻灯片、文档、布局与渲染反馈 |
-| [09 · UI & Web](paper/sections/09_ui_web.tex) | 界面和网页生成 |
-| [10 · Cross-Domain Systems](paper/sections/10_cross_domain.tex) | 跨视觉创作领域的综合系统 |
-| [11 · Training](paper/sections/11_training.tex) | 轨迹监督、强化学习与适应 |
-| [12 · Evaluation](paper/sections/12_evaluation.tex) | Benchmark、可靠性、安全性与人因 |
-| [Frontiers](paper/sections/06_frontiers.tex) | 开放问题与研究方向 |
+| 01–03 | 范围、基础与运行闭环 |
+| 04–10 | 图像、视频、3D、可视化、文档、UI/Web 与跨领域系统 |
+| 11–12 | 训练、适应、评测与可靠性 |
+| 前沿章节 | 开放问题与新兴研究方向 |
 
-## 论文源码
+## 公开内容
 
-[`paper/`](paper/) 是公开、可编译的论文源码目录：
-
-```text
-paper/
-├── paper.tex                 # 主入口
-├── sections/                 # 各章正文
-├── figures/                  # 正文使用的图
-├── references.bib            # 参考文献
-├── agentic_visual_generation.cls                   # 本地文档类
-└── assets/                   # 字体与标识
-```
-
-公开仓库保持聚焦：只保留论文源码及其编译所需依赖，不包含生成的构建产物和私人工作文件。
-
-## 编译
-
-在 `paper/` 目录执行：
-
-```bash
-latexmk -xelatex -interaction=nonstopmode -halt-on-error paper.tex
-```
-
-使用 Overleaf 时，上传 [`paper/`](paper/) 的全部内容，并将 `paper.tex` 设置为主文档。
-
-更新 [`paper/references.bib`](paper/references.bib) 后，可使用以下命令重建按领域组织的论文索引：
-
-```bash
-node tools/rebuild_papers_index.mjs
-```
+| 文件 | 用途 |
+| --- | --- |
+| [`PAPERS.md`](PAPERS.md) | 按领域组织、包含完整元数据和直接链接的论文索引 |
+| [`references.bib`](references.bib) | 当前追踪文献的机器可读 BibTeX 数据 |
+| [`assets/`](assets/) | 项目主页实际使用的图片 |
 
 ## 持续更新
 
@@ -271,9 +236,9 @@ node tools/rebuild_papers_index.mjs
 | 提交更新前 | 检查内容 |
 | --- | --- |
 | 新论文或项目 | 添加一手来源和稳定的 BibTeX 条目 |
-| 新图或新表 | 核对图注、来源署名和本地路径 |
+| 新图或新表 | 核对图注、来源署名和公开链接 |
 | 正文修改 | 保持框架术语与章节范围一致 |
-| 版本发布 | 编译 `paper/paper.tex`，并从公开目录移除生成产物 |
+| 版本发布 | 更新 `PAPERS.md`、检查链接，并移除生成产物 |
 
 ## 引用
 
@@ -281,4 +246,4 @@ node tools/rebuild_papers_index.mjs
 
 ## 许可证
 
-代码和 LaTeX 源码采用 [MIT License](paper/LICENSE)。使用论文中的具体图片时，请同时核对论文正文及其引用文献中的署名和再使用条件。
+项目内容采用 [MIT License](LICENSE)。使用论文中的具体图片时，请同时核对对应文献的署名和再使用条件。

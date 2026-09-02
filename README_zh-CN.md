@@ -16,31 +16,35 @@
   <strong>Zihan Xing</strong><sup>1,*+</sup> ·
   <strong>Jin Wang</strong><sup>1,*</sup> ·
   <strong>Rong Xia</strong><sup>1,*</sup> ·
-  <strong>Keming Ye</strong><sup>1</sup> ·
-  <strong>Long Chen</strong><sup>2</sup> ·
+  <strong>Keming Ye</strong><sup>1,5</sup> ·
+  <strong>Zhan Qu</strong><sup>1,5</sup> ·
+  <strong>Biao Yi</strong><sup>1,5</sup> ·
+  <strong>Tianqi Liu</strong><sup>1,5</sup> ·
+  <strong>Junhao Chen</strong><sup>1,5</sup> ·
+  <strong>Jie Yang</strong><sup>1,5</sup> ·
+  <strong>Zhibo Zhu</strong><sup>1,5</sup> ·
+  <strong>Zhouzhou Shen</strong><sup>1,5</sup> ·
+  <strong>Honghui Sheng</strong><sup>1,5</sup> ·
+  <strong>Yurun Chen</strong><sup>1,5</sup> ·
+  <strong>Yuqing Zhang</strong><sup>1,5</sup> ·
+  <strong>Shuanghe Zhu</strong><sup>1,5</sup> ·
+  <strong>Wenkai Wang</strong><sup>1,5</sup> ·
+  <strong>Tao Xiong</strong><sup>1,5</sup> ·
+  <strong>Kuncheng Lin</strong><sup>1,5</sup> ·
+  <strong>Qihang Yu</strong><sup>1,5</sup> ·
+  <strong>Kui Chen</strong><sup>1,5</sup> ·
+  <strong>Yufan Xiong</strong><sup>1,5</sup> ·
+  <strong>Juncheng Li</strong><sup>5</sup> ·
+  <strong>Wenqiao Zhang</strong><sup>5</sup> ·
   <strong>Zheqi Lv</strong><sup>3</sup> ·
-  <strong>Zhan Qu</strong><sup>1</sup> ·
-  <strong>Biao Yi</strong><sup>1</sup> ·
-  <strong>Tianqi Liu</strong><sup>1</sup> ·
-  <strong>Junhao Chen</strong><sup>1</sup> ·
-  <strong>Jie Yang</strong><sup>1</sup> ·
-  <strong>Zhibo Zhu</strong><sup>1</sup> ·
-  <strong>Zhouzhou Shen</strong><sup>1</sup> ·
-  <strong>Honghui Sheng</strong><sup>1</sup> ·
-  <strong>Yurun Chen</strong><sup>1</sup> ·
-  <strong>Yuqing Zhang</strong><sup>1</sup> ·
-  <strong>Shuanghe Zhu</strong><sup>1</sup> ·
-  <strong>Wenkai Wang</strong><sup>1</sup> ·
-  <strong>Tao Xiong</strong><sup>1</sup> ·
-  <strong>Kuncheng Lin</strong><sup>1</sup> ·
-  <strong>Qihang Yu</strong><sup>1</sup> ·
-  <strong>Kui Chen</strong><sup>1</sup> ·
-  <strong>Yufan Xiong</strong><sup>1</sup> ·
+  <strong>Chengxi Zang</strong><sup>3</sup> ·
+  <strong>Long Chen</strong><sup>2</sup> ·
   <strong>Zhou Zhao</strong><sup>4</sup> ·
-  <strong>Shengyu Zhang</strong><sup>1,#</sup>
+  <strong>Shengyu Zhang</strong><sup>1,5,#</sup> ·
+  <strong>Fei Wu</strong><sup>4,#</sup>
 </p>
 
-<p><sup>1</sup> AI4GC Lab，浙江大学 · <sup>2</sup> 香港科技大学 · <sup>3</sup> Cornell University · <sup>4</sup> 浙江大学人工智能学院</p>
+<p><sup>1</sup> AI4GC Lab，浙江大学 · <sup>2</sup> 香港科技大学 · <sup>3</sup> Cornell University · <sup>4</sup> 浙江大学人工智能学院 · <sup>5</sup> 浙江大学软件技术学院</p>
 
 <p>
   <a href="PAPERS.md#browse-by-field">浏览论文索引</a>
